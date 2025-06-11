@@ -1,0 +1,60 @@
+digraph {
+	graph [bb="0,0,887.79,252",
+		compound=true,
+		newrank=true
+	];
+	node [label="\N"];
+	subgraph root {
+		"[root] @repo/eslint-config#build"	[height=0.5,
+			pos="309.49,90",
+			width=3.5025];
+		"[root] ___ROOT___"	[height=0.5,
+			pos="595.49,18",
+			width=2.3109];
+		"[root] @repo/eslint-config#build" -> "[root] ___ROOT___"	[pos="e,542.62,31.941 370.15,74.155 418.01,62.44 484.54,46.157 532.9,34.321"];
+		"[root] @repo/typescript-config#build"	[height=0.5,
+			pos="595.49,90",
+			width=3.9358];
+		"[root] @repo/typescript-config#build" -> "[root] ___ROOT___"	[pos="e,595.49,36.104 595.49,71.697 595.49,63.983 595.49,54.712 595.49,46.112"];
+		"[root] @repo/ui#build"	[height=0.5,
+			pos="433.49,162",
+			width=2.4734];
+		"[root] @repo/ui#build" -> "[root] @repo/eslint-config#build"	[pos="e,339.1,107.72 405.05,144.94 388.09,135.37 366.33,123.09 347.87,112.66"];
+		"[root] @repo/ui#build" -> "[root] @repo/typescript-config#build"	[pos="e,557.38,107.47 469.45,145.46 492.59,135.46 522.93,122.36 548.04,111.5"];
+		"[root] api#build"	[height=0.5,
+			pos="821.49,90",
+			width=1.8415];
+		"[root] api#build" -> "[root] ___ROOT___"	[pos="e,641.13,33.135 779.51,75.998 743.27,64.771 690.63,48.467 650.93,36.17"];
+		"[root] blog#build"	[height=0.5,
+			pos="71.494,234",
+			width=1.9859];
+		"[root] blog#build" -> "[root] @repo/eslint-config#build"	[pos="e,281.53,107.69 97.873,217.26 140.49,191.84 224.56,141.67 272.93,112.82"];
+		"[root] blog#build" -> "[root] @repo/typescript-config#build"	[pos="e,493.54,102.51 108.58,218.52 135.31,208 172.22,193.34 204.49,180 242.03,164.48 249.55,155.53 288.49,144 351.86,125.23 424.67,112.31 \
+483.48,103.92"];
+		"[root] blog#build" -> "[root] @repo/ui#build"	[pos="e,369.57,174.57 123.96,221.67 133.13,219.74 142.58,217.78 151.49,216 222,201.89 302.64,186.84 359.58,176.4"];
+		"[root] dashboard#build"	[height=0.5,
+			pos="252.49,234",
+			width=2.5456];
+		"[root] dashboard#build" -> "[root] @repo/eslint-config#build"	[pos="e,290.8,107.84 252,215.83 252.09,197.31 254.09,167.36 264.49,144 269.11,133.64 276.4,123.74 283.78,115.37"];
+		"[root] dashboard#build" -> "[root] @repo/typescript-config#build"	[pos="e,503.38,103.71 263.44,215.92 277.53,195.44 303.97,161.66 335.49,144 362.48,128.88 432.68,115.04 493.35,105.3"];
+		"[root] dashboard#build" -> "[root] @repo/ui#build"	[pos="e,394.18,178.21 292.21,217.64 319.42,207.12 355.68,193.09 384.65,181.89"];
+		"[root] docs#build"	[height=0.5,
+			pos="433.49,234",
+			width=1.9859];
+		"[root] docs#build" -> "[root] @repo/eslint-config#build"	[pos="e,310.61,108.21 391.76,219.09 372.15,210.61 349.96,197.9 335.49,180 321.3,162.44 314.86,137.41 311.93,118.36"];
+		"[root] docs#build" -> "[root] @repo/typescript-config#build"	[pos="e,586.32,108.18 469.49,218.33 489.17,209.19 513.2,196.1 531.49,180 552,161.96 569.63,136.17 581.16,117"];
+		"[root] docs#build" -> "[root] @repo/ui#build"	[pos="e,433.49,180.1 433.49,215.7 433.49,207.98 433.49,198.71 433.49,190.11"];
+		"[root] forum#build"	[height=0.5,
+			pos="600.49,234",
+			width=2.1484];
+		"[root] forum#build" -> "[root] @repo/eslint-config#build"	[pos="e,388.29,104.1 592.02,216.07 580.94,195.74 559.59,162.12 531.49,144 509.28,129.67 449.94,115.89 398.19,105.97"];
+		"[root] forum#build" -> "[root] @repo/typescript-config#build"	[pos="e,598.34,108.13 601.77,215.92 602.9,197.99 604.14,168.98 602.49,144 601.94,135.53 600.89,126.36 599.76,118.06"];
+		"[root] forum#build" -> "[root] @repo/ui#build"	[pos="e,470.42,178.48 564.67,217.98 539.91,207.61 506.75,193.71 479.97,182.48"];
+		"[root] web#build"	[height=0.5,
+			pos="766.49,234",
+			width=1.9498];
+		"[root] web#build" -> "[root] @repo/eslint-config#build"	[pos="e,392.16,103.65 736.81,217.55 698.09,197.95 627.81,164.28 564.49,144 511.72,127.1 451.03,114.23 402.1,105.41"];
+		"[root] web#build" -> "[root] @repo/typescript-config#build"	[pos="e,645.87,106.91 759.36,215.85 750.46,196.24 733.54,164.23 710.49,144 694.52,129.98 674.21,118.99 655.12,110.74"];
+		"[root] web#build" -> "[root] @repo/ui#build"	[pos="e,493.06,175.43 714.43,221.91 705.13,219.94 695.52,217.91 686.49,216 624.44,202.91 553.79,188.12 502.95,177.49"];
+	}
+}
