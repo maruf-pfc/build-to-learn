@@ -1,5 +1,5 @@
 # Use a lightweight Node.js base image
-FROM node:20-alpine
+FROM node:22-alpine
 
 # Set environment variables for PNPM global binary directory
 ENV PNPM_HOME="/root/.pnpm"
