@@ -1,0 +1,99 @@
+version: '3.9'
+
+services:
+  api:
+    build:
+      context: .
+    container_name: build-to-learn-api
+    working_dir: /app/apps/api
+    command: pnpm start
+    ports:
+      - '5000:5000'
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - db
+
+  web:
+    build:
+      context: .
+    container_name: build-to-learn-web
+    working_dir: /app/apps/web
+    command: pnpm dev
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - api
+
+  dashboard:
+    build:
+      context: .
+    container_name: build-to-learn-dashboard
+    working_dir: /app/apps/dashboard
+    command: pnpm dev
+    ports:
+      - '3001:3001'
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - api
+
+  blog:
+    build:
+      context: .
+    container_name: build-to-learn-blog
+    working_dir: /app/apps/blog
+    command: pnpm dev
+    ports:
+      - '3002:3002'
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - api
+
+  forum:
+    build:
+      context: .
+    container_name: build-to-learn-forum
+    working_dir: /app/apps/forum
+    command: pnpm dev
+    ports:
+      - '3003:3003'
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - api
+
+  docs:
+    build:
+      context: .
+    container_name: build-to-learn-docs
+    working_dir: /app/apps/docs
+    command: pnpm dev
+    ports:
+      - '3004:3004'
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+  db:
+    image: postgres:15
+    container_name: build-to-learn-db
+    ports:
+      - '2345:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: build-to-learn-db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
