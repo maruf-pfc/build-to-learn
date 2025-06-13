@@ -19,5 +19,9 @@
   "packageManager": "pnpm@9.0.0",
   "engines": {
     "node": ">=21"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "1.1.1",
+    "class-variance-authority": "^0.7.1"
   }
 }
