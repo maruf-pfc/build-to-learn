@@ -30,7 +30,7 @@ RUN pnpm install -g @nestjs/cli
 RUN pnpm run build
 
 # Expose relevant ports (adjust based on actual usage)
-EXPOSE 3000 3001 3002 3003 3005 5000
+EXPOSE 3000 3001 3002 3003 3004 3005 5000
 
 # Start the app(s) in development mode (you can change to prod as needed)
 CMD ["pnpm", "run", "dev"]

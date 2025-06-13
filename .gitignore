@@ -27,6 +27,10 @@ out/
 build
 dist
 
+.cache
+.temp
+dist
+deploy-docs.yml
 
 # Debug
 npm-debug.log*

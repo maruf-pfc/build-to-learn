@@ -1,4 +1,4 @@
-# 🚀 Technology Stack Recommendation for “Build to Learn”
+# Technology Stack Recommendation for “Build to Learn”
 
 Choosing the right tech stack is vital for building a scalable, performant, and developer-friendly learning platform. Considering your team’s expertise in React.js, Node.js, Express.js, MongoDB, and Next.js, this stack is tailored to maximize familiarity while following modern best practices.
 
