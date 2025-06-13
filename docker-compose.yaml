@@ -1,4 +1,4 @@
-version: '3.9'
+version: "3.9"
 
 services:
   api:
@@ -8,10 +8,9 @@ services:
     working_dir: /app/apps/api
     command: pnpm start
     ports:
-      - '5000:5000'
+      - "5000:5000"
     volumes:
       - .:/app
-      - /app/node_modules
     depends_on:
       - db
 
@@ -22,10 +21,9 @@ services:
     working_dir: /app/apps/web
     command: pnpm dev
     ports:
-      - '3000:3000'
+      - "3000:3000"
     volumes:
       - .:/app
-      - /app/node_modules
     depends_on:
       - api
 
@@ -36,10 +34,9 @@ services:
     working_dir: /app/apps/dashboard
     command: pnpm dev
     ports:
-      - '3001:3001'
+      - "3001:3001"
     volumes:
       - .:/app
-      - /app/node_modules
     depends_on:
       - api
 
@@ -50,10 +47,9 @@ services:
     working_dir: /app/apps/blog
     command: pnpm dev
     ports:
-      - '3002:3002'
+      - "3002:3002"
     volumes:
       - .:/app
-      - /app/node_modules
     depends_on:
       - api
 
@@ -64,10 +60,9 @@ services:
     working_dir: /app/apps/forum
     command: pnpm dev
     ports:
-      - '3003:3003'
+      - "3003:3003"
     volumes:
       - .:/app
-      - /app/node_modules
     depends_on:
       - api
 
@@ -78,16 +73,15 @@ services:
     working_dir: /app/apps/docs
     command: pnpm dev
     ports:
-      - '3004:3004'
+      - "3004:3004"
     volumes:
       - .:/app
-      - /app/node_modules
 
   db:
     image: postgres:15
     container_name: build-to-learn-db
     ports:
-      - '2345:5432'
+      - "2345:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root
