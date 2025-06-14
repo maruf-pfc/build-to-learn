@@ -25,7 +25,7 @@ export function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 p-2">
             <Image
-              src="/logoo.png"
+              src="/logo-main.png"
               alt="Build to Learn Logo"
               width={64}
               height={64}

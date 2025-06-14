@@ -1,7 +1,7 @@
 ---
 home: true
 title: Home
-heroImage: https://vuejs.press/images/hero.png
+heroImage: https://res.cloudinary.com/diyh9o7eo/image/upload/v1749939087/logo-main_rwmqlq.png
 actions:
   - text: Get Started
     link: /get-started.html

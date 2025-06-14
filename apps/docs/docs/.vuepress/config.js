@@ -8,7 +8,7 @@ export default defineUserConfig({
   description: 'Build to Learn Project Documentation',
 
   theme: defaultTheme({
-    logo: 'https://vuejs.press/images/hero.png',
+    logo: 'https://res.cloudinary.com/diyh9o7eo/image/upload/v1749939087/logo-main_rwmqlq.png',
 
     navbar: [
       { text: 'Home', link: '/' },
