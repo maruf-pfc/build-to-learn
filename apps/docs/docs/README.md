@@ -3,13 +3,13 @@ home: true
 title: Home
 heroImage: https://res.cloudinary.com/diyh9o7eo/image/upload/v1749939087/logo-main_rwmqlq.png
 actions:
-  - text: Get Started
-    link: /get-started.html
-    type: primary
+  # - text: Get Started
+  #   link: /get-started.html
+  #   type: primary
 
-  - text: Introduction
-    link: https://vuejs.press/guide/introduction.html
-    type: secondary
+  # - text: Introduction
+  #   link: https://vuejs.press/guide/introduction.html
+  #   type: secondary
 
 
 features:
