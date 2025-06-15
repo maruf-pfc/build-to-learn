@@ -40,4 +40,5 @@ export default defineUserConfig({
   }),
 
   bundler: viteBundler(),
+  dest: './dist'
 })
