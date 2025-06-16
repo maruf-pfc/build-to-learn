@@ -1,0 +1,116 @@
+---
+title: "Install Docker on Ubuntu"
+description: "Learn how to install Docker on Ubuntu in a few simple steps."
+keywords: "Docker, Ubuntu, Installation, Linux, Containerization"
+image: "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=800&h=400&fit=crop"
+author: "Alex Rodriguez"
+date: "2024-01-10"
+---
+
+To install **Docker** on **Ubuntu**, follow these steps:
+
+## **Step 1: Uninstall Old Versions (If Any)**
+
+If you have an older version of Docker installed, remove it first:
+
+```sh
+sudo apt remove docker docker-engine docker.io containerd runc
+```
+
+## **Step 2: Update Package List**
+
+Update the package index and install dependencies:
+
+```sh
+sudo apt update
+sudo apt install -y ca-certificates curl gnupg
+```
+
+## **Step 3: Add Docker’s Official GPG Key**
+
+```sh
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo tee /etc/apt/keyrings/docker.gpg > /dev/null
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+```
+
+## **Step 4: Add Docker Repository**
+
+```sh
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+
+Then, update the package list again:
+
+```sh
+sudo apt update
+```
+
+## **Step 5: Install Docker Engine, CLI, and Containerd**
+
+```sh
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+## **Step 6: Verify Docker Installation**
+
+Check if Docker is installed correctly:
+
+```sh
+docker --version
+```
+
+Start the Docker service:
+
+```sh
+sudo systemctl start docker
+sudo systemctl enable docker
+```
+
+Test Docker with a Hello World container:
+
+```sh
+sudo docker run hello-world
+```
+
+## **Step 7: Run Docker Without `sudo` (Optional)**
+
+By default, Docker requires root privileges. To allow your user to run Docker without `sudo`:
+
+```sh
+sudo usermod -aG docker $USER
+```
+
+Then, **log out and log back in** or run:
+
+```sh
+newgrp docker
+```
+
+Now, try running:
+
+```sh
+docker ps
+```
+
+## **Step 8: Enable Docker to Start on Boot**
+
+```sh
+sudo systemctl enable docker
+```
+
+### **Bonus: Install Docker Compose**
+
+Docker Compose allows you to run multi-container applications. Install it using:
+
+```sh
+sudo apt install -y docker-compose-plugin
+```
+
+Verify installation:
+
+```sh
+docker compose version
+```
