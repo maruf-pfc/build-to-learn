@@ -19,7 +19,7 @@ const Logo = (
       className="text-xl pt-1.5 font-bold text-black dark:text-white hover:text-black/95 dark:hover:text-white/95 transition-all"
       style={logoFont.style}
     >
-      CS Resources
+      Build to Learn
     </span>
   </div>
 );
