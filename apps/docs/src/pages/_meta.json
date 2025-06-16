@@ -1,0 +1,58 @@
+{
+  "*": {
+    "type": "page"
+  },
+  "index": {
+    "title": "Build to Learn",
+    "display": "hidden",
+    "theme": {
+      "layout": "full",
+      "timestamp": false
+    }
+  },
+  "notes": {
+    "title": "Notes",
+    "type": "menu",
+    "items": {
+      "Gantt Charts": {
+        "title": "Gantt Charts",
+        "href": "/notes/gantt-charts"
+      },
+      "High and Low Level Design": {
+        "title": "High and Low Level Design",
+        "href": "/notes/high-low-level-design"
+      },
+      "SRS": {
+        "title": "SRS",
+        "href": "/notes/srs"
+      }
+    }
+  },
+  "research": {
+    "title": "Research",
+    "type": "menu",
+    "items": {
+      "blog-app": {
+        "title": "Blog App Setup",
+        "href": "/research/blog-app"
+      },
+      "case-studies": {
+        "title": "Case Studies",
+        "href": "/research/case-studies"
+      },
+      "sdm": {
+        "title": "Software Development Model",
+        "href": "/research/software-development-model"
+      },
+      "stack": {
+        "title": "Technology Stack",
+        "href": "/research/technology-stack"
+      }
+    }
+  },
+  "404": {
+    "theme": {
+      "timestamp": false
+    }
+  }
+}
