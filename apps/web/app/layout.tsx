@@ -20,7 +20,6 @@ export const metadata: Metadata = {
   title: "Build to Learn - Master Real-World Skills",
   description:
     "Stop learning in theory. Start building your future with project-based courses.",
-  generator: "v0.dev",
 };
 
 export default function RootLayout({
