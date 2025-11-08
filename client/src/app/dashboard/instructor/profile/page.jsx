@@ -76,7 +76,9 @@ const InstructorProfile = () => {
             {profile.lastName}
           </p>
           <p>
-            <span className="font-medium text-gray-700">Registration Date:</span>{" "}
+            <span className="font-medium text-gray-700">
+              Registration Date:
+            </span>{" "}
             {profile.registrationDate}
           </p>
           <p>
@@ -96,10 +98,12 @@ const InstructorProfile = () => {
             {profile.gender}
           </p>
           <p>
-            <span className="font-medium text-gray-700">DOB:</span> {profile.dob}
+            <span className="font-medium text-gray-700">DOB:</span>{" "}
+            {profile.dob}
           </p>
           <p>
-            <span className="font-medium text-gray-700">Age:</span> {profile.age}
+            <span className="font-medium text-gray-700">Age:</span>{" "}
+            {profile.age}
           </p>
         </div>
         <div className="mt-4">
@@ -115,7 +119,10 @@ const InstructorProfile = () => {
           {education.map((item, i) => (
             <li key={i} className="border-b last:border-none pb-3">
               <p className="font-medium text-gray-800 flex items-center gap-2">
-                <GraduationCap className="text-[var(--color-primary)]" size={18} />
+                <GraduationCap
+                  className="text-[var(--color-primary)]"
+                  size={18}
+                />
                 {item.title}
               </p>
               <p className="text-gray-500 text-sm">

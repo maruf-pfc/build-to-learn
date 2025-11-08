@@ -2,7 +2,13 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import {
-  FileText, ShieldCheck, Clock, CheckCircle2, Download, Printer, Link as LinkIcon,
+  FileText,
+  ShieldCheck,
+  Clock,
+  CheckCircle2,
+  Download,
+  Printer,
+  Link as LinkIcon,
 } from "lucide-react";
 
 export default function TermsAndConditions() {
@@ -11,7 +17,7 @@ export default function TermsAndConditions() {
   useEffect(() => {
     const onScroll = () => {
       const h = document.documentElement;
-      const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight);
+      const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
       setProgress(Math.min(1, Math.max(0, scrolled)));
     };
     onScroll();
@@ -59,8 +65,9 @@ export default function TermsAndConditions() {
                 Terms & Conditions
               </h1>
               <p className="mt-2 text-sm text-neutral-600 max-w-2xl">
-                Please read these Terms and Conditions carefully before using our platform.
-                By accessing or using our services, you agree to be bound by these terms.
+                Please read these Terms and Conditions carefully before using
+                our platform. By accessing or using our services, you agree to
+                be bound by these terms.
               </p>
             </div>
 
@@ -112,7 +119,8 @@ export default function TermsAndConditions() {
                 <div className="text-xs text-neutral-500">Version</div>
                 <div className="mt-1 font-medium">v1.4.0</div>
                 <p className="mt-2 text-xs text-neutral-500">
-                  These terms apply to all users of the platform. Enterprise contracts may include additional terms.
+                  These terms apply to all users of the platform. Enterprise
+                  contracts may include additional terms.
                 </p>
               </div>
             </div>
@@ -131,41 +139,57 @@ export default function TermsAndConditions() {
                 <div className="flex items-start gap-3">
                   <CheckCircle2 className="mt-0.5 h-4 w-4" />
                   <p>
-                    By continuing to use the platform, you acknowledge that you have read and agree to these Terms & Conditions.
+                    By continuing to use the platform, you acknowledge that you
+                    have read and agree to these Terms & Conditions.
                   </p>
                 </div>
               </div>
 
               {/* Sections */}
               <ArticleSection id="acceptance" title="1. Acceptance of Terms">
-                By accessing and using this platform, you accept and agree to be bound by the terms and provisions of this agreement.
-                If you do not agree with any part of these terms, you may not use our services.
+                By accessing and using this platform, you accept and agree to be
+                bound by the terms and provisions of this agreement. If you do
+                not agree with any part of these terms, you may not use our
+                services.
               </ArticleSection>
 
               <ArticleSection id="use" title="2. Use of Services">
-                You agree to use the platform only for lawful purposes and in a way that does not infringe the rights of others
-                or restrict their use and enjoyment of the services. Prohibited behavior includes harassing, causing distress,
-                or transmitting obscene or offensive content.
+                You agree to use the platform only for lawful purposes and in a
+                way that does not infringe the rights of others or restrict
+                their use and enjoyment of the services. Prohibited behavior
+                includes harassing, causing distress, or transmitting obscene or
+                offensive content.
               </ArticleSection>
 
               <ArticleSection id="ip" title="3. Intellectual Property">
-                All content, features, and functionality on this platform, including text, graphics, logos, and software, are the
-                property of our company and are protected by international copyright, trademark, and other laws.
+                All content, features, and functionality on this platform,
+                including text, graphics, logos, and software, are the property
+                of our company and are protected by international copyright,
+                trademark, and other laws.
               </ArticleSection>
 
               <ArticleSection id="liability" title="4. Limitation of Liability">
-                We are not liable for any damages that may occur as a result of using our services. Your use of the platform is at
-                your own risk and responsibility.
+                We are not liable for any damages that may occur as a result of
+                using our services. Your use of the platform is at your own risk
+                and responsibility.
               </ArticleSection>
 
               <ArticleSection id="changes" title="5. Changes to Terms">
-                We reserve the right to update or modify these Terms & Conditions at any time without prior notice. Changes will be
-                effective immediately upon posting on the website. Your continued use of the platform constitutes acceptance of the modified terms.
+                We reserve the right to update or modify these Terms &
+                Conditions at any time without prior notice. Changes will be
+                effective immediately upon posting on the website. Your
+                continued use of the platform constitutes acceptance of the
+                modified terms.
               </ArticleSection>
 
               <ArticleSection id="contact" title="6. Contact Us">
-                If you have any questions about these Terms & Conditions, please contact us at
-                <span className="font-medium text-[var(--color-secondary)]"> support@example.com</span>.
+                If you have any questions about these Terms & Conditions, please
+                contact us at
+                <span className="font-medium text-[var(--color-secondary)]">
+                  {" "}
+                  support@example.com
+                </span>
+                .
               </ArticleSection>
             </div>
           </motion.main>
@@ -186,11 +210,14 @@ function ArticleSection({ id, title, children }) {
       await navigator.clipboard.writeText(url);
       setCopied(true);
       setTimeout(() => setCopied(false), 1200);
-    } catch { }
+    } catch {}
   };
 
   return (
-    <section id={id} className="scroll-mt-20 border-b last:border-b-0 border-neutral-100 py-6">
+    <section
+      id={id}
+      className="scroll-mt-20 border-b last:border-b-0 border-neutral-100 py-6"
+    >
       <div className="group flex items-start justify-between gap-4">
         <h2 ref={hRef} className="text-lg md:text-xl font-semibold">
           {title}
@@ -207,7 +234,9 @@ function ArticleSection({ id, title, children }) {
       </div>
       <p className="mt-2 leading-relaxed text-neutral-700">{children}</p>
       {copied && (
-        <span className="mt-3 inline-block text-xs text-emerald-600">Link copied</span>
+        <span className="mt-3 inline-block text-xs text-emerald-600">
+          Link copied
+        </span>
       )}
     </section>
   );

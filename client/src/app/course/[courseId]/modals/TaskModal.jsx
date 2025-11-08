@@ -26,15 +26,18 @@ export default function TaskModal({ task, onClose }) {
       headers: { "Content-Type": "multipart/form-data" },
     });
     const url = fileUploadRes.data?.data?.url;
-    
+
     const payload = {
       artifactUrl: url,
     };
-    const taskSubmitRes = await api.post(`/submissions/${task._id}/create`, payload);
+    const taskSubmitRes = await api.post(
+      `/submissions/${task._id}/create`,
+      payload
+    );
     console.log("Task submission response:", taskSubmitRes);
     setUploading(true);
     onClose();
-    return  
+    return;
   };
 
   const formatDate = (dateStr) =>
@@ -78,7 +81,9 @@ export default function TaskModal({ task, onClose }) {
           </div>
           <div>
             <p className="font-medium text-gray-600">Due Date:</p>
-            <p className="text-red-500 font-medium">{formatDate(task?.dueDate)}</p>
+            <p className="text-red-500 font-medium">
+              {formatDate(task?.dueDate)}
+            </p>
           </div>
           <div>
             <p className="font-medium text-gray-600">Marks:</p>

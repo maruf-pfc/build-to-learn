@@ -3,11 +3,41 @@
 import { Trophy, Medal, Award } from "lucide-react";
 
 const leaderboardData = [
-  { id: 1, name: "Alice Johnson", points: 980, level: "Gold", avatar: "/images/ins1.jpg" },
-  { id: 2, name: "Michael Smith", points: 870, level: "Silver", avatar: "/images/ins2.jpg" },
-  { id: 3, name: "Sophia Brown", points: 850, level: "Silver", avatar: "/images/ins3.jpg" },
-  { id: 4, name: "James Wilson", points: 720, level: "Bronze", avatar: "/images/ins4.jpg" },
-  { id: 5, name: "Emma Davis", points: 690, level: "Bronze", avatar: "/images/ins4.jpg" },
+  {
+    id: 1,
+    name: "Alice Johnson",
+    points: 980,
+    level: "Gold",
+    avatar: "/images/ins1.jpg",
+  },
+  {
+    id: 2,
+    name: "Michael Smith",
+    points: 870,
+    level: "Silver",
+    avatar: "/images/ins2.jpg",
+  },
+  {
+    id: 3,
+    name: "Sophia Brown",
+    points: 850,
+    level: "Silver",
+    avatar: "/images/ins3.jpg",
+  },
+  {
+    id: 4,
+    name: "James Wilson",
+    points: 720,
+    level: "Bronze",
+    avatar: "/images/ins4.jpg",
+  },
+  {
+    id: 5,
+    name: "Emma Davis",
+    points: 690,
+    level: "Bronze",
+    avatar: "/images/ins4.jpg",
+  },
 ];
 
 export default function Leaderboard() {
@@ -24,16 +54,24 @@ export default function Leaderboard() {
             key={player.id}
             className="bg-white shadow-md rounded-lg p-6 flex flex-col items-center text-center"
           >
-            {index === 0 && <Trophy className="text-[var(--color-primary)] w-8 h-8 mb-2" />}
-            {index === 1 && <Medal className="text-[var(--color-secondary)] w-8 h-8 mb-2" />}
-            {index === 2 && <Award className="text-[var(--color-accent)] w-8 h-8 mb-2" />}
+            {index === 0 && (
+              <Trophy className="text-[var(--color-primary)] w-8 h-8 mb-2" />
+            )}
+            {index === 1 && (
+              <Medal className="text-[var(--color-secondary)] w-8 h-8 mb-2" />
+            )}
+            {index === 2 && (
+              <Award className="text-[var(--color-accent)] w-8 h-8 mb-2" />
+            )}
 
             <img
               src={player.avatar}
               alt={player.name}
               className="w-16 h-16 rounded-full mb-3 border-4 border-[var(--color-primary)]"
             />
-            <h2 className="font-semibold text-lg text-[var(--color-text)]">{player.name}</h2>
+            <h2 className="font-semibold text-lg text-[var(--color-text)]">
+              {player.name}
+            </h2>
             <p className="text-sm text-gray-500">{player.level} Level</p>
             <p className="mt-2 text-xl font-bold text-[var(--color-primary)]">
               {player.points} pts
@@ -68,7 +106,9 @@ export default function Leaderboard() {
                     alt={player.name}
                     className="w-10 h-10 rounded-full border"
                   />
-                  <span className="text-[var(--color-text)]">{player.name}</span>
+                  <span className="text-[var(--color-text)]">
+                    {player.name}
+                  </span>
                 </td>
                 <td className="py-3 px-4 font-bold text-[var(--color-primary)]">
                   {player.points}

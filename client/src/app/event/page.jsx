@@ -83,11 +83,10 @@ const Event = () => {
     <>
       <Navbar />
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
-
-        <EventsPage/>
+        <EventsPage />
 
         {/* Testimonials Section */}
-        <EventTestimonialsSection/>
+        <EventTestimonialsSection />
       </div>
       {/* Footer */}
       <Footer />

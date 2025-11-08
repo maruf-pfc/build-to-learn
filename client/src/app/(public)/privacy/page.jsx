@@ -3,7 +3,14 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import {
-  Shield, Cookie, Clock, FileText, Printer, Download, Link as LinkIcon, Mail
+  Shield,
+  Cookie,
+  Clock,
+  FileText,
+  Printer,
+  Download,
+  Link as LinkIcon,
+  Mail,
 } from "lucide-react";
 
 export default function PrivacyPolicy() {
@@ -33,7 +40,9 @@ export default function PrivacyPolicy() {
 
   const goTo = (e, id) => {
     e.preventDefault();
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    document
+      .getElementById(id)
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
     history.replaceState(null, "", `#${id}`);
   };
 
@@ -60,7 +69,8 @@ export default function PrivacyPolicy() {
                 Privacy Policy
               </h1>
               <p className="mt-2 text-sm text-neutral-600 max-w-2xl">
-                Your privacy matters. This policy explains what we collect, how we use it, and the choices you have.
+                Your privacy matters. This policy explains what we collect, how
+                we use it, and the choices you have.
               </p>
             </div>
 
@@ -111,7 +121,8 @@ export default function PrivacyPolicy() {
                 <div className="text-xs text-neutral-500">Data Controller</div>
                 <div className="mt-1 font-medium">Your Company Ltd.</div>
                 <p className="mt-2 text-xs text-neutral-500">
-                  We process data as described below and according to applicable laws.
+                  We process data as described below and according to applicable
+                  laws.
                 </p>
               </div>
             </div>
@@ -127,22 +138,29 @@ export default function PrivacyPolicy() {
             <div className="rounded-2xl border border-neutral-200 bg-white p-6 md:p-8 shadow-[var(--shadow-soft)]">
               {/* Callout */}
               <div className="mb-8 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
-                We do not sell your personal data. You can manage cookies and marketing preferences anytime.
+                We do not sell your personal data. You can manage cookies and
+                marketing preferences anytime.
               </div>
 
               <Section id="collect" title="1. Information We Collect">
-                We may collect personal details (e.g., name, email, phone, billing info) when you register or transact.
-                We also collect technical data (IP, device info, browser, usage) to improve performance and security.
+                We may collect personal details (e.g., name, email, phone,
+                billing info) when you register or transact. We also collect
+                technical data (IP, device info, browser, usage) to improve
+                performance and security.
               </Section>
 
               <Section id="use" title="2. How We Use Your Information">
-                We use data to operate and improve the platform, provide support, personalize content, process payments,
-                detect/prevent fraud, and comply with legal obligations. We only process data when we have a lawful basis.
+                We use data to operate and improve the platform, provide
+                support, personalize content, process payments, detect/prevent
+                fraud, and comply with legal obligations. We only process data
+                when we have a lawful basis.
               </Section>
 
               <Section id="cookies" title="3. Cookies & Tracking">
-                We use cookies, local storage, and similar technologies for essential functionality, analytics, and personalization.
-                You may disable non-essential cookies via your browser or our preferences tool below; some features may be limited.
+                We use cookies, local storage, and similar technologies for
+                essential functionality, analytics, and personalization. You may
+                disable non-essential cookies via your browser or our
+                preferences tool below; some features may be limited.
                 <div className="mt-3">
                   <button
                     type="button"
@@ -156,18 +174,23 @@ export default function PrivacyPolicy() {
               </Section>
 
               <Section id="security" title="4. Data Security">
-                We apply industry-standard safeguards (encryption in transit, access controls, monitoring).
-                No method of transmission is 100% secure; we continually improve our protections.
+                We apply industry-standard safeguards (encryption in transit,
+                access controls, monitoring). No method of transmission is 100%
+                secure; we continually improve our protections.
               </Section>
 
               <Section id="sharing" title="5. Sharing of Information">
-                We may share data with vetted service providers (hosting, payments, analytics, support) under strict contractual
-                obligations. We may also share when required by law or to protect rights, safety, and integrity of our services.
+                We may share data with vetted service providers (hosting,
+                payments, analytics, support) under strict contractual
+                obligations. We may also share when required by law or to
+                protect rights, safety, and integrity of our services.
               </Section>
 
               <Section id="rights" title="6. Your Rights">
-                Depending on your location, you may have rights to access, correct, delete, or export your data, object to or
-                restrict certain processing, and withdraw consent. To make a request, contact us below.
+                Depending on your location, you may have rights to access,
+                correct, delete, or export your data, object to or restrict
+                certain processing, and withdraw consent. To make a request,
+                contact us below.
                 <div className="mt-3">
                   <Link
                     href="/data-request"
@@ -180,8 +203,9 @@ export default function PrivacyPolicy() {
               </Section>
 
               <Section id="changes" title="7. Changes to This Policy">
-                We may update this policy periodically. Material changes will be communicated via email or prominent notice.
-                The “Last updated” date at the top reflects the latest version.
+                We may update this policy periodically. Material changes will be
+                communicated via email or prominent notice. The “Last updated”
+                date at the top reflects the latest version.
               </Section>
 
               <Section id="contact" title="8. Contact Us">
@@ -209,14 +233,19 @@ function Section({ id, title, children }) {
   const [copied, setCopied] = useState(false);
   const copy = async () => {
     try {
-      await navigator.clipboard.writeText(`${location.origin}${location.pathname}#${id}`);
+      await navigator.clipboard.writeText(
+        `${location.origin}${location.pathname}#${id}`
+      );
       setCopied(true);
       setTimeout(() => setCopied(false), 1200);
-    } catch { }
+    } catch {}
   };
 
   return (
-    <section id={id} className="scroll-mt-20 border-b last:border-b-0 border-neutral-100 py-6">
+    <section
+      id={id}
+      className="scroll-mt-20 border-b last:border-b-0 border-neutral-100 py-6"
+    >
       <div className="group flex items-start justify-between gap-4">
         <h2 className="text-lg md:text-xl font-semibold">{title}</h2>
         <button
@@ -230,7 +259,11 @@ function Section({ id, title, children }) {
         </button>
       </div>
       <p className="mt-2 leading-relaxed text-neutral-700">{children}</p>
-      {copied && <span className="mt-3 inline-block text-xs text-emerald-600">Link copied</span>}
+      {copied && (
+        <span className="mt-3 inline-block text-xs text-emerald-600">
+          Link copied
+        </span>
+      )}
     </section>
   );
 }

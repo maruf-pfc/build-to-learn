@@ -3,16 +3,50 @@ import { Edit, Eye, Trash2, Ban } from "lucide-react";
 
 export default function ManageInstructors() {
   const instructors = [
-    { id: "#I-01", name: "Alex Carter", email: "alex@academy.com", courses: 8, students: 120, status: "Active", joined: "2023-11-12" },
-    { id: "#I-02", name: "Maria Lopez", email: "maria@academy.com", courses: 5, students: 90, status: "Suspended", joined: "2024-01-22" },
-    { id: "#I-03", name: "David Wilson", email: "david@academy.com", courses: 12, students: 200, status: "Active", joined: "2022-08-17" },
-    { id: "#I-04", name: "Sophia Taylor", email: "sophia@academy.com", courses: 6, students: 75, status: "Active", joined: "2023-05-10" },
+    {
+      id: "#I-01",
+      name: "Alex Carter",
+      email: "alex@academy.com",
+      courses: 8,
+      students: 120,
+      status: "Active",
+      joined: "2023-11-12",
+    },
+    {
+      id: "#I-02",
+      name: "Maria Lopez",
+      email: "maria@academy.com",
+      courses: 5,
+      students: 90,
+      status: "Suspended",
+      joined: "2024-01-22",
+    },
+    {
+      id: "#I-03",
+      name: "David Wilson",
+      email: "david@academy.com",
+      courses: 12,
+      students: 200,
+      status: "Active",
+      joined: "2022-08-17",
+    },
+    {
+      id: "#I-04",
+      name: "Sophia Taylor",
+      email: "sophia@academy.com",
+      courses: 6,
+      students: 75,
+      status: "Active",
+      joined: "2023-05-10",
+    },
   ];
 
   return (
     <div className="p-6 space-y-6 text-[var(--color-text)]">
       {/* Header */}
-      <h1 className="text-2xl font-bold text-[--color-text]">Manage Instructors</h1>
+      <h1 className="text-2xl font-bold text-[--color-text]">
+        Manage Instructors
+      </h1>
 
       {/* Responsive Table */}
       <div className="rounded-[--radius-card] shadow-md bg-white p-4 overflow-x-auto">
@@ -31,7 +65,10 @@ export default function ManageInstructors() {
           </thead>
           <tbody>
             {instructors.map((instructor) => (
-              <tr key={instructor.id} className="border-b hover:bg-gray-50 text-sm">
+              <tr
+                key={instructor.id}
+                className="border-b hover:bg-gray-50 text-sm"
+              >
                 <td className="p-3 font-medium">{instructor.id}</td>
                 <td className="p-3">{instructor.name}</td>
                 <td className="p-3 text-gray-500">{instructor.email}</td>

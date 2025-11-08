@@ -1,7 +1,7 @@
 export interface ICategory {
   name: string;
   slug: string;
-  parent?: string;        // ObjectId
+  parent?: string; // ObjectId
   isActive: boolean;
   order?: number;
 }

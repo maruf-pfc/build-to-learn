@@ -14,7 +14,6 @@ import { useAuth } from "@/hooks/useAuth";
 //     ORGANIZATION = 'ORGANIZATION'
 // }
 export default function RegisterPage() {
-
   const { register: registerUser, googleLogin } = useAuth();
   const [role, setRole] = useState("STUDENT");
   const [isLoading, setIsLoading] = useState(false);

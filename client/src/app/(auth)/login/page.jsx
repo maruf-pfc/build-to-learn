@@ -23,7 +23,7 @@ export default function LoginPage() {
     defaultValues: { email: "", password: "" },
   });
 
-  const {login, googleLogin} = useAuth()
+  const { login, googleLogin } = useAuth();
 
   const onSubmit = async (data) => {
     setIsLoading(true);
@@ -33,14 +33,12 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen relative bg-gradient-to-tr from-[var(--color-primary)] to-[var(--color-accent)] flex items-center justify-center px-4 py-8 overflow-hidden">
-
       {/* Decorative Circles */}
       <div className="absolute top-[-50px] left-[-50px] w-72 h-72 bg-white/10 rounded-full filter blur-3xl"></div>
       <div className="absolute bottom-[-60px] right-[-40px] w-96 h-96 bg-white/5 rounded-full filter blur-3xl"></div>
 
       {/* Auth Card */}
       <div className="relative max-w-4xl w-full bg-white rounded-2xl shadow-xl flex flex-col md:flex-row overflow-hidden z-10">
-
         {/* Left - Form */}
         <div className="flex-1 p-8 md:p-12">
           <Link

@@ -8,7 +8,7 @@ export interface IEnrollment {
   course: Types.ObjectId;
 
   status: EnrollmentStatus; // enrolled|completed|dropped
-  progress: number;         // 0..100
+  progress: number; // 0..100
   startedAt?: Date;
   completedAt?: Date;
   lastActivityAt?: Date;

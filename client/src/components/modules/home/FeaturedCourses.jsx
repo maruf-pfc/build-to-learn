@@ -379,7 +379,7 @@ export default function FeaturedCourses() {
           {t("courses.featuredSubtitle") || "Featured Courses"}
         </p>
         <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-text)] mb-3">
-          {t("courses.title") || "What's New in AsiaLMS"}
+          {t("courses.title") || "What's New in Build 2 Learn"}
         </h2>
         <p className="text-gray-600 mb-6">
           {t("courses.description") || "Discover our featured courses, specially curated to help you gain in-demand skills."}

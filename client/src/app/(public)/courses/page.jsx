@@ -114,14 +114,20 @@ export default function PublicCourseListing() {
           {/* Main */}
           <main className="flex-1 p-4 sm:p-6">
             {isLoading || isFetching ? (
-              <div className="text-center text-gray-500 py-10">Loading courses...</div>
+              <div className="text-center text-gray-500 py-10">
+                Loading courses...
+              </div>
             ) : courses.length === 0 ? (
               <EmptyState onReset={clearFilters} />
             ) : (
               <>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {courses.map((course) => (
-                    <Link key={course._id} href={`/courses/${course.slug}`} className="block group">
+                    <Link
+                      key={course._id}
+                      href={`/courses/${course.slug}`}
+                      className="block group"
+                    >
                       <CourseCard
                         course={{
                           title: course.title,
@@ -132,7 +138,7 @@ export default function PublicCourseListing() {
                           author: course.instructor?.name || "Unknown",
                           price: course.price,
                           level: course.level,
-                          slug: course.slug
+                          slug: course.slug,
                         }}
                       />
                     </Link>
@@ -153,7 +159,9 @@ export default function PublicCourseListing() {
                       Page {page} / {totalPages}
                     </span>
                     <button
-                      onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                      onClick={() =>
+                        setPage((p) => Math.min(totalPages, p + 1))
+                      }
                       disabled={page === totalPages}
                       className="px-3 py-2 border rounded-md disabled:opacity-40"
                     >
@@ -281,7 +289,9 @@ function SidebarFilters({
 function EmptyState({ onReset }) {
   return (
     <div className="border rounded-xl p-10 text-center bg-gray-50">
-      <h3 className="text-lg font-semibold mb-2 text-gray-800">No courses found</h3>
+      <h3 className="text-lg font-semibold mb-2 text-gray-800">
+        No courses found
+      </h3>
       <p className="text-sm text-gray-600 mb-6">
         Try clearing filters or adjusting your search.
       </p>

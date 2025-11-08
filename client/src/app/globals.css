@@ -8,23 +8,23 @@ html {
   /* ====== Brand Colors ====== */
   --color-primary: #059669;
   /* Emerald Green - CTA buttons, progress bars, active menu items */
-  --color-secondary: #2563EB;
+  --color-secondary: #2563eb;
   /* Blue - Headers, navigation links, icons */
-  --color-accent: #FBBF24;
+  --color-accent: #fbbf24;
   /* Yellow - Badges, XP points, achievements */
 
   /* ====== Base Colors ====== */
-  --color-background: #ECFDF5;
+  --color-background: #ecfdf5;
   /* Light Mint - Page backgrounds, sections, soft containers */
-  --color-text: #064E3B;
+  --color-text: #064e3b;
   /* Dark Green - Body text, descriptions, headings, forms */
 
   /* ====== Hover & Transparency ====== */
   --color-primary-hover: #047857;
   /* Darker Emerald for hover transitions */
-  --color-secondary-hover: #1E40AF;
+  --color-secondary-hover: #1e40af;
   /* Deeper Blue for hover states */
-  --color-accent-hover: #F59E0B;
+  --color-accent-hover: #f59e0b;
   /* Richer Yellow for active highlights */
   --color-accent-special: #0f9293;
   /* Richer Yellow for active highlights */
@@ -40,7 +40,6 @@ html {
   --radius-card: 1rem;
   --spacing-section: 2rem;
 }
-
 
 @theme inline {
   --font-sans: var(--font-geist-sans);
@@ -75,7 +74,6 @@ body {
 .animate-slideDown {
   animation: slideDown 0.25s ease-in-out forwards;
 }
-
 
 /* Custom Scrollbar Styles */
 .custom-scrollbar {

@@ -13,26 +13,265 @@ export default function SDGTrivia() {
   /* ------------------------------ Question Bank ------------------------------ */
   const BANK = useMemo(
     () => [
-      { sdg: 1, icon: "🚫💸", question: "SDG 1 aims to end poverty in all its forms. By which year was 'extreme poverty' originally targeted to be eradicated?", options: ["2030", "2025", "2050", "2020"], answer: 0, hint: "Same horizon as the Agenda itself." },
-      { sdg: 2, icon: "🌾", question: "SDG 2 focuses on 'Zero Hunger'. Which sector is most directly targeted to improve food security?", options: ["Aerospace", "Agriculture", "Tourism", "Automotive"], answer: 1, hint: "Think farms, not flights." },
-      { sdg: 3, icon: "🩺", question: "Which of the following aligns with SDG 3 (Good Health and Well-being)?", options: ["Reduce maternal mortality", "Increase fossil-fuel subsidies", "Lower vaccination coverage", "Promote tobacco use"], answer: 0, hint: "Think better health outcomes." },
-      { sdg: 4, icon: "📚", question: "SDG 4 advocates 'Quality Education'. A core target is ensuring what by 2030?", options: ["Free university for all", "Free, equitable primary & secondary education", "No homework worldwide", "VR in every classroom"], answer: 1, hint: "Primary + secondary focus." },
-      { sdg: 5, icon: "⚖️", question: "SDG 5 promotes gender equality. Which policy supports this goal?", options: ["Restrict women's land rights", "Equal pay for equal work", "Ban girls from STEM", "Reduce maternity leave"], answer: 1, hint: "Fair wages." },
-      { sdg: 6, icon: "💧", question: "SDG 6 focuses on clean water and sanitation. Which metric is central?", options: ["Access to safe drinking water", "Number of swimming pools", "Ocean shipping routes", "Rainfall on weekends"], answer: 0, hint: "Water you can safely drink." },
-      { sdg: 7, icon: "⚡", question: "SDG 7 seeks affordable and clean energy. Which is NOT a clean energy source?", options: ["Solar", "Wind", "Coal", "Hydro"], answer: 2, hint: "Fossil fuel." },
-      { sdg: 8, icon: "💼", question: "SDG 8 is about decent work & economic growth. Which action aligns?", options: ["Eliminate workplace safety standards", "Promote youth employment", "Increase forced labor", "Ban entrepreneurship"], answer: 1, hint: "Opportunities for young people." },
-      { sdg: 9, icon: "🏗️", question: "SDG 9 focuses on industry, innovation, and infrastructure. Which investment best fits?", options: ["Resilient transport networks", "Crumbling bridges", "Outdated dial-up internet", "Paper-only records"], answer: 0, hint: "Think resilient." },
-      { sdg: 10, icon: "↔️", question: "SDG 10 targets reduced inequalities. Which step supports it?", options: ["Inclusive policies for marginalized groups", "Discriminatory hiring", "Unequal access to services", "Segregated schools"], answer: 0, hint: "Inclusion." },
-      { sdg: 11, icon: "🏙️", question: "SDG 11 seeks sustainable cities. What is a relevant indicator?", options: ["Access to safe, affordable housing", "Number of neon signs", "Height of skyscrapers", "Amount of traffic jams only"], answer: 0, hint: "Shelter for all." },
-      { sdg: 12, icon: "♻️", question: "SDG 12 promotes responsible consumption. Which behavior aligns?", options: ["Waste reduction & recycling", "Single-use growth", "Planned obsolescence", "Toxic dumping"], answer: 0, hint: "Reduce, reuse…" },
-      { sdg: 13, icon: "🌍🔥", question: "SDG 13 urges climate action. Which policy directly supports it?", options: ["Carbon pricing & emission cuts", "Subsidizing coal expansion", "Ignoring climate risks", "Deforestation incentives"], answer: 0, hint: "Curb emissions." },
-      { sdg: 14, icon: "🐟", question: "SDG 14 is 'Life Below Water'. Which action helps?", options: ["Reduce plastic marine pollution", "Increase ocean acidification", "Overfishing subsidies", "Dumping waste into seas"], answer: 0, hint: "Less plastic." },
-      { sdg: 15, icon: "🌳", question: "SDG 15 is 'Life on Land'. Which is aligned?", options: ["Restore degraded ecosystems", "Accelerate deforestation", "Poaching incentives", "Soil erosion increase"], answer: 0, hint: "Bring nature back." },
-      { sdg: 16, icon: "🕊️", question: "SDG 16 promotes peace, justice, and strong institutions. A key element is…", options: ["Rule of law and access to justice", "Arbitrary detention", "Corruption growth", "Violence escalation"], answer: 0, hint: "Justice matters." },
-      { sdg: 17, icon: "🤝", question: "SDG 17 is about partnerships. Which idea fits best?", options: ["Multi-stakeholder collaboration", "Isolation from global trade", "Data hoarding", "Cutting development finance"], answer: 0, hint: "Work together." },
-      { sdg: 7, icon: "⚡", question: "Which phrase best summarizes SDG 7?", options: ["Affordable & Clean Energy", "Infinite Energy for Free", "Only Nuclear Energy", "Ban Energy Use"], answer: 0, hint: "Two adjectives in the name." },
-      { sdg: 4, icon: "📚", question: "Which barrier most directly blocks SDG 4?", options: ["Lack of qualified teachers", "High smartphone prices", "Short summer holidays", "Too many sports"], answer: 0, hint: "Human resources in schools." },
-      { sdg: 6, icon: "💧", question: "Safe sanitation primarily refers to…", options: ["Proper toilets & waste management", "Swimming lessons", "Sprinkler systems", "Fountain maintenance"], answer: 0, hint: "Human waste handled safely." }
+      {
+        sdg: 1,
+        icon: "🚫💸",
+        question:
+          "SDG 1 aims to end poverty in all its forms. By which year was 'extreme poverty' originally targeted to be eradicated?",
+        options: ["2030", "2025", "2050", "2020"],
+        answer: 0,
+        hint: "Same horizon as the Agenda itself.",
+      },
+      {
+        sdg: 2,
+        icon: "🌾",
+        question:
+          "SDG 2 focuses on 'Zero Hunger'. Which sector is most directly targeted to improve food security?",
+        options: ["Aerospace", "Agriculture", "Tourism", "Automotive"],
+        answer: 1,
+        hint: "Think farms, not flights.",
+      },
+      {
+        sdg: 3,
+        icon: "🩺",
+        question:
+          "Which of the following aligns with SDG 3 (Good Health and Well-being)?",
+        options: [
+          "Reduce maternal mortality",
+          "Increase fossil-fuel subsidies",
+          "Lower vaccination coverage",
+          "Promote tobacco use",
+        ],
+        answer: 0,
+        hint: "Think better health outcomes.",
+      },
+      {
+        sdg: 4,
+        icon: "📚",
+        question:
+          "SDG 4 advocates 'Quality Education'. A core target is ensuring what by 2030?",
+        options: [
+          "Free university for all",
+          "Free, equitable primary & secondary education",
+          "No homework worldwide",
+          "VR in every classroom",
+        ],
+        answer: 1,
+        hint: "Primary + secondary focus.",
+      },
+      {
+        sdg: 5,
+        icon: "⚖️",
+        question:
+          "SDG 5 promotes gender equality. Which policy supports this goal?",
+        options: [
+          "Restrict women's land rights",
+          "Equal pay for equal work",
+          "Ban girls from STEM",
+          "Reduce maternity leave",
+        ],
+        answer: 1,
+        hint: "Fair wages.",
+      },
+      {
+        sdg: 6,
+        icon: "💧",
+        question:
+          "SDG 6 focuses on clean water and sanitation. Which metric is central?",
+        options: [
+          "Access to safe drinking water",
+          "Number of swimming pools",
+          "Ocean shipping routes",
+          "Rainfall on weekends",
+        ],
+        answer: 0,
+        hint: "Water you can safely drink.",
+      },
+      {
+        sdg: 7,
+        icon: "⚡",
+        question:
+          "SDG 7 seeks affordable and clean energy. Which is NOT a clean energy source?",
+        options: ["Solar", "Wind", "Coal", "Hydro"],
+        answer: 2,
+        hint: "Fossil fuel.",
+      },
+      {
+        sdg: 8,
+        icon: "💼",
+        question:
+          "SDG 8 is about decent work & economic growth. Which action aligns?",
+        options: [
+          "Eliminate workplace safety standards",
+          "Promote youth employment",
+          "Increase forced labor",
+          "Ban entrepreneurship",
+        ],
+        answer: 1,
+        hint: "Opportunities for young people.",
+      },
+      {
+        sdg: 9,
+        icon: "🏗️",
+        question:
+          "SDG 9 focuses on industry, innovation, and infrastructure. Which investment best fits?",
+        options: [
+          "Resilient transport networks",
+          "Crumbling bridges",
+          "Outdated dial-up internet",
+          "Paper-only records",
+        ],
+        answer: 0,
+        hint: "Think resilient.",
+      },
+      {
+        sdg: 10,
+        icon: "↔️",
+        question:
+          "SDG 10 targets reduced inequalities. Which step supports it?",
+        options: [
+          "Inclusive policies for marginalized groups",
+          "Discriminatory hiring",
+          "Unequal access to services",
+          "Segregated schools",
+        ],
+        answer: 0,
+        hint: "Inclusion.",
+      },
+      {
+        sdg: 11,
+        icon: "🏙️",
+        question:
+          "SDG 11 seeks sustainable cities. What is a relevant indicator?",
+        options: [
+          "Access to safe, affordable housing",
+          "Number of neon signs",
+          "Height of skyscrapers",
+          "Amount of traffic jams only",
+        ],
+        answer: 0,
+        hint: "Shelter for all.",
+      },
+      {
+        sdg: 12,
+        icon: "♻️",
+        question:
+          "SDG 12 promotes responsible consumption. Which behavior aligns?",
+        options: [
+          "Waste reduction & recycling",
+          "Single-use growth",
+          "Planned obsolescence",
+          "Toxic dumping",
+        ],
+        answer: 0,
+        hint: "Reduce, reuse…",
+      },
+      {
+        sdg: 13,
+        icon: "🌍🔥",
+        question:
+          "SDG 13 urges climate action. Which policy directly supports it?",
+        options: [
+          "Carbon pricing & emission cuts",
+          "Subsidizing coal expansion",
+          "Ignoring climate risks",
+          "Deforestation incentives",
+        ],
+        answer: 0,
+        hint: "Curb emissions.",
+      },
+      {
+        sdg: 14,
+        icon: "🐟",
+        question: "SDG 14 is 'Life Below Water'. Which action helps?",
+        options: [
+          "Reduce plastic marine pollution",
+          "Increase ocean acidification",
+          "Overfishing subsidies",
+          "Dumping waste into seas",
+        ],
+        answer: 0,
+        hint: "Less plastic.",
+      },
+      {
+        sdg: 15,
+        icon: "🌳",
+        question: "SDG 15 is 'Life on Land'. Which is aligned?",
+        options: [
+          "Restore degraded ecosystems",
+          "Accelerate deforestation",
+          "Poaching incentives",
+          "Soil erosion increase",
+        ],
+        answer: 0,
+        hint: "Bring nature back.",
+      },
+      {
+        sdg: 16,
+        icon: "🕊️",
+        question:
+          "SDG 16 promotes peace, justice, and strong institutions. A key element is…",
+        options: [
+          "Rule of law and access to justice",
+          "Arbitrary detention",
+          "Corruption growth",
+          "Violence escalation",
+        ],
+        answer: 0,
+        hint: "Justice matters.",
+      },
+      {
+        sdg: 17,
+        icon: "🤝",
+        question: "SDG 17 is about partnerships. Which idea fits best?",
+        options: [
+          "Multi-stakeholder collaboration",
+          "Isolation from global trade",
+          "Data hoarding",
+          "Cutting development finance",
+        ],
+        answer: 0,
+        hint: "Work together.",
+      },
+      {
+        sdg: 7,
+        icon: "⚡",
+        question: "Which phrase best summarizes SDG 7?",
+        options: [
+          "Affordable & Clean Energy",
+          "Infinite Energy for Free",
+          "Only Nuclear Energy",
+          "Ban Energy Use",
+        ],
+        answer: 0,
+        hint: "Two adjectives in the name.",
+      },
+      {
+        sdg: 4,
+        icon: "📚",
+        question: "Which barrier most directly blocks SDG 4?",
+        options: [
+          "Lack of qualified teachers",
+          "High smartphone prices",
+          "Short summer holidays",
+          "Too many sports",
+        ],
+        answer: 0,
+        hint: "Human resources in schools.",
+      },
+      {
+        sdg: 6,
+        icon: "💧",
+        question: "Safe sanitation primarily refers to…",
+        options: [
+          "Proper toilets & waste management",
+          "Swimming lessons",
+          "Sprinkler systems",
+          "Fountain maintenance",
+        ],
+        answer: 0,
+        hint: "Human waste handled safely.",
+      },
     ],
     []
   );
@@ -89,7 +328,7 @@ export default function SDGTrivia() {
   useEffect(() => {
     const onKey = (e) => {
       if (screen !== "quiz") return;
-      const map = { "1": 0, "2": 1, "3": 2, "4": 3 };
+      const map = { 1: 0, 2: 1, 3: 2, 4: 3 };
       if (map[e.key] !== undefined) {
         handleSelect(map[e.key]);
       } else if (e.key === "Enter") {
@@ -140,7 +379,6 @@ export default function SDGTrivia() {
     setShowHint(true);
   };
 
-
   /* ------------------------------- Game Over ------------------------------- */
   /* ------------------------------ Leaderboard ------------------------------- */
   const LB_KEY = "sdg_lb";
@@ -154,7 +392,9 @@ export default function SDGTrivia() {
   const saveScore = (name) => {
     const stamp = new Date().toISOString().split("T")[0];
     const rec = { name: (name || "Player").trim(), score, date: stamp };
-    const board = [...getLB(), rec].sort((a, b) => b.score - a.score).slice(0, 10);
+    const board = [...getLB(), rec]
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 10);
     localStorage.setItem(LB_KEY, JSON.stringify(board));
   };
   const resetLB = () => {
@@ -166,7 +406,11 @@ export default function SDGTrivia() {
 
   return (
     <div className="sdg-wrap">
-      <div className="sdg-card" role="application" aria-label="SDG Trivia Challenge game">
+      <div
+        className="sdg-card"
+        role="application"
+        aria-label="SDG Trivia Challenge game"
+      >
         {/* Header */}
         <header className="sdg-header">
           <div className="brand">
@@ -186,7 +430,9 @@ export default function SDGTrivia() {
             </div>
             <div className="pill" title="Lifelines">
               <span>🛟 Lifelines:&nbsp;</span>
-              <strong>{Number(lifelines.fifty) + Number(lifelines.hint)}</strong>
+              <strong>
+                {Number(lifelines.fifty) + Number(lifelines.hint)}
+              </strong>
             </div>
           </div>
         </header>
@@ -225,7 +471,9 @@ export default function SDGTrivia() {
 
                   let disabledByFifty = false;
                   if (!lifelines.fifty) {
-                    const wrongs = [0, 1, 2, 3].filter((x) => x !== currentQ.answer);
+                    const wrongs = [0, 1, 2, 3].filter(
+                      (x) => x !== currentQ.answer
+                    );
                     const toRemove = seededPickTwo(wrongs, idx);
                     disabledByFifty = toRemove.includes(i);
                   }
@@ -244,9 +492,14 @@ export default function SDGTrivia() {
                       className={classes}
                       onClick={() => handleSelect(i)}
                       disabled={!canAnswer || disabledByFifty}
-                      style={disabledByFifty ? { opacity: 0.45, filter: "grayscale(50%)" } : undefined}
+                      style={
+                        disabledByFifty
+                          ? { opacity: 0.45, filter: "grayscale(50%)" }
+                          : undefined
+                      }
                     >
-                      <span className="key text-white">{i + 1}</span> <span className="text-gray-100">{opt}</span>
+                      <span className="key text-white">{i + 1}</span>{" "}
+                      <span className="text-gray-100">{opt}</span>
                     </button>
                   );
                 })}
@@ -281,9 +534,14 @@ export default function SDGTrivia() {
                   Keyboard: <kbd className="kbd">1</kbd>
                   <kbd className="kbd">2</kbd>
                   <kbd className="kbd">3</kbd>
-                  <kbd className="kbd">4</kbd>, Next: <kbd className="kbd">Enter</kbd>
+                  <kbd className="kbd">4</kbd>, Next:{" "}
+                  <kbd className="kbd">Enter</kbd>
                 </div>
-                <button className="secondary" onClick={nextQuestion} disabled={canAnswer}>
+                <button
+                  className="secondary"
+                  onClick={nextQuestion}
+                  disabled={canAnswer}
+                >
                   Next
                 </button>
               </div>
@@ -292,8 +550,13 @@ export default function SDGTrivia() {
 
           {/* Result Screen */}
           {screen === "result" && (
-            <ResultScreen score={score} onRestart={startGame} onSave={saveScore} getLB={getLB} />)
-          }
+            <ResultScreen
+              score={score}
+              onRestart={startGame}
+              onSave={saveScore}
+              getLB={getLB}
+            />
+          )}
         </div>
       </div>
 
@@ -309,18 +572,26 @@ function StartScreen({ onStart, onResetLB }) {
   return (
     <section className="intro" aria-live="polite">
       <h1>
-        Welcome to the <span style={{ color: "var(--accent)" }}>SDG</span> Trivia!
+        Welcome to the <span style={{ color: "var(--accent)" }}>SDG</span>{" "}
+        Trivia!
       </h1>
       <p>
-        Test your knowledge of the <strong>United Nations Sustainable Development Goals (SDGs)</strong> — 10
-        questions, 20 seconds each. Earn points, use lifelines (<strong>50/50</strong> & <strong>Hint</strong>), and aim for the leaderboard!
+        Test your knowledge of the{" "}
+        <strong>United Nations Sustainable Development Goals (SDGs)</strong> —
+        10 questions, 20 seconds each. Earn points, use lifelines (
+        <strong>50/50</strong> & <strong>Hint</strong>), and aim for the
+        leaderboard!
       </p>
       <div className="row" style={{ marginTop: 6 }}>
         <button onClick={onStart}>Start Game</button>
         <button className="secondary" onClick={() => setShow((s) => !s)}>
           How to Play
         </button>
-        <button className="ghost" onClick={onResetLB} title="Clear saved leaderboard">
+        <button
+          className="ghost"
+          onClick={onResetLB}
+          title="Clear saved leaderboard"
+        >
           Reset Leaderboard
         </button>
       </div>
@@ -334,10 +605,12 @@ function StartScreen({ onStart, onResetLB }) {
               <kbd className="kbd">4</kbd> to select answers.
             </li>
             <li>
-              Each correct answer = <strong>10 pts</strong>. Answer quickly for a small time bonus.
+              Each correct answer = <strong>10 pts</strong>. Answer quickly for
+              a small time bonus.
             </li>
             <li>
-              You have two lifelines per game: <strong>50/50</strong> (removes two wrong options) and
+              You have two lifelines per game: <strong>50/50</strong> (removes
+              two wrong options) and
               <strong> Hint</strong> (brief clue).
             </li>
           </ul>
@@ -367,7 +640,11 @@ function ResultScreen({ score, onRestart, onSave, getLB }) {
     const text = `I just scored ${score} in the SDG Trivia Challenge! Can you beat me? 🌍🎮`;
     if (navigator.share) {
       navigator
-        .share({ title: "SDG Trivia Challenge", text, url: typeof location !== "undefined" ? location.href : undefined })
+        .share({
+          title: "SDG Trivia Challenge",
+          text,
+          url: typeof location !== "undefined" ? location.href : undefined,
+        })
         .catch(() => copyText(text));
     } else {
       copyText(text);
@@ -385,13 +662,26 @@ function ResultScreen({ score, onRestart, onSave, getLB }) {
 
       <div className="leader">
         <div className="copy">Save your score to the local leaderboard:</div>
-        <div style={{ display: "flex", gap: 8, justifyContent: "center", flexWrap: "wrap" }}>
+        <div
+          style={{
+            display: "flex",
+            gap: 8,
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
+        >
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Your name"
             maxLength={20}
-            style={{ padding: "10px 12px", borderRadius: 10, border: "1px solid var(--border)", background: "#0a1430", color: "#e9eefc" }}
+            style={{
+              padding: "10px 12px",
+              borderRadius: 10,
+              border: "1px solid var(--border)",
+              background: "#0a1430",
+              color: "#e9eefc",
+            }}
           />
           <button
             onClick={() => {
@@ -405,7 +695,11 @@ function ResultScreen({ score, onRestart, onSave, getLB }) {
           <button className="secondary" onClick={onRestart}>
             Play Again
           </button>
-          <button className="ghost" onClick={shareScore} title="Copy a shareable message">
+          <button
+            className="ghost"
+            onClick={shareScore}
+            title="Copy a shareable message"
+          >
             Share
           </button>
         </div>
@@ -419,7 +713,8 @@ function ResultScreen({ score, onRestart, onSave, getLB }) {
               board.map((r, i) => (
                 <div className="lb-item" key={`${r.name}-${i}`}>
                   <div>
-                    <span className="sr">#{i + 1}</span> <strong>{escapeHTML(r.name)}</strong>
+                    <span className="sr">#{i + 1}</span>{" "}
+                    <strong>{escapeHTML(r.name)}</strong>
                   </div>
                   <div>⭐ {r.score}</div>
                   <div className="copy">{r.date}</div>
@@ -451,7 +746,13 @@ function seededPickTwo(wrongs, seed) {
   return Array.from(pick).slice(0, 2);
 }
 function escapeHTML(s) {
-  const map = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
+  const map = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
+  };
   return s.replace(/[&<>"']/g, (m) => map[m]);
 }
 function copyText(t) {
@@ -513,4 +814,4 @@ button:disabled{opacity:.55;cursor:not-allowed;filter:grayscale(.2)}
 .copy{font-size:.9rem;color:var(--muted)}
 .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;border:1px solid var(--border);padding:2px 6px;border-radius:6px;background:#0a1430;color:#cfe1ff}
 @media (max-width:520px){.sdg-header{flex-direction:column;align-items:flex-start}.timer{align-self:flex-end}}
-`
+`;

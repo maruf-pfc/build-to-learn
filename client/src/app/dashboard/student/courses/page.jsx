@@ -46,12 +46,10 @@ export default function CoursesPage() {
   const [activeTab, setActiveTab] = useState("enrolled");
 
   const { user, loading: authLoading } = useAuth();
-  const {data, loading: courseLoading} = useEnrollmentCourses(user?._id)
-
-  
+  const { data, loading: courseLoading } = useEnrollmentCourses(user?._id);
 
   if (authLoading || courseLoading) {
-    return <h2>Loading...</h2>
+    return <h2>Loading...</h2>;
   }
 
   const filteredCourses = data?.filter((c) => c.status === activeTab);
@@ -65,19 +63,21 @@ export default function CoursesPage() {
       <div className="flex space-x-3 mb-6">
         <button
           onClick={() => setActiveTab("enrolled")}
-          className={`px-4 py-2 rounded-full text-sm font-medium ${activeTab === "enrolled"
+          className={`px-4 py-2 rounded-full text-sm font-medium ${
+            activeTab === "enrolled"
               ? "bg-[var(--color-primary)] text-white"
               : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-            }`}
+          }`}
         >
           Enrolled ({courses.filter((c) => c.status === "enrolled").length})
         </button>
         <button
           onClick={() => setActiveTab("completed")}
-          className={`px-4 py-2 rounded-full text-sm font-medium ${activeTab === "completed"
+          className={`px-4 py-2 rounded-full text-sm font-medium ${
+            activeTab === "completed"
               ? "bg-[var(--color-secondary)] text-white"
               : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-            }`}
+          }`}
         >
           Completed ({courses.filter((c) => c.status === "completed").length})
         </button>

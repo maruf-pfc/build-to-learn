@@ -1,20 +1,26 @@
 "use client";
 
 import React from "react";
-import { FaCheck, FaCrown, FaHandHoldingUsd, FaHeart, FaLock, FaRocket } from "react-icons/fa";
+import {
+  FaCheck,
+  FaCrown,
+  FaHandHoldingUsd,
+  FaHeart,
+  FaLock,
+  FaRocket,
+} from "react-icons/fa";
 
 const DonationForm = ({
-    donationOptions, 
-    donationAmount, 
-    customAmount, 
-    handleAmountSelect, 
-    handleCustomAmount, 
-    handleDonation, 
-    isLoading,
-    selectedFundData,
-    loading = false
+  donationOptions,
+  donationAmount,
+  customAmount,
+  handleAmountSelect,
+  handleCustomAmount,
+  handleDonation,
+  isLoading,
+  selectedFundData,
+  loading = false,
 }) => {
-  
   if (loading) {
     return (
       <div className="p-8 animate-pulse">
@@ -28,7 +34,10 @@ const DonationForm = ({
           {/* Quick Amount Options Skeleton */}
           <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
             {[1, 2, 3, 4, 5].map((item) => (
-              <div key={item} className="p-4 rounded-2xl border-2 border-gray-200 bg-gray-50">
+              <div
+                key={item}
+                className="p-4 rounded-2xl border-2 border-gray-200 bg-gray-50"
+              >
                 <div className="h-6 bg-gray-300 rounded w-12 mx-auto"></div>
               </div>
             ))}
@@ -49,7 +58,10 @@ const DonationForm = ({
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[1, 2, 3, 4].map((item) => (
-              <div key={item} className="flex items-center space-x-3 p-3 bg-white rounded-xl border border-gray-200">
+              <div
+                key={item}
+                className="flex items-center space-x-3 p-3 bg-white rounded-xl border border-gray-200"
+              >
                 <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
                 <div className="h-4 bg-gray-400 rounded w-32"></div>
               </div>

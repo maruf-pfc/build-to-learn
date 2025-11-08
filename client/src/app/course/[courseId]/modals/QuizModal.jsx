@@ -118,11 +118,10 @@ export default function QuizModal({ quizzes, onClose }) {
     console.log("📤 Quiz Submission JSON:", submissionData);
     const quizeSubmitRes = await api.post(`/quizzes/submit`, submissionData);
     console.log("Quiz submission response:", quizeSubmitRes);
-    
+
     setScore(quizeSubmitRes.data?.data?.pointsAwarded || 0);
     setSubmitted(true);
-    if (auto)
-      alert("⏰ Quiz auto-submitted — you left or minimized the tab!");
+    if (auto) alert("⏰ Quiz auto-submitted — you left or minimized the tab!");
   };
 
   const handleRetry = () => {

@@ -46,7 +46,9 @@ export default function ManageCourses() {
     <div className="p-6 space-y-6 text-[var(--color-text)]">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <h1 className="text-2xl font-bold text-[--color-text]">Manage Courses</h1>
+        <h1 className="text-2xl font-bold text-[--color-text]">
+          Manage Courses
+        </h1>
       </div>
 
       {/* Responsive Table */}
@@ -97,7 +99,9 @@ export default function ManageCourses() {
                     <Trash2 className="w-4 h-4" />
                   </button>
                   <button className="p-2 rounded-full hover:bg-green-100 text-green-600">
-                    <Link href='/dashboard/student/leader-board'>Leader Board</Link>
+                    <Link href="/dashboard/student/leader-board">
+                      Leader Board
+                    </Link>
                   </button>
                 </td>
               </tr>

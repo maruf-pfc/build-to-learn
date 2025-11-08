@@ -3,18 +3,55 @@ import { Edit, Eye, Trash2 } from "lucide-react";
 
 export default function ManageAdmins() {
   const admins = [
-    { id: "#A-01", name: "Ahsan Alam", email: "john@academy.com", role: "Super Admin", status: "Active", joined: "2023-01-15" },
-    { id: "#A-02", name: "John Doe", email: "john@academy.com", role: "Super Admin", status: "Active", joined: "2023-01-15" },
-    { id: "#A-03", name: "Emily Clark", email: "emily@academy.com", role: "Admin", status: "Active", joined: "2023-04-20" },
-    { id: "#A-04", name: "Michael Smith", email: "michael@academy.com", role: "Moderator", status: "Suspended", joined: "2022-11-02" },
-    { id: "#A-05", name: "Sarah Johnson", email: "sarah@academy.com", role: "Admin", status: "Active", joined: "2024-02-10" },
+    {
+      id: "#A-01",
+      name: "Ahsan Alam",
+      email: "john@academy.com",
+      role: "Super Admin",
+      status: "Active",
+      joined: "2023-01-15",
+    },
+    {
+      id: "#A-02",
+      name: "John Doe",
+      email: "john@academy.com",
+      role: "Super Admin",
+      status: "Active",
+      joined: "2023-01-15",
+    },
+    {
+      id: "#A-03",
+      name: "Emily Clark",
+      email: "emily@academy.com",
+      role: "Admin",
+      status: "Active",
+      joined: "2023-04-20",
+    },
+    {
+      id: "#A-04",
+      name: "Michael Smith",
+      email: "michael@academy.com",
+      role: "Moderator",
+      status: "Suspended",
+      joined: "2022-11-02",
+    },
+    {
+      id: "#A-05",
+      name: "Sarah Johnson",
+      email: "sarah@academy.com",
+      role: "Admin",
+      status: "Active",
+      joined: "2024-02-10",
+    },
   ];
 
   return (
     <div className="p-6 space-y-6 text-[var(--color-text)]">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <h1 className="text-2xl font-bold text-[--color-text]">Manage Admins</h1>
+        <h1 className="text-2xl font-bold text-[--color-text]">
+          Manage Admins
+        </h1>
         <button className="px-4 py-2 bg-[--color-primary] hover:bg-[--color-primary-hover] text-[var(--color-text)] rounded-[--radius-default] shadow-sm text-sm">
           + Add New Admin
         </button>

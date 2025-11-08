@@ -2,7 +2,6 @@
 
 import ProfileCard from "@/components/modules/dashboard/student/ProfileCard";
 
-
 export default function ProfilePage() {
   return (
     <div className="min-h-screen bg-white">

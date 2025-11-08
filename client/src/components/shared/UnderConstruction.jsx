@@ -29,8 +29,6 @@ export default function UnderConstruction() {
           We are working on fixing the problem. We’ll be back soon with an
           improved experience!
         </p>
-
-        
       </div>
     </section>
   );

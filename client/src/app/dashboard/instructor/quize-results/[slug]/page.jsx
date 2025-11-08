@@ -121,7 +121,9 @@ const QuizResultsPage = () => {
         <div className="flex items-center justify-between bg-pink-50 border border-pink-100 rounded-lg p-4">
           <div>
             <p className="text-sm text-gray-500">Total Participants</p>
-            <p className="text-2xl font-semibold mt-1">{quizInfo.totalParticipants}</p>
+            <p className="text-2xl font-semibold mt-1">
+              {quizInfo.totalParticipants}
+            </p>
           </div>
           <div className="w-10 h-10 flex items-center justify-center bg-pink-200 rounded-full text-pink-700">
             <Users size={20} />
@@ -141,7 +143,9 @@ const QuizResultsPage = () => {
         <div className="flex items-center justify-between bg-violet-50 border border-violet-100 rounded-lg p-4">
           <div>
             <p className="text-sm text-gray-500">Average Time</p>
-            <p className="text-2xl font-semibold mt-1">{quizInfo.averageTime}</p>
+            <p className="text-2xl font-semibold mt-1">
+              {quizInfo.averageTime}
+            </p>
           </div>
           <div className="w-10 h-10 flex items-center justify-center bg-violet-200 rounded-full text-violet-700">
             <Clock size={20} />

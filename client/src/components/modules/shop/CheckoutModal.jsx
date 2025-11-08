@@ -1,7 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { FaTimes, FaCheckCircle, FaCreditCard, FaReceipt, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
+import {
+  FaTimes,
+  FaCheckCircle,
+  FaCreditCard,
+  FaReceipt,
+  FaLock,
+  FaEye,
+  FaEyeSlash,
+} from "react-icons/fa";
 
 const CheckoutModal = ({ isOpen, onClose, cart, total, clearCart }) => {
   const [step, setStep] = useState(1);
@@ -22,29 +30,29 @@ const CheckoutModal = ({ isOpen, onClose, cart, total, clearCart }) => {
       name: "ToyyibPay",
       description: "Secure payment via ToyyibPay",
       icon: "🏦",
-      fee: 0.50
+      fee: 0.5,
     },
     {
       id: "billplz",
       name: "Billplz",
       description: "Easy payment with Billplz",
       icon: "🧾",
-      fee: 0.30
+      fee: 0.3,
     },
     {
       id: "stripe",
       name: "Stripe",
       description: "Credit/Debit card payment",
       icon: "💳",
-      fee: 0.60
+      fee: 0.6,
     },
     {
       id: "fpx",
       name: "FPX",
       description: "Online banking",
       icon: "🏛️",
-      fee: 0.20
-    }
+      fee: 0.2,
+    },
   ];
 
   const handlePaymentSelect = (methodId) => {
@@ -57,33 +65,42 @@ const CheckoutModal = ({ isOpen, onClose, cart, total, clearCart }) => {
 
   const handleCardInputChange = (field, value) => {
     let formattedValue = value;
-    
+
     // Format card number with spaces
     if (field === "number") {
-      formattedValue = value.replace(/\s/g, '').replace(/(\d{4})/g, '$1 ').trim();
-      if (formattedValue.length > 19) formattedValue = formattedValue.slice(0, 19);
-    }
-    
-    // Format expiry date
-    if (field === "expiry") {
-      formattedValue = value.replace(/\D/g, '').replace(/(\d{2})(\d)/, '$1/$2');
-      if (formattedValue.length > 5) formattedValue = formattedValue.slice(0, 5);
-    }
-    
-    // Format CVV (only numbers, max 4 digits)
-    if (field === "cvv") {
-      formattedValue = value.replace(/\D/g, '');
-      if (formattedValue.length > 4) formattedValue = formattedValue.slice(0, 4);
+      formattedValue = value
+        .replace(/\s/g, "")
+        .replace(/(\d{4})/g, "$1 ")
+        .trim();
+      if (formattedValue.length > 19)
+        formattedValue = formattedValue.slice(0, 19);
     }
 
-    setCardDetails(prev => ({
+    // Format expiry date
+    if (field === "expiry") {
+      formattedValue = value.replace(/\D/g, "").replace(/(\d{2})(\d)/, "$1/$2");
+      if (formattedValue.length > 5)
+        formattedValue = formattedValue.slice(0, 5);
+    }
+
+    // Format CVV (only numbers, max 4 digits)
+    if (field === "cvv") {
+      formattedValue = value.replace(/\D/g, "");
+      if (formattedValue.length > 4)
+        formattedValue = formattedValue.slice(0, 4);
+    }
+
+    setCardDetails((prev) => ({
       ...prev,
-      [field]: formattedValue
+      [field]: formattedValue,
     }));
   };
 
   const validateCardDetails = () => {
-    if (!cardDetails.number || cardDetails.number.replace(/\s/g, '').length !== 16) {
+    if (
+      !cardDetails.number ||
+      cardDetails.number.replace(/\s/g, "").length !== 16
+    ) {
       alert("Please enter a valid 16-digit card number");
       return false;
     }
@@ -91,7 +108,7 @@ const CheckoutModal = ({ isOpen, onClose, cart, total, clearCart }) => {
       alert("Please enter cardholder name");
       return false;
     }
-    if (!cardDetails.expiry || !cardDetails.expiry.includes('/')) {
+    if (!cardDetails.expiry || !cardDetails.expiry.includes("/")) {
       alert("Please enter valid expiry date (MM/YY)");
       return false;
     }
@@ -107,18 +124,18 @@ const CheckoutModal = ({ isOpen, onClose, cart, total, clearCart }) => {
       alert("Please select a payment method");
       return;
     }
-    
+
     // For Stripe, validate card details
     if (selectedPayment === "stripe" && !validateCardDetails()) {
       return;
     }
-    
+
     setStep(3);
   };
 
   const processPayment = () => {
     setPaymentProcessing(true);
-    
+
     // Simulate payment processing
     setTimeout(() => {
       setPaymentProcessing(false);
@@ -137,7 +154,9 @@ const CheckoutModal = ({ isOpen, onClose, cart, total, clearCart }) => {
   };
 
   const getTotalWithFee = () => {
-    const selectedMethod = paymentMethods.find(method => method.id === selectedPayment);
+    const selectedMethod = paymentMethods.find(
+      (method) => method.id === selectedPayment
+    );
     const fee = selectedMethod ? selectedMethod.fee : 0;
     return total + fee;
   };
@@ -326,23 +345,27 @@ const CheckoutModal = ({ isOpen, onClose, cart, total, clearCart }) => {
                   <div className="rounded-2xl border border-gray-200 p-6 bg-gray-50">
                     <div className="flex items-center gap-2 mb-4">
                       <FaLock className="text-green-600" />
-                      <span className="font-semibold text-gray-800">Secure Card Payment</span>
+                      <span className="font-semibold text-gray-800">
+                        Secure Card Payment
+                      </span>
                     </div>
 
                     {/* Test Card Suggestions */}
                     <div className="mb-4 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
-                      <p className="text-sm font-medium text-yellow-800 mb-2">Test Cards for Demo:</p>
+                      <p className="text-sm font-medium text-yellow-800 mb-2">
+                        Test Cards for Demo:
+                      </p>
                       <div className="space-y-1">
                         {testCards.map((card, index) => (
                           <button
                             key={index}
                             onClick={() => {
-                              setCardDetails(prev => ({
+                              setCardDetails((prev) => ({
                                 ...prev,
                                 number: card.number,
                                 name: "Test User",
                                 expiry: "12/25",
-                                cvv: "123"
+                                cvv: "123",
                               }));
                             }}
                             className="text-xs text-yellow-700 hover:text-yellow-800 block w-full text-left p-1 hover:bg-yellow-100 rounded"
@@ -363,7 +386,9 @@ const CheckoutModal = ({ isOpen, onClose, cart, total, clearCart }) => {
                           type="text"
                           placeholder="1234 5678 9012 3456"
                           value={cardDetails.number}
-                          onChange={(e) => handleCardInputChange("number", e.target.value)}
+                          onChange={(e) =>
+                            handleCardInputChange("number", e.target.value)
+                          }
                           className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
                         />
                       </div>
@@ -377,7 +402,9 @@ const CheckoutModal = ({ isOpen, onClose, cart, total, clearCart }) => {
                           type="text"
                           placeholder="John Doe"
                           value={cardDetails.name}
-                          onChange={(e) => handleCardInputChange("name", e.target.value)}
+                          onChange={(e) =>
+                            handleCardInputChange("name", e.target.value)
+                          }
                           className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
                         />
                       </div>
@@ -392,7 +419,9 @@ const CheckoutModal = ({ isOpen, onClose, cart, total, clearCart }) => {
                             type="text"
                             placeholder="MM/YY"
                             value={cardDetails.expiry}
-                            onChange={(e) => handleCardInputChange("expiry", e.target.value)}
+                            onChange={(e) =>
+                              handleCardInputChange("expiry", e.target.value)
+                            }
                             className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
                           />
                         </div>
@@ -407,7 +436,9 @@ const CheckoutModal = ({ isOpen, onClose, cart, total, clearCart }) => {
                               type={showCvv ? "text" : "password"}
                               placeholder="123"
                               value={cardDetails.cvv}
-                              onChange={(e) => handleCardInputChange("cvv", e.target.value)}
+                              onChange={(e) =>
+                                handleCardInputChange("cvv", e.target.value)
+                              }
                               className="w-full rounded-lg border border-gray-300 px-4 py-3 pr-10 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
                             />
                             <button
@@ -463,7 +494,14 @@ const CheckoutModal = ({ isOpen, onClose, cart, total, clearCart }) => {
                   </button>
                   <button
                     onClick={handleCheckout}
-                    disabled={!selectedPayment || (selectedPayment === "stripe" && (!cardDetails.number || !cardDetails.name || !cardDetails.expiry || !cardDetails.cvv))}
+                    disabled={
+                      !selectedPayment ||
+                      (selectedPayment === "stripe" &&
+                        (!cardDetails.number ||
+                          !cardDetails.name ||
+                          !cardDetails.expiry ||
+                          !cardDetails.cvv))
+                    }
                     className="flex-1 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 py-4 font-bold text-white transition-all hover:from-blue-700 hover:to-purple-700 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed"
                   >
                     Proceed to Pay ${getTotalWithFee().toFixed(2)}
@@ -485,13 +523,17 @@ const CheckoutModal = ({ isOpen, onClose, cart, total, clearCart }) => {
                     </div>
                   </div>
                   <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                    {paymentProcessing ? "Processing Payment" : "Confirm Payment"}
+                    {paymentProcessing
+                      ? "Processing Payment"
+                      : "Confirm Payment"}
                   </h3>
                   <p className="text-gray-600 mb-6">
-                    {paymentProcessing 
-                      ? "Please wait while we process your payment..." 
-                      : `You selected: ${paymentMethods.find(m => m.id === selectedPayment)?.name}`
-                    }
+                    {paymentProcessing
+                      ? "Please wait while we process your payment..."
+                      : `You selected: ${
+                          paymentMethods.find((m) => m.id === selectedPayment)
+                            ?.name
+                        }`}
                   </p>
 
                   {!paymentProcessing && (
@@ -505,15 +547,19 @@ const CheckoutModal = ({ isOpen, onClose, cart, total, clearCart }) => {
                           Total amount to pay
                         </div>
                       </div>
-                      
+
                       {/* Show card preview for Stripe */}
                       {selectedPayment === "stripe" && (
                         <div className="mb-4 p-3 bg-white rounded-lg border">
-                          <div className="text-xs text-gray-600">Card ending with {cardDetails.number.slice(-4)}</div>
-                          <div className="text-sm font-medium">{cardDetails.name}</div>
+                          <div className="text-xs text-gray-600">
+                            Card ending with {cardDetails.number.slice(-4)}
+                          </div>
+                          <div className="text-sm font-medium">
+                            {cardDetails.name}
+                          </div>
                         </div>
                       )}
-                      
+
                       <button
                         onClick={processPayment}
                         className="w-full rounded-xl bg-green-600 py-4 font-bold text-white transition-all hover:bg-green-700"
@@ -528,7 +574,13 @@ const CheckoutModal = ({ isOpen, onClose, cart, total, clearCart }) => {
                       <div className="rounded-2xl border border-gray-200 p-6 bg-yellow-50">
                         <div className="text-center">
                           <div className="text-sm text-gray-600 mb-2">
-                            Processing {paymentMethods.find(m => m.id === selectedPayment)?.name} payment...
+                            Processing{" "}
+                            {
+                              paymentMethods.find(
+                                (m) => m.id === selectedPayment
+                              )?.name
+                            }{" "}
+                            payment...
                           </div>
                           <div className="text-xs text-gray-500">
                             Do not close this window
@@ -562,11 +614,14 @@ const CheckoutModal = ({ isOpen, onClose, cart, total, clearCart }) => {
               Payment Successful!
             </h3>
             <p className="mb-2 text-gray-600">
-              Your order has been confirmed and will be shipped within 2-3 business days.
+              Your order has been confirmed and will be shipped within 2-3
+              business days.
             </p>
             <p className="mb-6 text-sm text-gray-500">
-              Payment Method: {paymentMethods.find(m => m.id === selectedPayment)?.name}
-              {selectedPayment === "stripe" && ` (Card ending with ${cardDetails.number.slice(-4)})`}
+              Payment Method:{" "}
+              {paymentMethods.find((m) => m.id === selectedPayment)?.name}
+              {selectedPayment === "stripe" &&
+                ` (Card ending with ${cardDetails.number.slice(-4)})`}
             </p>
             <div className="space-y-4">
               <button

@@ -10,7 +10,9 @@ export default function QuizSection({ quizzes, onOpen }) {
           style={{ boxShadow: "var(--shadow-soft)" }}
         >
           <p className="font-medium text-sm">{quiz.title}</p>
-          <p className="text-xs text-gray-500">{quiz.questions?.length} questions</p>
+          <p className="text-xs text-gray-500">
+            {quiz.questions?.length} questions
+          </p>
         </div>
       ))}
     </div>

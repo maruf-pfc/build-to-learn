@@ -18,7 +18,12 @@ function Modal({ children, onClose, title }) {
       >
         <div className="flex items-center justify-between mb-4">
           <h4 className="text-lg font-semibold">{title}</h4>
-          <button onClick={onClose} className="text-gray-500 hover:text-[var(--color-primary)]">✕</button>
+          <button
+            onClick={onClose}
+            className="text-gray-500 hover:text-[var(--color-primary)]"
+          >
+            ✕
+          </button>
         </div>
         {children}
       </motion.div>

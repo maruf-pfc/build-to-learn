@@ -16,36 +16,36 @@ import { useSlugCourses } from "@/hooks/useCourse";
 import { useSearchParams } from "next/navigation";
 import api from "@/lib/apiClient";
 
-
 export default function CheckoutPage() {
-  const params = useSearchParams()
+  const params = useSearchParams();
   const { t, i18n } = useTranslation();
   const [paymentMethod, setPaymentMethod] = useState("paypal");
   const [billingInfo, setBillingInfo] = useState({
-    firstName : "",
+    firstName: "",
     lastName: "",
     phone: "",
     lineOne: "",
     lineTwo: "",
     country: "",
     state: "",
-    city: ""
-  })
-  const { data: course, isLoading } = useSlugCourses(params.get('slug'))
+    city: "",
+  });
+  const { data: course, isLoading } = useSlugCourses(params.get("slug"));
 
   if (isLoading) {
-    return <h2>Loading...</h2>
+    return <h2>Loading...</h2>;
   }
 
   const onChange = (e) => {
-    setBillingInfo({...billingInfo, [e.target.name]: e.target.value})
-  }
+    setBillingInfo({ ...billingInfo, [e.target.name]: e.target.value });
+  };
 
   const getConvertedPrice = (usd) =>
-    i18n?.language === "ms" ? `RM${(usd * 4.7).toFixed(2)}` : `$${usd.toFixed(2)}`;
+    i18n?.language === "ms"
+      ? `RM${(usd * 4.7).toFixed(2)}`
+      : `$${usd.toFixed(2)}`;
 
-
-  const subTotal = course.price
+  const subTotal = course.price;
   const tax = 0;
   const total = subTotal + tax;
 
@@ -65,15 +65,15 @@ export default function CheckoutPage() {
     const data = {
       provider: paymentMethod,
       courseId: course._id,
-      itemType: 'course',
-      billingInfo
-    }
-    console.log(data)
-    const res = await api.post('orders/checkout', data)
-    const {checkoutUrl} = res?.data?.data
+      itemType: "course",
+      billingInfo,
+    };
+    console.log(data);
+    const res = await api.post("orders/checkout", data);
+    const { checkoutUrl } = res?.data?.data;
 
-    window.location.href = checkoutUrl
-  }
+    window.location.href = checkoutUrl;
+  };
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
       {/* Header bar */}
@@ -97,24 +97,75 @@ export default function CheckoutPage() {
 
                 <form className="space-y-5">
                   <div className="grid sm:grid-cols-2 gap-4">
-                    <input onChange={onChange} value={billingInfo.firstName} name="firstName" placeholder="First Name *" className={inputBase} />
-                    <input onChange={onChange} placeholder="Last Name *" value={billingInfo.lastName} name="lastName" className={inputBase} />
+                    <input
+                      onChange={onChange}
+                      value={billingInfo.firstName}
+                      name="firstName"
+                      placeholder="First Name *"
+                      className={inputBase}
+                    />
+                    <input
+                      onChange={onChange}
+                      placeholder="Last Name *"
+                      value={billingInfo.lastName}
+                      name="lastName"
+                      className={inputBase}
+                    />
                   </div>
 
                   <div className="grid sm:grid-cols-3 gap-4">
-                    <input onChange={onChange} placeholder="Phone (optional)"  value={billingInfo.phone} name="phone" className={inputBase} />
-                    <input onChange={onChange} placeholder="Address Line 1 *" value={billingInfo.lineOne} name="lineOne" className={inputBase} />
-                    <input onChange={onChange} placeholder="Address Line 2" value={billingInfo.lineTwo} name="lineTwo" className={inputBase} />
+                    <input
+                      onChange={onChange}
+                      placeholder="Phone (optional)"
+                      value={billingInfo.phone}
+                      name="phone"
+                      className={inputBase}
+                    />
+                    <input
+                      onChange={onChange}
+                      placeholder="Address Line 1 *"
+                      value={billingInfo.lineOne}
+                      name="lineOne"
+                      className={inputBase}
+                    />
+                    <input
+                      onChange={onChange}
+                      placeholder="Address Line 2"
+                      value={billingInfo.lineTwo}
+                      name="lineTwo"
+                      className={inputBase}
+                    />
                   </div>
 
                   <div className="grid sm:grid-cols-3 gap-4">
-                    <input onChange={onChange} placeholder="Country *" value={billingInfo.country} name="country" className={inputBase} />
-                    <input onChange={onChange} placeholder="State *" value={billingInfo.state} name="state" className={inputBase} />
-                    <input onChange={onChange} placeholder="City *" value={billingInfo.city} name="city" className={inputBase} />
+                    <input
+                      onChange={onChange}
+                      placeholder="Country *"
+                      value={billingInfo.country}
+                      name="country"
+                      className={inputBase}
+                    />
+                    <input
+                      onChange={onChange}
+                      placeholder="State *"
+                      value={billingInfo.state}
+                      name="state"
+                      className={inputBase}
+                    />
+                    <input
+                      onChange={onChange}
+                      placeholder="City *"
+                      value={billingInfo.city}
+                      name="city"
+                      className={inputBase}
+                    />
                   </div>
 
                   <label className="flex items-center gap-2 text-sm text-gray-700 mt-2">
-                    <input type="checkbox" className="h-4 w-4 rounded border-gray-300" />
+                    <input
+                      type="checkbox"
+                      className="h-4 w-4 rounded border-gray-300"
+                    />
                     Save this information for next time
                   </label>
                 </form>
@@ -134,10 +185,11 @@ export default function CheckoutPage() {
                         key={id}
                         onClick={() => setPaymentMethod(id)}
                         type="button"
-                        className={`flex flex-col items-center justify-center gap-1 p-3 rounded-xl border text-sm font-medium transition-all duration-150 ${active
-                          ? "bg-[var(--color-primary,#0ea5e9)] text-white border-[var(--color-primary,#0ea5e9)] shadow-md scale-105"
-                          : "bg-gray-50 text-gray-800 border-gray-200 hover:bg-white hover:shadow-sm"
-                          }`}
+                        className={`flex flex-col items-center justify-center gap-1 p-3 rounded-xl border text-sm font-medium transition-all duration-150 ${
+                          active
+                            ? "bg-[var(--color-primary,#0ea5e9)] text-white border-[var(--color-primary,#0ea5e9)] shadow-md scale-105"
+                            : "bg-gray-50 text-gray-800 border-gray-200 hover:bg-white hover:shadow-sm"
+                        }`}
                       >
                         <Icon className="h-5 w-5" />
                         {label}
@@ -148,16 +200,28 @@ export default function CheckoutPage() {
 
                 <div className="space-y-4">
                   {paymentMethod === "paypal" && (
-                    <Notice title="PayPal" message="You will be redirected to PayPal to complete your payment securely." />
+                    <Notice
+                      title="PayPal"
+                      message="You will be redirected to PayPal to complete your payment securely."
+                    />
                   )}
                   {paymentMethod === "stripe" && (
-                    <Notice title="Stripe" message="Stripe secure checkout will open to confirm your card payment." />
+                    <Notice
+                      title="Stripe"
+                      message="Stripe secure checkout will open to confirm your card payment."
+                    />
                   )}
                   {paymentMethod === "tayyibpay" && (
-                    <Notice title="TayyibPay" message="You’ll be redirected to TayyibPay Malaysia gateway to complete your transaction." />
+                    <Notice
+                      title="TayyibPay"
+                      message="You’ll be redirected to TayyibPay Malaysia gateway to complete your transaction."
+                    />
                   )}
                   {paymentMethod === "billplz" && (
-                    <Notice title="Billplz" message="You’ll be redirected to Billplz Malaysia gateway to complete your transaction." />
+                    <Notice
+                      title="Billplz"
+                      message="You’ll be redirected to Billplz Malaysia gateway to complete your transaction."
+                    />
                   )}
                 </div>
 
@@ -196,7 +260,11 @@ export default function CheckoutPage() {
                   <Row label="Subtotal" value={getConvertedPrice(subTotal)} />
                   {/* <Row label="Discount" value={getConvertedPrice(tax)} /> */}
                   <div className="border-t border-gray-100 my-2" />
-                  <Row label="Total" value={getConvertedPrice(total)} highlight />
+                  <Row
+                    label="Total"
+                    value={getConvertedPrice(total)}
+                    highlight
+                  />
                 </div>
 
                 <div className="mt-6 bg-gray-50 border border-gray-100 p-4 text-xs text-gray-700 rounded-lg flex items-start gap-2">
@@ -217,10 +285,11 @@ export default function CheckoutPage() {
 function Row({ label, value, highlight = false }) {
   return (
     <p
-      className={`flex justify-between items-center ${highlight
-        ? "font-semibold text-[var(--color-secondary,#0f172a)] text-base"
-        : "text-sm"
-        }`}
+      className={`flex justify-between items-center ${
+        highlight
+          ? "font-semibold text-[var(--color-secondary,#0f172a)] text-base"
+          : "text-sm"
+      }`}
     >
       <span>{label}</span>
       <span>{value}</span>
@@ -240,7 +309,9 @@ function OrderItem({ title, price, img }) {
       />
       <div>
         <p className="text-sm font-medium text-gray-800">{title}</p>
-        <p className="text-[var(--color-primary,#0ea5e9)] font-semibold">{price}</p>
+        <p className="text-[var(--color-primary,#0ea5e9)] font-semibold">
+          {price}
+        </p>
       </div>
     </li>
   );

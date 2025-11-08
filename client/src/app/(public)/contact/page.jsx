@@ -5,7 +5,6 @@ export default function ContactPage() {
   return (
     <section className="bg-white pt-[80px] lg:pt-[120px]">
       <div className="container mx-auto px-4 space-y-10">
-
         {/* === Top Contact Info Boxes === */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="bg-white rounded-[var(--radius-card)] shadow-[var(--shadow-soft)] p-6 flex items-start gap-4">
@@ -13,7 +12,9 @@ export default function ContactPage() {
               <FaMapMarkerAlt size={20} />
             </div>
             <div>
-              <h3 className="font-semibold text-[var(--color-text)]">Address</h3>
+              <h3 className="font-semibold text-[var(--color-text)]">
+                Address
+              </h3>
               <p className="text-gray-600">1364 Still Water Dr, AK 99801.</p>
             </div>
           </div>
@@ -58,13 +59,16 @@ export default function ContactPage() {
           <div className="relative z-10 p-8 lg:p-12 grid lg:grid-cols-2 gap-10">
             {/* Left Text */}
             <div className="flex flex-col justify-center">
-              <p className="text-sm font-semibold text-[var(--color-accent)] mb-2">Contact Us</p>
+              <p className="text-sm font-semibold text-[var(--color-accent)] mb-2">
+                Contact Us
+              </p>
               <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
                 Get in touch with us today
               </h2>
               <p className="text-gray-200 text-base leading-relaxed">
-                Get in touch with us to explore how our LMS solution can enhance your e-learning
-                experience. We’re here to help you build a seamless and engaging learning platform!
+                Get in touch with us to explore how our LMS solution can enhance
+                your e-learning experience. We’re here to help you build a
+                seamless and engaging learning platform!
               </p>
             </div>
 
@@ -111,7 +115,6 @@ export default function ContactPage() {
             </form>
           </div>
         </div>
-
       </div>
 
       {/* === Map === */}

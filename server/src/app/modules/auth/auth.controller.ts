@@ -13,15 +13,14 @@ import { JwtPayload } from "jsonwebtoken";
 
 const credentialsLogin = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    const loginInfo = await AuthServices.credentialsLogin(req.body)
-    setAuthCookie(res, loginInfo)
+    const loginInfo = await AuthServices.credentialsLogin(req.body);
+    setAuthCookie(res, loginInfo);
     sendResponse(res, {
-        success: true,
-        statusCode: httpStatus.OK,
-        message: "User Logged In Successfully!",
-        data: loginInfo
-    })
-
+      success: true,
+      statusCode: httpStatus.OK,
+      message: "User Logged In Successfully!",
+      data: loginInfo,
+    });
   }
 );
 
@@ -110,7 +109,7 @@ const googleCallbackController = catchAsync(
     }
 
     const tokenInfo = createUserTokens(user);
-    console.log(tokenInfo)
+    console.log(tokenInfo);
     setAuthCookie(res, tokenInfo);
 
     res.redirect(`${envVars.FRONTEND_URL}/${redirectTo}`);
