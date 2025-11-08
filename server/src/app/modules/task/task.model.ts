@@ -3,16 +3,26 @@ import { ITask } from "./task.interface";
 
 const TaskSchema = new Schema<ITask>(
   {
-    course: { type: Schema.Types.ObjectId, ref: "Course", required: true, index: true },
-    unit:   { type: Schema.Types.ObjectId, ref: "Unit", required: true, index: true },
-    title:  { type: String, required: true },
+    course: {
+      type: Schema.Types.ObjectId,
+      ref: "Course",
+      required: true,
+      index: true,
+    },
+    unit: {
+      type: Schema.Types.ObjectId,
+      ref: "Unit",
+      required: true,
+      index: true,
+    },
+    title: { type: String, required: true },
     description: { type: String, default: "" },
-    type:   { type: String, enum: ["quiz","video","pdf"], required: true },
+    type: { type: String, enum: ["quiz", "video", "pdf"], required: true },
 
-    perCorrectPoint: { type: Number },          // quiz
-    maxPoints:       { type: Number },          // cap for any type
+    perCorrectPoint: { type: Number }, // quiz
+    maxPoints: { type: Number }, // cap for any type
 
-    dueDate: {type: Date},
+    dueDate: { type: Date },
     quizId: { type: Schema.Types.ObjectId, ref: "Quiz" }, // when type === "quiz"
 
     isDeleted: { type: Boolean, default: false },
