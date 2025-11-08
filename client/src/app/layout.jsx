@@ -1,7 +1,8 @@
 
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Providers from "@/provider/providers";
+import Providers from "../providers/providers";
+import RootProvider from "@/providers/RootProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Build To Learn - Empowering E-Learning Excellence",
-  description: "A comprehensive learning management system for educational institutions and businesses.",
+  title: "Asia LMS - Empowering E-Learning Excellence",
+  description: "A comprehensive learning management system for Asian educational institutions and businesses.",
 };
 
 export default function RootLayout({ children }) {
@@ -23,7 +24,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers>
-          {children}
+          <RootProvider>
+            {children}
+          </RootProvider>
         </Providers>
       </body>
     </html>
