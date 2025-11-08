@@ -3,12 +3,12 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import passport from "passport";
 import expressSession from "express-session";
-import { envVars } from "./app/config/env";
 import { globalErrorHandle } from "./app/middlewares/globalErrorHandler";
 import { notFound } from "./app/middlewares/notFound";
 import { router } from "./app/routes";
 import "./app/config/passport";
 import { stripeWebhook } from "./app/modules/payment/payment.webhooks.controller";
+import { envVars } from "./app/config/env";
 
 const app = express();
 app.post("/webhooks/stripe", express.raw({ type: "application/json" }), stripeWebhook);
