@@ -37,7 +37,7 @@ app.use("/api", router);
 
 app.get("/", (req: Request, res: Response) => {
   res.status(200).json({
-    message: "Welcome to LMS API",
+    message: "Welcome to Build to Learn API",
   });
 });
 
