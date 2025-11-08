@@ -7,7 +7,6 @@ import { createUnitZod } from "./unit.validation";
 
 const router = Router();
 
-
 router.post(
   "/create",
   checkAuth(Role.INSTRUCTOR, Role.ADMIN, Role.SUPER_ADMIN),
@@ -15,10 +14,6 @@ router.post(
   unitController.createUnit
 );
 
-
-router.get(
-  "/:courseId",
-  unitController.listUnits
-);
+router.get("/:courseId", unitController.listUnits);
 
 export const UnitRoutes = router;

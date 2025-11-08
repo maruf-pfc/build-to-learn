@@ -6,18 +6,23 @@ import { catchAsync } from "../../utils/catchAsync";
 import { sendResponse } from "../../utils/sendResponse";
 import { TaskServices } from "./task.services";
 
-const createTask = catchAsync(async (req: Request, res: Response, _next: NextFunction) => {
-  const { unitId } = req.body;
-  const token = req.user as JwtPayload;
-  const created = await TaskServices.create(unitId, req.body, { userId: token.userId, role: token.role });
+const createTask = catchAsync(
+  async (req: Request, res: Response, _next: NextFunction) => {
+    const { unitId } = req.body;
+    const token = req.user as JwtPayload;
+    const created = await TaskServices.create(unitId, req.body, {
+      userId: token.userId,
+      role: token.role,
+    });
 
-  sendResponse(res, {
-    statusCode: httpStatus.CREATED,
-    success: true,
-    message: "Task created",
-    data: created,
-  });
-});
+    sendResponse(res, {
+      statusCode: httpStatus.CREATED,
+      success: true,
+      message: "Task created",
+      data: created,
+    });
+  }
+);
 
 const listTasks = catchAsync(async (req: Request, res: Response) => {
   const { unitId } = req.params;

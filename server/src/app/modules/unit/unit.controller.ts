@@ -6,20 +6,23 @@ import { catchAsync } from "../../utils/catchAsync";
 import { sendResponse } from "../../utils/sendResponse";
 import { UnitServices } from "./unit.services";
 
-const createUnit = catchAsync(async (req: Request, res: Response, _next: NextFunction) => {
-  const token = req.user as JwtPayload; // expects { userId, role }
+const createUnit = catchAsync(
+  async (req: Request, res: Response, _next: NextFunction) => {
+    const token = req.user as JwtPayload; // expects { userId, role }
 
-  const created = await UnitServices.createUnit(req.body, {
-    userId: token.userId, role: token.role,
-  });
+    const created = await UnitServices.createUnit(req.body, {
+      userId: token.userId,
+      role: token.role,
+    });
 
-  sendResponse(res, {
-    statusCode: httpStatus.CREATED,
-    success: true,
-    message: "Unit Created Successfully",
-    data: created,
-  });
-});
+    sendResponse(res, {
+      statusCode: httpStatus.CREATED,
+      success: true,
+      message: "Unit Created Successfully",
+      data: created,
+    });
+  }
+);
 
 const listUnits = catchAsync(async (req: Request, res: Response) => {
   const { courseId } = req.params;

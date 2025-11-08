@@ -28,9 +28,9 @@ const uploadFile = catchAsync(async (req: Request, res: Response) => {
   });
 
   // (Optional) If you want global middleware cleanup or rollback tracking
-  res.locals.uploaded = { 
-    public_id: data.public_id, 
-    resource_type: data.resource_type 
+  res.locals.uploaded = {
+    public_id: data.public_id,
+    resource_type: data.resource_type,
   };
 
   sendResponse(res, {
