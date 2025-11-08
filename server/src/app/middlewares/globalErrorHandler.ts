@@ -10,8 +10,6 @@ import { handleValidationError } from "../helpers/handleValidationError";
 import AppError from "../errorHelpers/AppError";
 import cloudinary from "../config/cloudinary";
 
-
-
 export const deleteImageFromCloudinary = async (
   public_id?: string,
   resource_type?: "image" | "video" | "raw"
@@ -26,28 +24,30 @@ export const deleteImageFromCloudinary = async (
   }
 };
 
-export const globalErrorHandle = async(
+export const globalErrorHandle = async (
   err: any,
   req: Request,
   res: Response,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   next: NextFunction
 ) => {
-  if(envVars.NODE_ENV === 'development'){
-    console.log(err)
+  if (envVars.NODE_ENV === "development") {
+    console.log(err);
   }
-  
+
   let statusCode = 500;
   let message = `Something wen wrong!! ${err.message}`;
   let errorsSource: IErrorSources[] = [];
 
-  if(req.file){
-    await deleteImageFromCloudinary(req.file.path)
+  if (req.file) {
+    await deleteImageFromCloudinary(req.file.path);
   }
 
-  if(req.files && req.files.length){
-    const images = (req.files as Express.Multer.File[]).map(file => file.path)
-    await Promise.all(images.map(url => deleteImageFromCloudinary(url)))
+  if (req.files && req.files.length) {
+    const images = (req.files as Express.Multer.File[]).map(
+      (file) => file.path
+    );
+    await Promise.all(images.map((url) => deleteImageFromCloudinary(url)));
   }
 
   // duplicate error
@@ -64,20 +64,18 @@ export const globalErrorHandle = async(
 
     // Zod Validation Error
   } else if (err.name === "ZodError") {
-    const simplifiedError = handleZodError(err)
+    const simplifiedError = handleZodError(err);
 
     message = simplifiedError.message;
     statusCode = simplifiedError.statusCode;
-    errorsSource = simplifiedError.errorSources as IErrorSources[]
+    errorsSource = simplifiedError.errorSources as IErrorSources[];
 
     // mongoose validation error
   } else if (err.name == "ValidationError") {
-    const simplifiedError = handleValidationError(err)
-    message = simplifiedError.message
-    statusCode = simplifiedError.statusCode
-    errorsSource = simplifiedError.errorSources as IErrorSources[]
-
-
+    const simplifiedError = handleValidationError(err);
+    message = simplifiedError.message;
+    statusCode = simplifiedError.statusCode;
+    errorsSource = simplifiedError.errorSources as IErrorSources[];
   } else if (err instanceof AppError) {
     statusCode = err.statusCode;
     message = err.message;
@@ -90,7 +88,7 @@ export const globalErrorHandle = async(
     success: false,
     message,
     errorsSource,
-    err: envVars.NODE_ENV === 'development' ? err : null,
+    err: envVars.NODE_ENV === "development" ? err : null,
     stack: envVars.NODE_ENV === "development" ? err.stack : null,
   });
 };
