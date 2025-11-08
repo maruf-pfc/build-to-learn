@@ -43,8 +43,8 @@ export default function SuccessHistory() {
           Success History
         </h2>
         <p className="text-gray-600 max-w-2xl mx-auto">
-          From humble beginnings to becoming a trusted LMS solution for
-          learners worldwide, here’s a look at our journey through the years.
+          From humble beginnings to becoming a trusted LMS solution for learners
+          worldwide, here’s a look at our journey through the years.
         </p>
       </div>
 

@@ -3,7 +3,6 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import UnitManager from "@/components/modules/dashboard/instructorr/UnitManager";
 
-
 export default function UnitsPage() {
   const { id } = useParams();
 

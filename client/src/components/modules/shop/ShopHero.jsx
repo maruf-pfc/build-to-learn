@@ -57,19 +57,29 @@ const ShopHero = ({ onShowFilters, cartItemCount, search, onSearchChange }) => {
           <div className="flex flex-wrap justify-center gap-8 text-white">
             <div className="text-center">
               <div className="text-2xl font-bold">10K+</div>
-              <div className="text-orange-200">{t("shop.hero.stats.books")}</div>
+              <div className="text-orange-200">
+                {t("shop.hero.stats.books")}
+              </div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold">50+</div>
-              <div className="text-orange-200">{t("shop.hero.stats.categories")}</div>
+              <div className="text-orange-200">
+                {t("shop.hero.stats.categories")}
+              </div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold">{t("shop.hero.stats.free") || "Free"}</div>
-              <div className="text-orange-200">{t("shop.hero.stats.shipping")}</div>
+              <div className="text-2xl font-bold">
+                {t("shop.hero.stats.free") || "Free"}
+              </div>
+              <div className="text-orange-200">
+                {t("shop.hero.stats.shipping")}
+              </div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold">24/7</div>
-              <div className="text-orange-200">{t("shop.hero.stats.support")}</div>
+              <div className="text-orange-200">
+                {t("shop.hero.stats.support")}
+              </div>
             </div>
           </div>
         </div>

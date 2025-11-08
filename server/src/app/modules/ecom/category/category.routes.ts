@@ -12,7 +12,15 @@ router.post(
 );
 
 router.get("/", CategoryController.listCategories);
-router.patch("/:id", checkAuth(Role.ADMIN, Role.SUPER_ADMIN), CategoryController.updateCategory);
-router.delete("/:id", checkAuth(Role.ADMIN, Role.SUPER_ADMIN), CategoryController.removeCategory);
+router.patch(
+  "/:id",
+  checkAuth(Role.ADMIN, Role.SUPER_ADMIN),
+  CategoryController.updateCategory
+);
+router.delete(
+  "/:id",
+  checkAuth(Role.ADMIN, Role.SUPER_ADMIN),
+  CategoryController.removeCategory
+);
 
 export const CategoryRoutes = router;

@@ -35,7 +35,11 @@ export default function UnitAccordion({
         style={{ boxShadow: "var(--shadow-soft)" }}
       >
         <span className="font-bold">{module?.title}</span>
-        {openModules === moduleIndex ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+        {openModules === moduleIndex ? (
+          <ChevronUp size={16} />
+        ) : (
+          <ChevronDown size={16} />
+        )}
       </button>
 
       <AnimatePresence initial={false}>
@@ -50,7 +54,9 @@ export default function UnitAccordion({
           >
             {lessons?.length > 0 && (
               <div>
-                <h4 className="px-4 text-sm font-semibold text-gray-600 mb-1">Lessons</h4>
+                <h4 className="px-4 text-sm font-semibold text-gray-600 mb-1">
+                  Lessons
+                </h4>
                 {lessons.map((lesson) => (
                   <LessonItem
                     key={lesson._id}
@@ -64,17 +70,26 @@ export default function UnitAccordion({
 
             {tasks?.some((t) => t.type !== "quiz") && (
               <div>
-                <h4 className="px-4 text-sm font-semibold text-gray-600 mb-1">Tasks</h4>
+                <h4 className="px-4 text-sm font-semibold text-gray-600 mb-1">
+                  Tasks
+                </h4>
                 {tasks
                   .filter((t) => t.type !== "quiz")
                   .map((task) => (
-                    <TaskItem key={task._id} task={task} onOpen={() => setActiveTask(task)} />
+                    <TaskItem
+                      key={task._id}
+                      task={task}
+                      onOpen={() => setActiveTask(task)}
+                    />
                   ))}
               </div>
             )}
 
             {quizTask && quizzes?.length > 0 && (
-              <QuizSection quizzes={quizzes} onOpen={() => setActiveQuiz(quizzes)} />
+              <QuizSection
+                quizzes={quizzes}
+                onOpen={() => setActiveQuiz(quizzes)}
+              />
             )}
           </motion.div>
         )}
@@ -82,8 +97,12 @@ export default function UnitAccordion({
 
       {/* Popups */}
       <AnimatePresence>
-        {activeTask && <TaskModal task={activeTask} onClose={() => setActiveTask(null)} />}
-        {activeQuiz && <QuizModal quizzes={activeQuiz} onClose={() => setActiveQuiz(null)} />}
+        {activeTask && (
+          <TaskModal task={activeTask} onClose={() => setActiveTask(null)} />
+        )}
+        {activeQuiz && (
+          <QuizModal quizzes={activeQuiz} onClose={() => setActiveQuiz(null)} />
+        )}
       </AnimatePresence>
     </div>
   );

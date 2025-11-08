@@ -1,12 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import {
-  ChevronRight,
-  ChevronLeft,
-  ArrowLeft,
-  Menu,
-  X,
-} from "lucide-react";
+import { ChevronRight, ChevronLeft, ArrowLeft, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { useParams } from "next/navigation";
@@ -16,7 +10,9 @@ import UnitAccordion from "./UnitAccordion";
 export default function CourseLearningPage() {
   const { courseId } = useParams();
   const { data: course, isLoading: courseLoading } = useSlugCourses(courseId);
-  const { data: units, isLoading: unitsLoading } = useUnitsByCourse(course?._id);
+  const { data: units, isLoading: unitsLoading } = useUnitsByCourse(
+    course?._id
+  );
 
   const [currentLesson, setCurrentLesson] = useState(null);
   const [openModules, setOpenModules] = useState(0);
@@ -221,7 +217,8 @@ export default function CourseLearningPage() {
 
       <footer className="px-4 pb-6 pt-2 text-center text-xs opacity-70">
         Tip: Use <kbd className="rounded px-1 py-0.5 bg-white shadow">←</kbd> /{" "}
-        <kbd className="rounded px-1 py-0.5 bg-white shadow">→</kbd> to navigate lessons.
+        <kbd className="rounded px-1 py-0.5 bg-white shadow">→</kbd> to navigate
+        lessons.
       </footer>
     </div>
   );

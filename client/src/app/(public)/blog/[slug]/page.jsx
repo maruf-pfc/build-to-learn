@@ -3,16 +3,42 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
-  Calendar, User, Share2, Facebook, Twitter, Linkedin, Link as LinkIcon,
-  Send, Star, ArrowRight
+  Calendar,
+  User,
+  Share2,
+  Facebook,
+  Twitter,
+  Linkedin,
+  Link as LinkIcon,
+  Send,
+  Star,
+  ArrowRight,
 } from "lucide-react";
 
 /** mock data */
 const tags = ["HTML", "CSS", "JavaScript", "React", "Next.js", "UX"];
 const recentPosts = [
-  { id: 1, title: "Design Systems that Scale", href: "/blog/design-systems-that-scale", date: "12 Aug 2025", thumb: "/images/blog-1.jpg" },
-  { id: 2, title: "State Management in 2024", href: "/blog/state-management-2024", date: "28 Jul 2025", thumb: "/images/blog-3.jpg" },
-  { id: 3, title: "Optimizing Web Vitals", href: "/blog/optimizing-web-vitals", date: "05 Jul 2025", thumb: "/images/blog-2.jpg" },
+  {
+    id: 1,
+    title: "Design Systems that Scale",
+    href: "/blog/design-systems-that-scale",
+    date: "12 Aug 2025",
+    thumb: "/images/blog-1.jpg",
+  },
+  {
+    id: 2,
+    title: "State Management in 2024",
+    href: "/blog/state-management-2024",
+    date: "28 Jul 2025",
+    thumb: "/images/blog-3.jpg",
+  },
+  {
+    id: 3,
+    title: "Optimizing Web Vitals",
+    href: "/blog/optimizing-web-vitals",
+    date: "05 Jul 2025",
+    thumb: "/images/blog-2.jpg",
+  },
 ];
 
 export default function BlogSingle() {
@@ -21,7 +47,12 @@ export default function BlogSingle() {
   useEffect(() => {
     const onScroll = () => {
       const h = document.documentElement;
-      setProgress(Math.min(1, Math.max(0, h.scrollTop / (h.scrollHeight - h.clientHeight))));
+      setProgress(
+        Math.min(
+          1,
+          Math.max(0, h.scrollTop / (h.scrollHeight - h.clientHeight))
+        )
+      );
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -32,7 +63,7 @@ export default function BlogSingle() {
     try {
       await navigator.clipboard.writeText(location.href);
       alert("Link copied!");
-    } catch { }
+    } catch {}
   };
 
   return (
@@ -88,26 +119,36 @@ export default function BlogSingle() {
                   "
                 >
                   <p>
-                    Web app development continues to be one of the most sought-after skills in the tech industry.
-                    From lucrative job opportunities to cutting-edge technologies, learning web app development opens doors.
+                    Web app development continues to be one of the most
+                    sought-after skills in the tech industry. From lucrative job
+                    opportunities to cutting-edge technologies, learning web app
+                    development opens doors.
                   </p>
                   <p>
-                    One of the key advantages of starting in 2024 is the availability of advanced tools, frameworks,
-                    and learning resources. Frameworks like <strong>React</strong>, <strong>Angular</strong>, and{" "}
-                    <strong>Vue.js</strong> have matured, making development more efficient and user-friendly.
-                    Communities, conferences, and forums offer great networking opportunities.
+                    One of the key advantages of starting in 2024 is the
+                    availability of advanced tools, frameworks, and learning
+                    resources. Frameworks like <strong>React</strong>,{" "}
+                    <strong>Angular</strong>, and <strong>Vue.js</strong> have
+                    matured, making development more efficient and
+                    user-friendly. Communities, conferences, and forums offer
+                    great networking opportunities.
                   </p>
                   <blockquote>
-                    “Invest in fundamentals, then iterate fast with modern tooling. Your speed compounds with good habits.”
+                    “Invest in fundamentals, then iterate fast with modern
+                    tooling. Your speed compounds with good habits.”
                   </blockquote>
                   <p>
-                    If you’re ready to embark on this exciting journey, now is the time. With expert mentorship, practical
-                    experience, and continuous learning, you can unlock a world of opportunities in 2024 and beyond.
+                    If you’re ready to embark on this exciting journey, now is
+                    the time. With expert mentorship, practical experience, and
+                    continuous learning, you can unlock a world of opportunities
+                    in 2024 and beyond.
                   </p>
 
                   <h3>What to focus on</h3>
                   <ul>
-                    <li>Core web: HTML, CSS (utility-first), JavaScript/TypeScript</li>
+                    <li>
+                      Core web: HTML, CSS (utility-first), JavaScript/TypeScript
+                    </li>
                     <li>Frameworks: React, Vue, or Angular</li>
                     <li>Data: REST/GraphQL, caching, fetch patterns</li>
                     <li>Backend basics: Node, DBs, auth, deployment</li>
@@ -124,9 +165,12 @@ export default function BlogSingle() {
                       className="h-16 w-16 rounded-xl object-cover ring-1 ring-neutral-200"
                     />
                     <div>
-                      <h3 className="text-lg font-semibold text-[var(--color-text)]">Robert Hollenbeck</h3>
+                      <h3 className="text-lg font-semibold text-[var(--color-text)]">
+                        Robert Hollenbeck
+                      </h3>
                       <p className="text-sm text-[var(--color-text)]/70">
-                        Experienced PM & consultant. Loves building teams, shipping fast, and teaching modern web.
+                        Experienced PM & consultant. Loves building teams,
+                        shipping fast, and teaching modern web.
                       </p>
                     </div>
                   </div>
@@ -134,22 +178,48 @@ export default function BlogSingle() {
 
                 {/* Reviews */}
                 <section className="mt-10">
-                  <h4 className="text-lg font-semibold text-[var(--color-text)] mb-4">Reviews</h4>
-                  <Review name="Adrian Henriques" rating={5} text="I highly recommend to anyone looking to learn..." />
-                  <Review name="Adrian Henriques" rating={4} text="Great content—more practical demos would help." />
+                  <h4 className="text-lg font-semibold text-[var(--color-text)] mb-4">
+                    Reviews
+                  </h4>
+                  <Review
+                    name="Adrian Henriques"
+                    rating={5}
+                    text="I highly recommend to anyone looking to learn..."
+                  />
+                  <Review
+                    name="Adrian Henriques"
+                    rating={4}
+                    text="Great content—more practical demos would help."
+                  />
                 </section>
 
                 {/* Comment form */}
                 <section className="mt-10 rounded-2xl border border-neutral-200 bg-white p-6 shadow-[var(--shadow-soft)]">
-                  <h4 className="text-lg font-semibold text-[var(--color-text)] mb-4">Leave a Comment</h4>
+                  <h4 className="text-lg font-semibold text-[var(--color-text)] mb-4">
+                    Leave a Comment
+                  </h4>
                   <form className="space-y-4">
                     <div className="grid gap-4 md:grid-cols-2 text-[var(--color-text)]">
-                      <Input placeholder="Name" className="text-[var(--color-text)]" />
-                      <Input type="email" placeholder="Email" className="text-[var(--color-text)]" />
+                      <Input
+                        placeholder="Name"
+                        className="text-[var(--color-text)]"
+                      />
+                      <Input
+                        type="email"
+                        placeholder="Email"
+                        className="text-[var(--color-text)]"
+                      />
                     </div>
-                    <Textarea rows={5} placeholder="Comment" className="text-[var(--color-text)] placeholder-[var(--color-text)]" />
+                    <Textarea
+                      rows={5}
+                      placeholder="Comment"
+                      className="text-[var(--color-text)] placeholder-[var(--color-text)]"
+                    />
                     <label className="flex items-start gap-2 text-sm text-[var(--color-text)]/70">
-                      <input type="checkbox" className="mt-1 h-4 w-4 rounded border-neutral-300 text-[var(--color-primary)]" />
+                      <input
+                        type="checkbox"
+                        className="mt-1 h-4 w-4 rounded border-neutral-300 text-[var(--color-primary)]"
+                      />
                       Save my name & email for next time
                     </label>
                     <button
@@ -172,9 +242,15 @@ export default function BlogSingle() {
               {/* Share */}
               <Card title="Share">
                 <div className="flex items-center gap-2 text-[var(--color-text)]">
-                  <ShareIconBtn href="#" label="Facebook"><Facebook className="h-4 w-4" /></ShareIconBtn>
-                  <ShareIconBtn href="#" label="Twitter"><Twitter className="h-4 w-4" /></ShareIconBtn>
-                  <ShareIconBtn href="#" label="LinkedIn"><Linkedin className="h-4 w-4" /></ShareIconBtn>
+                  <ShareIconBtn href="#" label="Facebook">
+                    <Facebook className="h-4 w-4" />
+                  </ShareIconBtn>
+                  <ShareIconBtn href="#" label="Twitter">
+                    <Twitter className="h-4 w-4" />
+                  </ShareIconBtn>
+                  <ShareIconBtn href="#" label="LinkedIn">
+                    <Linkedin className="h-4 w-4" />
+                  </ShareIconBtn>
                   <button
                     onClick={copyLink}
                     className="rounded-lg border border-neutral-200 bg-white px-3 py-2 text-sm hover:bg-neutral-50"
@@ -209,12 +285,18 @@ export default function BlogSingle() {
                         href={p.href}
                         className="group flex items-center gap-3 rounded-xl border border-neutral-200 bg-white p-2 hover:bg-neutral-50"
                       >
-                        <img src={p.thumb} alt={p.title} className="h-14 w-14 rounded-lg object-cover" />
+                        <img
+                          src={p.thumb}
+                          alt={p.title}
+                          className="h-14 w-14 rounded-lg object-cover"
+                        />
                         <div className="min-w-0">
                           <p className="truncate text-sm font-medium text-[var(--color-text)] group-hover:underline">
                             {p.title}
                           </p>
-                          <p className="text-xs text-[var(--color-text)]/60">{p.date}</p>
+                          <p className="text-xs text-[var(--color-text)]/60">
+                            {p.date}
+                          </p>
                         </div>
                         <ArrowRight className="ml-auto h-4 w-4 text-[var(--color-text)]/40 group-hover:text-[var(--color-text)]" />
                       </Link>
@@ -234,7 +316,9 @@ export default function BlogSingle() {
 function Card({ title, children }) {
   return (
     <div className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-[var(--shadow-soft)]">
-      <h5 className="mb-3 text-sm font-semibold text-[var(--color-text)]/90">{title}</h5>
+      <h5 className="mb-3 text-sm font-semibold text-[var(--color-text)]/90">
+        {title}
+      </h5>
       {children}
     </div>
   );
@@ -242,7 +326,11 @@ function Card({ title, children }) {
 
 function ShareIconBtn({ href, label, children }) {
   return (
-    <a href={href} aria-label={label} className="rounded-lg border border-neutral-200 bg-white px-3 py-2 text-sm hover:bg-neutral-50">
+    <a
+      href={href}
+      aria-label={label}
+      className="rounded-lg border border-neutral-200 bg-white px-3 py-2 text-sm hover:bg-neutral-50"
+    >
       {children}
     </a>
   );
@@ -276,7 +364,11 @@ function Review({ name, text, rating = 5 }) {
             <svg
               key={i}
               viewBox="0 0 20 20"
-              className={`h-4 w-4 ${i < rating ? "fill-yellow-400 text-yellow-400" : "text-neutral-300"}`}
+              className={`h-4 w-4 ${
+                i < rating
+                  ? "fill-yellow-400 text-yellow-400"
+                  : "text-neutral-300"
+              }`}
             >
               <path d="M10 15.27l5.18 3.05-1.64-5.81L18 8.63l-6-.26L10 2 8 8.37l-6 .26 4.46 3.88L4.82 18.3 10 15.27z" />
             </svg>

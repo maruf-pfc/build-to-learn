@@ -47,7 +47,11 @@ const listAll = catchAsync(async (_req: Request, res: Response) => {
 });
 
 const issue = catchAsync(async (req: Request, res: Response) => {
-  const badge = await BadgeServices.issueBadge(req.body.userId, req.body.badgeId, req.body.reason);
+  const badge = await BadgeServices.issueBadge(
+    req.body.userId,
+    req.body.badgeId,
+    req.body.reason
+  );
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
@@ -67,4 +71,11 @@ const myBadges = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-export const badgeController = { create, update, remove, listAll, issue, myBadges };
+export const badgeController = {
+  create,
+  update,
+  remove,
+  listAll,
+  issue,
+  myBadges,
+};

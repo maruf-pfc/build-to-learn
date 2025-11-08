@@ -4,13 +4,13 @@ export type BadgeType = "course" | "event" | "custom";
 
 export interface IBadge {
   _id?: Types.ObjectId;
-  title: string;       
+  title: string;
   description?: string;
-  image?: string;                      
+  image?: string;
   type: BadgeType;
   courseId?: Types.ObjectId;
   eventId?: Types.ObjectId;
-  pointsRequired?: number;             
+  pointsRequired?: number;
   isActive?: boolean;
   createdAt?: Date;
   updatedAt?: Date;

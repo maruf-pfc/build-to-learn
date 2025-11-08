@@ -1,12 +1,12 @@
 import AppError from "../../errorHelpers/AppError";
 import { IUser } from "../user/user.interface";
 import { User } from "../user/user.model";
-import httpStatus from 'http-status-codes'
+import httpStatus from "http-status-codes";
 import bcryptjs from "bcryptjs";
 import { createUserTokens } from "../../utils/userTokens";
 import { JwtPayload } from "jsonwebtoken";
 import { envVars } from "../../config/env";
-import jwt  from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import { sendEmail } from "../../utils/sendEmail";
 
 const credentialsLogin = async (payload: Partial<IUser>) => {
@@ -95,14 +95,16 @@ const resetPassword = async (
   userId: string,
   plainPassword: string
 ) => {
-  if(decodedToken.userId !== userId){
-    throw new AppError(httpStatus.BAD_REQUEST, "You can not reset this password")
+  if (decodedToken.userId !== userId) {
+    throw new AppError(
+      httpStatus.BAD_REQUEST,
+      "You can not reset this password"
+    );
   }
   const user = await User.findById(decodedToken.userId);
   if (!user) {
     throw new AppError(httpStatus.NOT_FOUND, "User is not found.");
   }
-
 
   user!.password = await bcryptjs.hash(
     plainPassword,
@@ -113,8 +115,8 @@ const resetPassword = async (
   return true;
 };
 export const AuthServices = {
-    credentialsLogin,
-    changePassword,
-    forgotPassword,
-    resetPassword
-}
+  credentialsLogin,
+  changePassword,
+  forgotPassword,
+  resetPassword,
+};

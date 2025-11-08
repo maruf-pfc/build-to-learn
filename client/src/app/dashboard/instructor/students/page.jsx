@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { MapPin, Gift, BookOpen, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  MapPin,
+  Gift,
+  BookOpen,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 
 const studentsData = [
   {
@@ -75,7 +81,9 @@ export default function InstructorStudents() {
     <div className="p-6">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 gap-4">
-        <h2 className="text-xl font-semibold text-[var(--color-text)]">Students</h2>
+        <h2 className="text-xl font-semibold text-[var(--color-text)]">
+          Students
+        </h2>
         <div className="flex items-center gap-2">
           <input
             type="text"
@@ -95,12 +103,7 @@ export default function InstructorStudents() {
             className="bg-white rounded-[var(--radius-card)] shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition duration-200"
           >
             <div className="relative w-full h-48">
-              <Image
-                src={s.image}
-                alt={s.name}
-                fill
-                className="object-cover"
-              />
+              <Image src={s.image} alt={s.name} fill className="object-cover" />
             </div>
 
             <div className="p-4">

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -27,27 +27,27 @@ export function AuthProvider({ children }) {
   }, []);
 
   const login = async (payload) => {
-   try {
+    try {
       await api.post("/auth/login", payload); // cookie set in response
       const { data } = await api.get("/user/me");
       setUser(data.data);
       router.push("/dashboard");
-   } catch (err) {
-    setLoading(false);
-    toast.error(err.response?.data?.message || "Invalid credentials");
-   }
+    } catch (err) {
+      setLoading(false);
+      toast.error(err.response?.data?.message || "Invalid credentials");
+    }
   };
 
   const googleLogin = async () => {
-   try {
+    try {
       window.location.href = `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/google`;
       const { data } = await api.get("/user/me");
       setUser(data.data);
       router.push("/dashboard");
-   } catch (err) {
-    setLoading(false);
-    toast.error(err.response?.data?.message || "Invalid credentials");
-   }
+    } catch (err) {
+      setLoading(false);
+      toast.error(err.response?.data?.message || "Invalid credentials");
+    }
   };
 
   const register = async (payload) => {
@@ -62,7 +62,9 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, logout, googleLogin }}>
+    <AuthContext.Provider
+      value={{ user, loading, login, register, logout, googleLogin }}
+    >
       {children}
     </AuthContext.Provider>
   );

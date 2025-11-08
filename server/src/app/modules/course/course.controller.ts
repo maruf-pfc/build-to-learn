@@ -7,19 +7,21 @@ import { sendResponse } from "../../utils/sendResponse";
 import { CourseServices } from "./course.services";
 import { ICourse } from "./course.interface";
 
-const createCourse = catchAsync(async (req: Request, res: Response, _next: NextFunction) => {
-  const token = req.user as JwtPayload;
-  const payload = { ...req.body, instructor: token.userId };
+const createCourse = catchAsync(
+  async (req: Request, res: Response, _next: NextFunction) => {
+    const token = req.user as JwtPayload;
+    const payload = { ...req.body, instructor: token.userId };
 
-  const created = await CourseServices.createCourse(payload);
+    const created = await CourseServices.createCourse(payload);
 
-  sendResponse<ICourse>(res, {
-    statusCode: httpStatus.CREATED,
-    success: true,
-    message: "Course Created Successfully",
-    data: created as unknown as ICourse,
-  });
-});
+    sendResponse<ICourse>(res, {
+      statusCode: httpStatus.CREATED,
+      success: true,
+      message: "Course Created Successfully",
+      data: created as unknown as ICourse,
+    });
+  }
+);
 
 const listCourses = catchAsync(async (req: Request, res: Response) => {
   const { items, meta } = await CourseServices.listCourses(req.query as any);
@@ -42,10 +44,9 @@ const getCourse = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-
 const updateCourse = catchAsync(async (req: Request, res: Response) => {
   const token = req.user as JwtPayload;
-  
+
   const updated = await CourseServices.updateCourse(req.params.id, req.body, {
     userId: token.userId,
     role: token.role,

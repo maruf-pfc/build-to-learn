@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React from "react";
 
 const ShopSkeleton = () => {
   return (
@@ -30,7 +30,7 @@ const ShopSkeleton = () => {
             <div className="h-6 bg-gray-300 rounded w-48 mx-auto mb-4"></div>
             <div className="h-12 bg-gray-300 rounded w-3/4 mx-auto mb-6"></div>
             <div className="h-6 bg-gray-300 rounded w-2/3 mx-auto mb-8"></div>
-            
+
             {/* Search Bar Skeleton */}
             <div className="max-w-2xl mx-auto mb-8">
               <div className="h-14 bg-gray-300 rounded-full w-full"></div>
@@ -94,15 +94,18 @@ const ShopSkeleton = () => {
               {/* Products Grid Skeleton */}
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-                  <div key={item} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden animate-pulse">
+                  <div
+                    key={item}
+                    className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden animate-pulse"
+                  >
                     {/* Image Skeleton */}
                     <div className="h-48 bg-gray-300 w-full"></div>
-                    
+
                     {/* Content Skeleton */}
                     <div className="p-4">
                       <div className="h-4 bg-gray-300 rounded w-3/4 mb-2"></div>
                       <div className="h-6 bg-gray-300 rounded w-full mb-3"></div>
-                      
+
                       {/* Rating Skeleton */}
                       <div className="flex items-center gap-2 mb-3">
                         <div className="h-4 bg-gray-300 rounded w-20"></div>
@@ -135,7 +138,10 @@ const ShopSkeleton = () => {
                 <div className="h-6 bg-gray-600 rounded w-32 mb-4"></div>
                 <div className="space-y-2">
                   {[1, 2, 3, 4].map((link) => (
-                    <div key={link} className="h-4 bg-gray-600 rounded w-24"></div>
+                    <div
+                      key={link}
+                      className="h-4 bg-gray-600 rounded w-24"
+                    ></div>
                   ))}
                 </div>
               </div>

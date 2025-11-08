@@ -21,10 +21,7 @@ router.post(
 );
 
 /** GET /courses — public */
-router.get(
-  "/",
-  courseController.listCourses
-);
+router.get("/", courseController.listCourses);
 
 /** GET /courses/:id — public */
 router.get("/:id", courseController.getCourse);

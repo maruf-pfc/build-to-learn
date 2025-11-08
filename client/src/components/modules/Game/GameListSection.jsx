@@ -13,9 +13,12 @@ const GameListSection = ({
     return (
       <div className="text-center py-20 bg-white rounded-3xl shadow-xl border border-gray-200">
         <FaGamepad className="w-20 h-20 text-gray-300 mx-auto mb-6" />
-        <h3 className="text-3xl font-bold text-gray-600 mb-4">No Games Found</h3>
+        <h3 className="text-3xl font-bold text-gray-600 mb-4">
+          No Games Found
+        </h3>
         <p className="text-gray-500 max-w-md mx-auto mb-8 text-lg">
-          We couldn't find any games matching your search criteria. Try adjusting your filters or search terms.
+          We couldn't find any games matching your search criteria. Try
+          adjusting your filters or search terms.
         </p>
         <button
           onClick={() => {

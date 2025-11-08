@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import { useAuth } from "@/hooks/useAuth";
 
 export default function TaskManagerPage() {
-  const {user} = useAuth()
+  const { user } = useAuth();
   const [courses, setCourses] = useState([]);
   const [units, setUnits] = useState([]);
   const [tasks, setTasks] = useState([]);
@@ -49,7 +49,7 @@ export default function TaskManagerPage() {
     setLoading(true);
     try {
       const res = await api.get(`/tasks/${unitId}`);
-      console.log(res)
+      console.log(res);
       setTasks(res.data?.data || []);
     } catch {
       toast.error("Failed to load tasks");
@@ -83,10 +83,11 @@ export default function TaskManagerPage() {
             setSelectedTask(null);
             setShowModal(true);
           }}
-          className={`flex items-center gap-2 px-4 py-2 rounded-[var(--radius-default)] text-white shadow-sm transition ${selectedUnit
+          className={`flex items-center gap-2 px-4 py-2 rounded-[var(--radius-default)] text-white shadow-sm transition ${
+            selectedUnit
               ? "bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)]"
               : "bg-gray-300 cursor-not-allowed"
-            }`}
+          }`}
         >
           <Plus size={16} /> Add Task
         </button>
@@ -156,7 +157,10 @@ export default function TaskManagerPage() {
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan={6} className="py-6 text-center text-gray-500 italic">
+                <td
+                  colSpan={6}
+                  className="py-6 text-center text-gray-500 italic"
+                >
                   Loading tasks...
                 </td>
               </tr>
@@ -168,23 +172,30 @@ export default function TaskManagerPage() {
                 >
                   {/* ===== Title + Description ===== */}
                   <td className="py-4 px-4 font-medium text-[var(--color-text)]">
-                    {t.title || <span className="text-gray-400 italic">Untitled</span>}
+                    {t.title || (
+                      <span className="text-gray-400 italic">Untitled</span>
+                    )}
                     {t.description && (
-                      <div className="text-xs text-gray-500">{t.description}</div>
+                      <div className="text-xs text-gray-500">
+                        {t.description}
+                      </div>
                     )}
                   </td>
 
                   {/* ===== Type ===== */}
                   <td className="py-4 px-4">
                     <span
-                      className={`px-3 py-1 text-xs rounded-full font-medium ${t.type === "quiz"
+                      className={`px-3 py-1 text-xs rounded-full font-medium ${
+                        t.type === "quiz"
                           ? "bg-blue-100 text-blue-700"
                           : t.type === "video"
-                            ? "bg-emerald-100 text-emerald-700"
-                            : "bg-gray-100 text-gray-700"
-                        }`}
+                          ? "bg-emerald-100 text-emerald-700"
+                          : "bg-gray-100 text-gray-700"
+                      }`}
                     >
-                      {t.type ? t.type.charAt(0).toUpperCase() + t.type.slice(1) : "N/A"}
+                      {t.type
+                        ? t.type.charAt(0).toUpperCase() + t.type.slice(1)
+                        : "N/A"}
                     </span>
                   </td>
 
@@ -231,7 +242,10 @@ export default function TaskManagerPage() {
               ))
             ) : (
               <tr>
-                <td colSpan={6} className="py-6 text-center text-gray-400 italic">
+                <td
+                  colSpan={6}
+                  className="py-6 text-center text-gray-400 italic"
+                >
                   No tasks found for this unit.
                 </td>
               </tr>
@@ -296,7 +310,7 @@ function AddEditTaskModal({ open, onClose, unitId, task, refresh }) {
         unitId,
       };
 
-      console.log(payload)
+      console.log(payload);
       if (task?._id) await api.put(`/tasks/${task._id}`, payload);
       else await api.post("/tasks/create", payload);
 
@@ -310,134 +324,137 @@ function AddEditTaskModal({ open, onClose, unitId, task, refresh }) {
 
   return (
     <AnimatePresence>
-  {open && (
-    <motion.div
-      className="fixed inset-0 bg-black/40 flex items-center justify-center z-50"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      onClick={onClose}
-    >
-      <motion.div
-        onClick={(e) => e.stopPropagation()}
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.9, opacity: 0 }}
-        transition={{ duration: 0.25 }}
-        className="bg-white rounded-[var(--radius-card)] shadow-[var(--shadow-medium)] w-full max-w-lg p-6"
-      >
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold text-[var(--color-secondary)]">
-            {task ? "Edit Task" : "Add Task"}
-          </h2>
-          <button
-            onClick={onClose}
-            className="text-gray-400 hover:text-gray-600"
+      {open && (
+        <motion.div
+          className="fixed inset-0 bg-black/40 flex items-center justify-center z-50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={onClose}
+        >
+          <motion.div
+            onClick={(e) => e.stopPropagation()}
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="bg-white rounded-[var(--radius-card)] shadow-[var(--shadow-medium)] w-full max-w-lg p-6"
           >
-            <X size={22} />
-          </button>
-        </div>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-bold text-[var(--color-secondary)]">
+                {task ? "Edit Task" : "Add Task"}
+              </h2>
+              <button
+                onClick={onClose}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <X size={22} />
+              </button>
+            </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4 text-[var(--color-text)]">
-          {/* Title */}
-          <div>
-            <label className="text-sm font-semibold">Title</label>
-            <input
-              name="title"
-              value={form.title}
-              onChange={handleChange}
-              placeholder="Enter title"
-              className="w-full border border-gray-300 rounded-[var(--radius-default)] px-3 py-2 mt-1"
-            />
-          </div>
-
-          {/* Description */}
-          <div>
-            <label className="text-sm font-semibold">Description</label>
-            <textarea
-              name="description"
-              value={form.description}
-              onChange={handleChange}
-              rows={3}
-              placeholder="Enter description"
-              className="w-full border border-gray-300 rounded-[var(--radius-default)] px-3 py-2 mt-1"
-            />
-          </div>
-
-          {/* Due Date */}
-          <div>
-            <label className="text-sm font-semibold">Deadline</label>
-            <input
-              name="dueDate"
-              type="date"
-              value={form.dueDate?.split("T")[0] || ""}
-              onChange={handleChange}
-              className="w-full border border-gray-300 rounded-[var(--radius-default)] px-3 py-2 mt-1"
-            />
-          </div>
-
-          {/* Max Point */}
-          <div>
-            <label className="text-sm font-semibold">Max Points</label>
-            <input
-              name="maxPoints"
-              type="number"
-              min="0"
-              value={form.maxPoints}
-              onChange={handleChange}
-              placeholder="e.g. 100"
-              className="w-full border border-gray-300 rounded-[var(--radius-default)] px-3 py-2 mt-1"
-            />
-          </div>
-
-          {/* Assignment Type */}
-          <div>
-            <label className="text-sm font-semibold">Assignment Type</label>
-            <select
-              name="type"
-              value={form.type}
-              onChange={handleChange}
-              className="w-full border border-gray-300 rounded-[var(--radius-default)] px-3 py-2 mt-1"
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-4 text-[var(--color-text)]"
             >
-              <option value="">Select type</option>
-              <option value="quiz">Quiz</option>
-              <option value="video">Video</option>
-              <option value="pdf">PDF</option>
-            </select>
-          </div>
+              {/* Title */}
+              <div>
+                <label className="text-sm font-semibold">Title</label>
+                <input
+                  name="title"
+                  value={form.title}
+                  onChange={handleChange}
+                  placeholder="Enter title"
+                  className="w-full border border-gray-300 rounded-[var(--radius-default)] px-3 py-2 mt-1"
+                />
+              </div>
 
-          {/* Point per Question (only for quiz) */}
-          {form.type === "quiz" && (
-            <motion.div
-              initial={{ opacity: 0, y: -5 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              <label className="text-sm font-semibold">Point Per Question</label>
-              <input
-                name="perCorrectPoint"
-                type="number"
-                min="0"
-                value={form.perCorrectPoint || ""}
-                onChange={handleChange}
-                placeholder="e.g. 5"
-                className="w-full border border-gray-300 rounded-[var(--radius-default)] px-3 py-2 mt-1"
-              />
-            </motion.div>
-          )}
+              {/* Description */}
+              <div>
+                <label className="text-sm font-semibold">Description</label>
+                <textarea
+                  name="description"
+                  value={form.description}
+                  onChange={handleChange}
+                  rows={3}
+                  placeholder="Enter description"
+                  className="w-full border border-gray-300 rounded-[var(--radius-default)] px-3 py-2 mt-1"
+                />
+              </div>
 
-          <button
-            type="submit"
-            className="w-full py-3 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-[var(--radius-default)] font-semibold"
-          >
-            Save Task
-          </button>
-        </form>
-      </motion.div>
-    </motion.div>
-  )}
-</AnimatePresence>
+              {/* Due Date */}
+              <div>
+                <label className="text-sm font-semibold">Deadline</label>
+                <input
+                  name="dueDate"
+                  type="date"
+                  value={form.dueDate?.split("T")[0] || ""}
+                  onChange={handleChange}
+                  className="w-full border border-gray-300 rounded-[var(--radius-default)] px-3 py-2 mt-1"
+                />
+              </div>
 
+              {/* Max Point */}
+              <div>
+                <label className="text-sm font-semibold">Max Points</label>
+                <input
+                  name="maxPoints"
+                  type="number"
+                  min="0"
+                  value={form.maxPoints}
+                  onChange={handleChange}
+                  placeholder="e.g. 100"
+                  className="w-full border border-gray-300 rounded-[var(--radius-default)] px-3 py-2 mt-1"
+                />
+              </div>
+
+              {/* Assignment Type */}
+              <div>
+                <label className="text-sm font-semibold">Assignment Type</label>
+                <select
+                  name="type"
+                  value={form.type}
+                  onChange={handleChange}
+                  className="w-full border border-gray-300 rounded-[var(--radius-default)] px-3 py-2 mt-1"
+                >
+                  <option value="">Select type</option>
+                  <option value="quiz">Quiz</option>
+                  <option value="video">Video</option>
+                  <option value="pdf">PDF</option>
+                </select>
+              </div>
+
+              {/* Point per Question (only for quiz) */}
+              {form.type === "quiz" && (
+                <motion.div
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <label className="text-sm font-semibold">
+                    Point Per Question
+                  </label>
+                  <input
+                    name="perCorrectPoint"
+                    type="number"
+                    min="0"
+                    value={form.perCorrectPoint || ""}
+                    onChange={handleChange}
+                    placeholder="e.g. 5"
+                    className="w-full border border-gray-300 rounded-[var(--radius-default)] px-3 py-2 mt-1"
+                  />
+                </motion.div>
+              )}
+
+              <button
+                type="submit"
+                className="w-full py-3 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-[var(--radius-default)] font-semibold"
+              >
+                Save Task
+              </button>
+            </form>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
-

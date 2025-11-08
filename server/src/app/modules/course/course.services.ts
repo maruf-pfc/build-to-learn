@@ -17,9 +17,9 @@ const listCourses = async (query: any) => {
   if (query.q) filter.$text = { $search: query.q };
 
   // 🎯 Category (support single or multiple)
-  
+
   if (query.categories) {
-    const categories = query.categories.split(",")
+    const categories = query.categories.split(",");
     filter.category = { $in: categories };
   }
 
@@ -44,7 +44,7 @@ const listCourses = async (query: any) => {
   const sort = query.sort ?? "-createdAt";
 
   // ⚡ Fetch items and total count
-  console.log(filter)
+  console.log(filter);
   const [items, total] = await Promise.all([
     Course.find(filter)
       .populate("instructor", "name email") // optional
@@ -62,7 +62,7 @@ const listCourses = async (query: any) => {
 
 const getCourseBySlug = async (id: string) => {
   const course = await Course.findOne({ slug: id, isDeleted: false });
-    // const course = await Course.findOne({ _id: id, isDeleted: false });
+  // const course = await Course.findOne({ _id: id, isDeleted: false });
   if (!course) throw new AppError(httpStatus.NOT_FOUND, "Course Not Found");
   return course;
 };
@@ -73,11 +73,13 @@ const updateCourse = async (
   actor: { userId: string; role: string }
 ) => {
   const course = await Course.findById(id);
-  if (!course || course.isDeleted) throw new AppError(httpStatus.NOT_FOUND, "Course Not Found");
+  if (!course || course.isDeleted)
+    throw new AppError(httpStatus.NOT_FOUND, "Course Not Found");
 
   const isOwner = String(course.instructor) === String(actor.userId);
   const isAdmin = actor.role === "ADMIN";
-  if (!isOwner && !isAdmin) throw new AppError(httpStatus.FORBIDDEN, "Forbidden");
+  if (!isOwner && !isAdmin)
+    throw new AppError(httpStatus.FORBIDDEN, "Forbidden");
 
   Object.assign(course, updates);
   await course.save();

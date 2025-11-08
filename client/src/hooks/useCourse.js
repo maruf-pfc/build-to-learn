@@ -20,10 +20,10 @@ export const useInstructorCourses = (filters) => {
     queryKey: ["instructorCourses", filters],
     queryFn: async () => {
       const params = new URLSearchParams();
-      if (filters?.status && filters.status !== "All") params.append("status", filters.status);
+      if (filters?.status && filters.status !== "All")
+        params.append("status", filters.status);
       if (filters?.search) params.append("q", filters.search);
-      if (filters.instructor) params.append("instructor", filters.instructor)
-
+      if (filters.instructor) params.append("instructor", filters.instructor);
 
       const res = await api.get(`/courses?${params.toString()}`);
       return res.data?.data || [];
@@ -70,7 +70,6 @@ export const usePublicCourses = (filters) => {
   });
 };
 
-
 // Get units by course ID
 export const useUnitsByCourse = (courseId) =>
   useQuery({
@@ -95,13 +94,13 @@ export const useLessonsByUnit = (unitId) =>
     refetchOnWindowFocus: false,
   });
 
-  export const useEnrollmentCourses = (studentId) => {
-    return useQuery({
-        queryKey: ["enrollmentCourse", studentId],
-        queryFn: async () => {
-            const res = await api.get(`/enrollments/me`);
-            return res.data?.data || [];
-        },
-        refetchOnWindowFocus: false,
-    });
+export const useEnrollmentCourses = (studentId) => {
+  return useQuery({
+    queryKey: ["enrollmentCourse", studentId],
+    queryFn: async () => {
+      const res = await api.get(`/enrollments/me`);
+      return res.data?.data || [];
+    },
+    refetchOnWindowFocus: false,
+  });
 };

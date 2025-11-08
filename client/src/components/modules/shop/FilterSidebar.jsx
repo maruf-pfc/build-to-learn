@@ -3,7 +3,13 @@
 import { FaTimes, FaFilter } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
-const FilterSidebar = ({ isOpen, onClose, filters, onFiltersChange, productCount }) => {
+const FilterSidebar = ({
+  isOpen,
+  onClose,
+  filters,
+  onFiltersChange,
+  productCount,
+}) => {
   const { t } = useTranslation();
 
   const categories = [
@@ -74,7 +80,6 @@ const FilterSidebar = ({ isOpen, onClose, filters, onFiltersChange, productCount
           </button>
         </div>
 
-        
         <div className="h-[calc(100vh-64px)] overflow-y-scroll p-5 sm:p-6 no-scrollbar">
           {/* Results Count */}
           <div className="mb-6 rounded-lg bg-blue-50 p-4 text-sm text-blue-800">
@@ -128,7 +133,10 @@ const FilterSidebar = ({ isOpen, onClose, filters, onFiltersChange, productCount
                 onChange={(e) =>
                   onFiltersChange({
                     ...filters,
-                    priceRange: [filters.priceRange[0], parseInt(e.target.value)],
+                    priceRange: [
+                      filters.priceRange[0],
+                      parseInt(e.target.value),
+                    ],
                   })
                 }
                 onMouseUp={autoCloseOnMobile}

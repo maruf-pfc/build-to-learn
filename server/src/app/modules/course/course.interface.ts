@@ -33,7 +33,7 @@ export interface ICourseListQuery {
   minPrice?: number;
   maxPrice?: number;
   instructor?: string; // userId
-  sort?: string;       // "-createdAt", "price", etc.
+  sort?: string; // "-createdAt", "price", etc.
   page?: number;
   limit?: number;
 }

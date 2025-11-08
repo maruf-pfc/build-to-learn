@@ -10,7 +10,7 @@ const CartSidebar = ({
   onUpdateQuantity,
   onRemoveFromCart,
   onCheckout,
-  total
+  total,
 }) => {
   const { t } = useTranslation();
 

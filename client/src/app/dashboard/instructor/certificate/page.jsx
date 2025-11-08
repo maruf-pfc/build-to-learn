@@ -9,7 +9,7 @@ export default function CertificatesPage() {
       course: "React for Beginners",
       instructor: "John Smith",
       date: "2024-09-10",
-      image: "/images/certificate-1.jpg", 
+      image: "/images/certificate-1.jpg",
     },
     {
       id: 2,

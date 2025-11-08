@@ -1,7 +1,7 @@
 import React from "react";
 import { FaHeart, FaStar } from "react-icons/fa";
 
-const DonationHeaderSection = ({totalDonations,donorsCount}) => {
+const DonationHeaderSection = ({ totalDonations, donorsCount }) => {
   return (
     <section className="relative bg-gradient-to-r from-slate-900 via-blue-900 to-emerald-900 text-white overflow-hidden">
       <div className="absolute inset-0 bg-black opacity-20"></div>

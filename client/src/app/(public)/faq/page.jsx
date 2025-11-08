@@ -53,7 +53,8 @@ export default function FAQSection() {
             Most frequently asked questions
           </h2>
           <p className="text-[var(--color-text)]/80">
-            Here are the most frequently asked questions you may check before getting started
+            Here are the most frequently asked questions you may check before
+            getting started
           </p>
         </div>
 
@@ -91,11 +92,15 @@ export default function FAQSection() {
               {/* Smooth Collapse */}
               <div
                 className={`grid transition-all duration-500 ease-in-out ${
-                  openIndex === index ? "grid-rows-[1fr] opacity-100 mt-3" : "grid-rows-[0fr] opacity-0"
+                  openIndex === index
+                    ? "grid-rows-[1fr] opacity-100 mt-3"
+                    : "grid-rows-[0fr] opacity-0"
                 }`}
               >
                 <div className="overflow-hidden">
-                  <p className="text-sm text-[var(--color-text)]/80">{faq.answer}</p>
+                  <p className="text-sm text-[var(--color-text)]/80">
+                    {faq.answer}
+                  </p>
                 </div>
               </div>
             </div>
@@ -106,11 +111,11 @@ export default function FAQSection() {
         <div className="mt-16 p-8 bg-[var(--color-background)] border border-gray-200 rounded-lg text-center shadow-sm">
           <h3 className="text-xl font-semibold mb-3">Still have a question?</h3>
           <p className="text-[var(--color-text)]/70 mb-6">
-            We'd be happy to help you with any questions you have! Please let us know what
-            you're looking for, and we'll do our best to assist you.
+            We'd be happy to help you with any questions you have! Please let us
+            know what you're looking for, and we'll do our best to assist you.
           </p>
           <button className="px-6 py-3 rounded-full bg-[var(--color-primary)] text-white font-semibold shadow-md hover:bg-[var(--color-primary-hover)] transition">
-            <Link href='/contact'>Contact us</Link>
+            <Link href="/contact">Contact us</Link>
           </button>
         </div>
       </div>

@@ -4,7 +4,6 @@ import { Trash2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-
 export default function CartPage() {
   const [courses, setCourses] = useState([
     {
@@ -69,9 +68,13 @@ export default function CartPage() {
                 />
                 <div>
                   <p className="text-sm text-gray-600">{course.instructor}</p>
-                  <h3 className="font-medium text-[var(--color-text)]">{course.title}</h3>
+                  <h3 className="font-medium text-[var(--color-text)]">
+                    {course.title}
+                  </h3>
                   <div className="flex items-center gap-2 text-xs text-gray-500 mt-1">
-                    <span>⭐ {course.rating} ({course.reviews} Reviews)</span>
+                    <span>
+                      ⭐ {course.rating} ({course.reviews} Reviews)
+                    </span>
                     <span>•</span>
                     <span>{course.level}</span>
                   </div>
@@ -99,11 +102,15 @@ export default function CartPage() {
           <div className="mt-6 border-t pt-4">
             <div className="flex justify-between text-sm text-gray-600 mb-2">
               <span>Subtotal</span>
-              <span className="font-semibold text-[var(--color-text)]">${subtotal}</span>
+              <span className="font-semibold text-[var(--color-text)]">
+                ${subtotal}
+              </span>
             </div>
             <p className="text-xs text-gray-500">
               All Courses have a{" "}
-              <span className="font-medium text-[var(--color-accent)]">30-day</span>{" "}
+              <span className="font-medium text-[var(--color-accent)]">
+                30-day
+              </span>{" "}
               money-back guarantee
             </p>
           </div>
@@ -116,7 +123,7 @@ export default function CartPage() {
               <Link href='/course'>Continue Shopping</Link>
             </button> */}
             <button className="w-full sm:w-auto px-6 py-2 rounded-[var(--radius-default)] bg-[var(--color-primary)] text-white font-medium hover:bg-[var(--color-primary-hover)] shadow-md transition">
-              <Link href='/checkout'>Checkout</Link>
+              <Link href="/checkout">Checkout</Link>
             </button>
           </div>
         )}

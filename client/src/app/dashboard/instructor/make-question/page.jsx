@@ -1,4 +1,3 @@
-
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -67,17 +66,27 @@ export default function QuizQuestionsPage() {
     if (!newQuestion.question.trim()) return;
     setQuestions([
       ...questions,
-      { id: Date.now(), title: newQuestion.question, options: newQuestion.choices },
+      {
+        id: Date.now(),
+        title: newQuestion.question,
+        options: newQuestion.choices,
+      },
     ]);
     setIsModalOpen(false);
-    setNewQuestion({ question: "", type: "", choices: [{ text: "", correct: false }] });
+    setNewQuestion({
+      question: "",
+      type: "",
+      choices: [{ text: "", correct: false }],
+    });
   };
 
   return (
     <div className="p-6 text-[var(--color-text)]">
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-semibold text-gray-800">Information About UI/UX Design Degree</h2>
+        <h2 className="text-xl font-semibold text-gray-800">
+          Information About UI/UX Design Degree
+        </h2>
         <button
           onClick={() => setIsModalOpen(true)}
           className="bg-[var(--color-primary,#ff3d60)] text-white px-4 py-2 rounded-full hover:opacity-90 transition"
@@ -96,8 +105,14 @@ export default function QuizQuestionsPage() {
             <div className="flex justify-between items-start">
               <p className="font-medium">{q.title}</p>
               <div className="flex gap-2">
-                <Edit size={18} className="text-gray-500 hover:text-[var(--color-primary)] cursor-pointer" />
-                <Trash2 size={18} className="text-gray-500 hover:text-red-500 cursor-pointer" />
+                <Edit
+                  size={18}
+                  className="text-gray-500 hover:text-[var(--color-primary)] cursor-pointer"
+                />
+                <Trash2
+                  size={18}
+                  className="text-gray-500 hover:text-red-500 cursor-pointer"
+                />
               </div>
             </div>
 
@@ -141,7 +156,9 @@ export default function QuizQuestionsPage() {
 
               {/* Question Input */}
               <div className="mb-3">
-                <label className="block text-sm font-medium mb-1">Question *</label>
+                <label className="block text-sm font-medium mb-1">
+                  Question *
+                </label>
                 <input
                   type="text"
                   value={newQuestion.question}
@@ -154,7 +171,9 @@ export default function QuizQuestionsPage() {
 
               {/* Question Type */}
               <div className="mb-3">
-                <label className="block text-sm font-medium mb-1">Question Type *</label>
+                <label className="block text-sm font-medium mb-1">
+                  Question Type *
+                </label>
                 <select
                   value={newQuestion.type}
                   onChange={(e) =>
@@ -170,14 +189,18 @@ export default function QuizQuestionsPage() {
 
               {/* Answers Section */}
               <div className="mb-3">
-                <label className="block text-sm font-medium mb-1">Answers</label>
+                <label className="block text-sm font-medium mb-1">
+                  Answers
+                </label>
                 <div className="space-y-2">
                   {newQuestion.choices.map((choice, index) => (
                     <div key={index} className="flex items-center gap-2">
                       <input
                         type="text"
                         value={choice.text}
-                        onChange={(e) => handleChoiceChange(index, e.target.value)}
+                        onChange={(e) =>
+                          handleChoiceChange(index, e.target.value)
+                        }
                         placeholder={`Choice ${index + 1}`}
                         className="flex-1 border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary,#ff3d60)]"
                       />

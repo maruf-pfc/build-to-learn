@@ -5,7 +5,6 @@ export default function InstructorProfile() {
   return (
     <div className="w-full min-h-screen text-[var(--color-text)] bg-white">
       <div className="container mx-auto px-4 py-6 flex flex-col lg:flex-row gap-6">
-        
         {/* ===== Left/Main Content ===== */}
         <div className="flex-1 space-y-6">
           {/* Profile Card */}
@@ -21,8 +20,8 @@ export default function InstructorProfile() {
                   Rolands Granger
                 </h2>
                 <p className="text-sm text-gray-500">
-                  Developer •{" "}
-                  <span className="text-yellow-500">⭐ 4.9</span> (200 Reviews)
+                  Developer • <span className="text-yellow-500">⭐ 4.9</span>{" "}
+                  (200 Reviews)
                 </p>
                 <p className="mt-2 text-sm text-gray-600 leading-relaxed">
                   I am a web developer with a vast array of knowledge in many
@@ -32,12 +31,8 @@ export default function InstructorProfile() {
               </div>
 
               <div className="flex items-center flex-wrap gap-4 mt-3 text-sm text-gray-600">
-                <span className="flex items-center gap-1">
-                  📘 12+ Lessons
-                </span>
-                <span className="flex items-center gap-1">
-                  👥 50 Students
-                </span>
+                <span className="flex items-center gap-1">📘 12+ Lessons</span>
+                <span className="flex items-center gap-1">👥 50 Students</span>
                 <div className="flex gap-3 ml-auto text-[var(--color-primary)]">
                   <a href="#">Fb</a>
                   <a href="#">Ig</a>

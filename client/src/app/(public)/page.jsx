@@ -9,20 +9,19 @@ import StudentSuccess from "@/components/modules/home/StudentSuccess";
 import TopCategories from "@/components/modules/home/TopCategories";
 import TrustedPartners from "@/components/modules/home/TrustedPartners";
 
-
 export default function HomePage() {
-    return (
-        <div>
-            <HeroSection />
-            <TopCategories />
-            <FeaturedCourses />
-            <OurBenefits />
-            <MembershipSection />
-            <TrustedPartners />
-            <AdvancedLearning />
-            <LearningJourney />
-            <PartnerBrands />
-            <StudentSuccess />
-        </div>
-    );
+  return (
+    <div>
+      <HeroSection />
+      <TopCategories />
+      <FeaturedCourses />
+      <OurBenefits />
+      <MembershipSection />
+      <TrustedPartners />
+      <AdvancedLearning />
+      <LearningJourney />
+      <PartnerBrands />
+      <StudentSuccess />
+    </div>
+  );
 }

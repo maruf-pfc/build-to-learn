@@ -3,7 +3,6 @@ import { checkAuth } from "../../middlewares/checkAuth";
 import { Role } from "../user/user.interface";
 import { badgeController } from "./badge.controller";
 
-
 const router = Router();
 
 // Admin routes
@@ -27,7 +26,11 @@ router.delete(
 
 // Public / user
 router.get("/", badgeController.listAll);
-router.get("/me", checkAuth(Role.STUDENT, Role.INSTRUCTOR, Role.ADMIN), badgeController.myBadges);
+router.get(
+  "/me",
+  checkAuth(Role.STUDENT, Role.INSTRUCTOR, Role.ADMIN),
+  badgeController.myBadges
+);
 
 // Admin manual issue
 router.post(

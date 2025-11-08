@@ -1,7 +1,11 @@
 "use client";
 import { PlayCircle } from "lucide-react";
 
-export default function LessonItem({ lesson, currentLesson, setCurrentLesson }) {
+export default function LessonItem({
+  lesson,
+  currentLesson,
+  setCurrentLesson,
+}) {
   const isActive = currentLesson?._id === lesson._id;
 
   return (
@@ -17,7 +21,10 @@ export default function LessonItem({ lesson, currentLesson, setCurrentLesson }) 
         }}
       >
         <span className="flex items-center gap-2">
-          <PlayCircle size={16} className={isActive ? "opacity-90" : "opacity-70"} />
+          <PlayCircle
+            size={16}
+            className={isActive ? "opacity-90" : "opacity-70"}
+          />
           <span className="text-sm">{lesson?.title}</span>
         </span>
         <span className="text-xs opacity-80">{lesson?.contentType}</span>

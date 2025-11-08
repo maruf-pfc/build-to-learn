@@ -1,7 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, Search, Home, Compass, BookOpen, LifeBuoy } from "lucide-react";
+import {
+  ArrowLeft,
+  Search,
+  Home,
+  Compass,
+  BookOpen,
+  LifeBuoy,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -44,13 +51,15 @@ export default function NotFound() {
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)]">
             Oops,
           </span>{" "}
-          <span className="text-[var(--color-primary)]">we couldn’t find that page.</span>
+          <span className="text-[var(--color-primary)]">
+            we couldn’t find that page.
+          </span>
         </h1>
 
         {/* Subtext */}
         <p className="mt-3 text-[var(--color-text)]/80">
-          The link may be broken or the page might have moved. Try searching, go back home,
-          or explore some helpful links below.
+          The link may be broken or the page might have moved. Try searching, go
+          back home, or explore some helpful links below.
         </p>
 
         {/* Actions */}
@@ -109,7 +118,9 @@ export default function NotFound() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <item.icon className="h-5 w-5 text-[var(--color-text)]/80" />
-                  <span className="font-medium text-[var(--color-text)]">{item.title}</span>
+                  <span className="font-medium text-[var(--color-text)]">
+                    {item.title}
+                  </span>
                 </div>
                 <span className="text-[var(--color-text)]/40 group-hover:text-[var(--color-text)] transition">
                   →
@@ -122,9 +133,12 @@ export default function NotFound() {
         {/* Diagnostic block */}
         <div className="mt-10 rounded-2xl border border-neutral-200 bg-white/70 backdrop-blur p-5 text-[var(--color-text)]/70 shadow-[var(--shadow-soft)]">
           <div className="flex items-center justify-between">
-            <code className="block text-xs sm:text-sm">Error: 404_NOT_FOUND</code>
+            <code className="block text-xs sm:text-sm">
+              Error: 404_NOT_FOUND
+            </code>
             <span className="hidden sm:inline text-xs text-[var(--color-text)]/60">
-              Tip: Press <kbd className="rounded border px-1">/</kbd> to focus search
+              Tip: Press <kbd className="rounded border px-1">/</kbd> to focus
+              search
             </span>
           </div>
         </div>

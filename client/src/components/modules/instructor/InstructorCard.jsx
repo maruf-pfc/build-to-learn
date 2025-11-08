@@ -4,8 +4,6 @@ import Link from "next/link";
 import { FaStar } from "react-icons/fa";
 import { FiBookOpen, FiClock } from "react-icons/fi";
 
-
-
 export default function InstructorCard({ instructor }) {
   return (
     <div className="bg-white rounded-[var(--radius-card)] shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-medium)] transition-shadow duration-300 overflow-hidden border border-gray-100">
@@ -31,7 +29,7 @@ export default function InstructorCard({ instructor }) {
 
         {/* Name + Role */}
         <h3 className="text-[var(--color-text)] font-semibold text-base">
-          <Link href='/instructors/slug'>{instructor.name}</Link>
+          <Link href="/instructors/slug">{instructor.name}</Link>
         </h3>
         <p className="text-gray-600 text-sm mb-3">{instructor.role}</p>
 
