@@ -192,7 +192,7 @@ const Navbar = () => {
 
         {/* Desktop Language Selector & Auth Buttons */}
         <div className="hidden lg:flex items-center gap-4">
-          <div className="relative" ref={languageDropdownRef}>
+          <div className="relative hidden" ref={languageDropdownRef}>
             <button
               onClick={() => toggleDropdown("language")}
               className="flex items-center gap-2 px-3 py-2 rounded-lg border border-[var(--color-primary)] text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-white transition-all duration-200 group"
