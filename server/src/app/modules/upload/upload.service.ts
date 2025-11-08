@@ -5,15 +5,21 @@ import AppError from "../../errorHelpers/AppError";
 import httpStatus from "http-status-codes";
 
 interface UploadPayload {
-  filePath?: string;       // multer temp path
-  fileBase64?: string;     // data URL or pure base64
-  fileMimetype?: string;   // MIME type from req.file.mimetype
-  folder?: string;         // optional folder name
-  filename?: string;       // optional original name
+  filePath?: string; // multer temp path
+  fileBase64?: string; // data URL or pure base64
+  fileMimetype?: string; // MIME type from req.file.mimetype
+  folder?: string; // optional folder name
+  filename?: string; // optional original name
 }
 
 const uploadMedia = async (payload: UploadPayload) => {
-  const { filePath, fileBase64, fileMimetype, folder = "asia-lms", filename } = payload;
+  const {
+    filePath,
+    fileBase64,
+    fileMimetype,
+    folder = "asia-lms",
+    filename,
+  } = payload;
 
   if (!filePath && !fileBase64) {
     throw new AppError(httpStatus.BAD_REQUEST, "File is required");
@@ -28,11 +34,11 @@ const uploadMedia = async (payload: UploadPayload) => {
   try {
     const result = await cloudinary.uploader.upload(filePath || fileBase64!, {
       folder,
-      resource_type: isPdf ? "raw" : "auto",  // pdf as raw, others auto
-      type: "upload",                         // ensure public access
+      resource_type: isPdf ? "raw" : "auto", // pdf as raw, others auto
+      type: "upload", // ensure public access
       use_filename: !!filename,
       filename_override: filename,
-      pages: isPdf ? true : undefined,        // extract first page thumbnail
+      pages: isPdf ? true : undefined, // extract first page thumbnail
     });
 
     // Clean up temp file if exists
@@ -41,10 +47,9 @@ const uploadMedia = async (payload: UploadPayload) => {
     }
 
     // Optional thumbnail for PDFs (first page)
-    const thumbnailUrl =
-      isPdf
-        ? result.secure_url.replace("/raw/upload/", "/image/upload/pg_1,w_600/")
-        : null;
+    const thumbnailUrl = isPdf
+      ? result.secure_url.replace("/raw/upload/", "/image/upload/pg_1,w_600/")
+      : null;
 
     return {
       public_id: result.public_id,

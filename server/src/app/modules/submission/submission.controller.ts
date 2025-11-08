@@ -6,19 +6,25 @@ import { catchAsync } from "../../utils/catchAsync";
 import { sendResponse } from "../../utils/sendResponse";
 import { SubmissionServices } from "./submission.services";
 
-const createReviewedSubmission = catchAsync(async (req: Request, res: Response) => {
-  const token = req.user as JwtPayload;
-  const { taskId } = req.params;
+const createReviewedSubmission = catchAsync(
+  async (req: Request, res: Response) => {
+    const token = req.user as JwtPayload;
+    const { taskId } = req.params;
 
-  const created = await SubmissionServices.createReviewedSubmission(taskId, token.userId, req.body);
+    const created = await SubmissionServices.createReviewedSubmission(
+      taskId,
+      token.userId,
+      req.body
+    );
 
-  sendResponse(res, {
-    statusCode: httpStatus.CREATED,
-    success: true,
-    message: "Submission created (pending review)",
-    data: created,
-  });
-});
+    sendResponse(res, {
+      statusCode: httpStatus.CREATED,
+      success: true,
+      message: "Submission created (pending review)",
+      data: created,
+    });
+  }
+);
 
 const gradeSubmission = catchAsync(async (req: Request, res: Response) => {
   const token = req.user as JwtPayload;
@@ -53,10 +59,8 @@ const getMyCourseTotal = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-
-
 export const submissionController = {
   createReviewedSubmission,
   gradeSubmission,
-  getMyCourseTotal
+  getMyCourseTotal,
 };

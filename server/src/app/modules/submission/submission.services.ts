@@ -16,8 +16,10 @@ const createReviewedSubmission = async (
   payload: { artifactUrl: string; note?: string }
 ) => {
   const task = await Task.findById(taskId);
-  if (!task || task.isDeleted) throw new AppError(httpStatus.NOT_FOUND, "Task Not Found");
-  if (task.type === "quiz") throw new AppError(httpStatus.BAD_REQUEST, "Use quiz flow for quiz tasks");
+  if (!task || task.isDeleted)
+    throw new AppError(httpStatus.NOT_FOUND, "Task Not Found");
+  if (task.type === "quiz")
+    throw new AppError(httpStatus.BAD_REQUEST, "Use quiz flow for quiz tasks");
 
   const sub = await TaskSubmission.create({
     task: task._id,
@@ -48,13 +50,15 @@ const gradeSubmission = async (
   body: GradeBody
 ) => {
   const task = await Task.findById(taskId);
-  if (!task || task.isDeleted) throw new AppError(httpStatus.NOT_FOUND, "Task Not Found");
+  if (!task || task.isDeleted)
+    throw new AppError(httpStatus.NOT_FOUND, "Task Not Found");
   const course = await Course.findById(task.course);
   if (!course) throw new AppError(httpStatus.NOT_FOUND, "Course Not Found");
 
   const isOwner = String(course.instructor) === String(actor.userId);
   const isAdmin = actor.role === "ADMIN";
-  if (!isOwner && !isAdmin) throw new AppError(httpStatus.FORBIDDEN, "Forbidden");
+  if (!isOwner && !isAdmin)
+    throw new AppError(httpStatus.FORBIDDEN, "Forbidden");
 
   const sub = await TaskSubmission.findOne({ _id: submissionId });
   if (!sub) throw new AppError(httpStatus.NOT_FOUND, "Submission Not Found");
@@ -64,11 +68,18 @@ const gradeSubmission = async (
 
   // ------ Normal reviewed task (video/pdf) grading ------
   if (!quiz) {
-    if (typeof (body as any).pointsAwarded !== "number" || (body as any).pointsAwarded < 0) {
-      throw new AppError(httpStatus.BAD_REQUEST, "pointsAwarded must be a non-negative number");
+    if (
+      typeof (body as any).pointsAwarded !== "number" ||
+      (body as any).pointsAwarded < 0
+    ) {
+      throw new AppError(
+        httpStatus.BAD_REQUEST,
+        "pointsAwarded must be a non-negative number"
+      );
     }
     let awarded = (body as any).pointsAwarded;
-    if (typeof task.maxPoints === "number") awarded = Math.min(awarded, task.maxPoints);
+    if (typeof task.maxPoints === "number")
+      awarded = Math.min(awarded, task.maxPoints);
 
     sub.pointsAwarded = body.status === "approved" ? awarded : 0;
     sub.status = body.status;
@@ -77,8 +88,14 @@ const gradeSubmission = async (
   }
 
   // ------ Quiz (short-answer) grading path ------
-  if (!Array.isArray((body as any).scores) || (body as any).scores.length === 0) {
-    throw new AppError(httpStatus.BAD_REQUEST, "scores array is required for quiz short-answer grading");
+  if (
+    !Array.isArray((body as any).scores) ||
+    (body as any).scores.length === 0
+  ) {
+    throw new AppError(
+      httpStatus.BAD_REQUEST,
+      "scores array is required for quiz short-answer grading"
+    );
   }
 
   // Build index → shortQ.maxPoints map if quiz exists
@@ -90,10 +107,18 @@ const gradeSubmission = async (
   // Apply incoming scores to breakdown short items
   const b = sub.breakdown || [];
   for (const s of (body as any).scores) {
-    const item = b.find((x: any) => x.qIndex === s.qIndex && x.type === "short");
-    if (!item) throw new AppError(httpStatus.BAD_REQUEST, `No short answer at qIndex ${s.qIndex}`);
+    const item = b.find(
+      (x: any) => x.qIndex === s.qIndex && x.type === "short"
+    );
+    if (!item)
+      throw new AppError(
+        httpStatus.BAD_REQUEST,
+        `No short answer at qIndex ${s.qIndex}`
+      );
 
-    const cap = shortCaps.has(s.qIndex) ? (shortCaps.get(s.qIndex) as number) : (item.maxPoints ?? 0);
+    const cap = shortCaps.has(s.qIndex)
+      ? (shortCaps.get(s.qIndex) as number)
+      : item.maxPoints ?? 0;
     if (s.reviewPoints < 0 || s.reviewPoints > cap) {
       throw new AppError(
         httpStatus.BAD_REQUEST,
@@ -112,14 +137,15 @@ const gradeSubmission = async (
     .reduce((acc: number, x: any) => acc + (x.reviewPoints ?? 0), 0);
 
   let total = autoPoints + reviewSum;
-  if (typeof task.maxPoints === "number") total = Math.min(total, task.maxPoints);
+  if (typeof task.maxPoints === "number")
+    total = Math.min(total, task.maxPoints);
 
   sub.breakdown = b;
   sub.pointsAwarded = total;
   sub.status = "approved";
   await sub.save();
 
-    // Award task review points
+  // Award task review points
   if (body.status === "approved" && sub.pointsAwarded > 0) {
     await GamificationServices.addPoints({
       userId: String(sub.user),
@@ -127,25 +153,25 @@ const gradeSubmission = async (
       sourceType: "task",
       courseId: String(task.course),
       taskId: String(task._id),
-      reason: "Reviewed task points"
+      reason: "Reviewed task points",
     });
   }
 
   return sub;
 };
 
- 
 const myCourseTotal = async (courseId: string, userId: string) => {
-    const course = await TaskSubmission.findOne({ course: courseId, user: userId });
+  const course = await TaskSubmission.findOne({
+    course: courseId,
+    user: userId,
+  });
   const agg = await TaskSubmission.aggregate([
-    { $match: { course: courseId}},
+    { $match: { course: courseId } },
     // { $group: { _id: null, pointsAwarded: { $sum: "$pointsAwarded" } } },
   ]);
   console.log("Aggregation result:", agg);
   return { total: agg[0]?.pointsAwarded ?? 0 };
 };
-
-
 
 export const SubmissionServices = {
   createReviewedSubmission,

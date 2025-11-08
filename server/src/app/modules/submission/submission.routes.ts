@@ -4,14 +4,13 @@ import { validateRequest } from "../../middlewares/validateRequest";
 import { Role } from "../user/user.interface";
 import { submissionController } from "./submission.controller";
 
-
 const router = Router();
 
 /** STUDENT creates submission for video/pdf */
 router.post(
   "/:taskId/create",
   checkAuth(Role.STUDENT, Role.INSTRUCTOR, Role.ADMIN, Role.SUPER_ADMIN),
-//   validateRequest(createReviewedSubmissionZod),
+  //   validateRequest(createReviewedSubmissionZod),
   submissionController.createReviewedSubmission
 );
 
@@ -19,7 +18,7 @@ router.post(
 router.patch(
   "/task/grade",
   checkAuth(Role.INSTRUCTOR, Role.ADMIN, Role.SUPER_ADMIN),
-//   validateRequest(gradeSubmissionZod),
+  //   validateRequest(gradeSubmissionZod),
   submissionController.gradeSubmission
 );
 
@@ -29,6 +28,5 @@ router.get(
   checkAuth(Role.STUDENT, Role.INSTRUCTOR, Role.ADMIN, Role.SUPER_ADMIN),
   submissionController.getMyCourseTotal
 );
-
 
 export const SubmissionRoutes = router;
