@@ -435,7 +435,7 @@ const Navbar = () => {
                 </div>
 
                 {/* Language Selector */}
-                <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+                {/* <div className="mb-6 p-4 bg-gray-50 rounded-lg">
                   <p className="text-sm font-semibold text-[var(--color-text)] mb-3 flex items-center gap-2">
                     <FaGlobe className="text-[var(--color-primary)]" />
                     {t("language") || "Select Language"}
@@ -457,7 +457,7 @@ const Navbar = () => {
                       </button>
                     ))}
                   </div>
-                </div>
+                </div> */}
 
                 {/* Auth Buttons */}
                 <div className="flex flex-col gap-3">
