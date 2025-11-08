@@ -11,7 +11,11 @@ import { stripeWebhook } from "./app/modules/payment/payment.webhooks.controller
 import { envVars } from "./app/config/env";
 
 const app = express();
-app.post("/webhooks/stripe", express.raw({ type: "application/json" }), stripeWebhook);
+app.post(
+  "/webhooks/stripe",
+  express.raw({ type: "application/json" }),
+  stripeWebhook
+);
 app.use(
   expressSession({
     secret: envVars.EXPRESS_SESSION_SECRET,
@@ -31,7 +35,6 @@ app.use(
     credentials: true,
   })
 );
-
 
 app.use("/api", router);
 

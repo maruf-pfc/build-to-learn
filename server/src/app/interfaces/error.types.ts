@@ -3,7 +3,7 @@ export interface IErrorSources {
   message: string;
 }
 export interface IGenericErrorResponse {
-  statusCode: number,
-  message: string,
-  errorSources?: IErrorSources[]
+  statusCode: number;
+  message: string;
+  errorSources?: IErrorSources[];
 }

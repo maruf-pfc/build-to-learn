@@ -47,14 +47,13 @@ export const checkAuth =
         throw new AppError(httpStatus.BAD_REQUEST, "User is deleted");
       }
 
-      if(!isUserExist.isVerified){
-        throw new AppError(httpStatus.BAD_REQUEST, "User is not verified.")
+      if (!isUserExist.isVerified) {
+        throw new AppError(httpStatus.BAD_REQUEST, "User is not verified.");
       }
-      
+
       if (!roles.includes(verifiedToken.role)) {
         throw new AppError(403, "You are not permitted to this route!!!");
       }
-
 
       req.user = verifiedToken;
       next();
