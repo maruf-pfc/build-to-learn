@@ -90,7 +90,7 @@ passport.use(
         }
 
         let isUserExist = await User.findOne({ email });
-        
+
         if (
           isUserExist &&
           (isUserExist.isActive === IsActive.BLOCKED ||
@@ -126,7 +126,6 @@ passport.use(
     }
   )
 );
-
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 passport.serializeUser((user: any, done: (err: any, id?: unknown) => void) => {
