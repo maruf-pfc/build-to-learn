@@ -37,7 +37,7 @@ export default function Page() {
                     <div className="flex justify-between items-center mb-3">
                         <h2 className="text-lg font-semibold text-gray-800">Order Summary</h2>
                         <span className="flex items-center gap-1 text-sm text-gray-500">
-                            <CalendarDays className="w-4 h-4" /> {format(new Date(data.createdAt), "MMMM d, yyyy")}
+                            <CalendarDays className="w-4 h-4" /> {format(new Date(data?.createdAt), "MMMM d, yyyy")}
                         </span>
                     </div>
 
