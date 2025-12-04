@@ -1,15 +1,40 @@
 export default function StatCard({ icon, title, value, accent }) {
   return (
     <section
-      className={`flex items-center justify-between bg-white rounded-[var(--radius-card)] shadow-sm p-4 ${
-        accent ? "text-white bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)]" : ""
+      className={`flex items-center justify-between rounded-[var(--radius-card)] p-5 transition-all shadow-sm border 
+      ${
+        accent
+          ? "text-white bg-gradient-to-r from-indigo-600 to-indigo-500 border-none shadow-md"
+          : "bg-white border-gray-200 hover:shadow-md"
       }`}
     >
+      {/* Text */}
       <div className="flex flex-col">
-        <span className="text-sm opacity-80">{title}</span>
-        <span className="text-xl font-bold">{value}</span>
+        <span
+          className={`text-sm ${
+            accent ? "opacity-90 text-indigo-100" : "text-gray-500"
+          }`}
+        >
+          {title}
+        </span>
+
+        <span
+          className={`text-2xl font-bold ${
+            accent ? "text-white" : "text-gray-900"
+          }`}
+        >
+          {value}
+        </span>
       </div>
-      <div className="text-2xl opacity-80">{icon}</div>
+
+      {/* Icon */}
+      <div
+        className={`text-3xl ${
+          accent ? "text-indigo-100" : "text-indigo-600 opacity-80"
+        }`}
+      >
+        {icon}
+      </div>
     </section>
   );
 }

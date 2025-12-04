@@ -1,7 +1,8 @@
-"use client";;
+"use client";
+
 import { useState } from "react";
-import React from 'react'
 import { BarChart, Bar, XAxis, Tooltip, ResponsiveContainer } from "recharts";
+
 const chartData = [
   { name: "Jan", value: 100 },
   { name: "Feb", value: 180 },
@@ -16,36 +17,57 @@ const chartData = [
   { name: "Nov", value: 210 },
   { name: "Dec", value: 190 },
 ];
+
 export default function HistoryChart() {
-      const [activeTab, setActiveTab] = useState("Viewership");
-    return (
-        <section className="bg-white rounded-[var(--radius-card)] shadow-sm p-4">
-            <div className="flex justify-between items-center mb-4">
-                <div className="flex space-x-4">
-                    {["Viewership", "Subscribers", "Earning"].map((tab) => (
-                        <button
-                            key={tab}
-                            onClick={() => setActiveTab(tab)}
-                            className={`font-medium ${activeTab === tab
-                                    ? "text-[var(--color-primary)] border-b-2 border-[var(--color-primary)]"
-                                    : "text-gray-400"
-                                }`}
-                        >
-                            {tab}
-                        </button>
-                    ))}
-                </div>
-                <span className="text-sm font-semibold">1,113 hours</span>
-            </div>
-            <div className="h-48">
-                <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={chartData}>
-                        <XAxis dataKey="name" stroke="#ccc" />
-                        <Tooltip />
-                        <Bar dataKey="value" fill="var(--color-primary)" radius={[6, 6, 0, 0]} />
-                    </BarChart>
-                </ResponsiveContainer>
-            </div>
-        </section>
-    )
+  const [activeTab, setActiveTab] = useState("Viewership");
+
+  return (
+    <section className="bg-white rounded-[var(--radius-card)] shadow-md p-6 border border-gray-200">
+      {/* Header */}
+      <div className="flex justify-between items-center mb-4">
+        {/* Tabs */}
+        <div className="flex gap-3">
+          {["Viewership", "Subscribers", "Earning"].map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`
+                px-3 py-1.5 rounded-lg text-sm font-medium transition
+                ${
+                  activeTab === tab
+                    ? "bg-indigo-600 text-white shadow-sm"
+                    : "text-gray-500 hover:text-indigo-600"
+                }
+              `}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+
+        <span className="text-sm font-semibold text-gray-700">1,113 hours</span>
+      </div>
+
+      {/* Chart */}
+      <div className="h-56">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart data={chartData}>
+            <XAxis dataKey="name" stroke="#9ca3af" tick={{ fontSize: 12 }} />
+            <Tooltip
+              contentStyle={{
+                background: "white",
+                border: "1px solid #e5e7eb",
+                fontSize: "12px",
+              }}
+            />
+            <Bar
+              dataKey="value"
+              fill="var(--color-primary)"
+              radius={[6, 6, 0, 0]}
+            />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+    </section>
+  );
 }
