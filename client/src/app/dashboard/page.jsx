@@ -6,15 +6,15 @@ import StudentDashboard from "@/components/modules/dashboard/student/StudentDash
 import { useAuth } from "@/hooks/useAuth";
 
 export default function DashboardHome() {
-  const user = useAuth();
+  const {user} = useAuth();
 
   if (!user) {
     return <p>Access denied</p>;
   }
 
-  return user.role === "admin" ? (
+  return user.role === "ADMIN" ? (
     <AdminDashboard />
-  ) : user.role === "instructor" ? (
+  ) : user.role === "INSTRUCTOR" ? (
     <InstructorDashboard />
   ) : (
     <StudentDashboard />
