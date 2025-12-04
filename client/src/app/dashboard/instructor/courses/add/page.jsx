@@ -15,7 +15,7 @@ export default function AddCoursePage() {
   const [isUploading, setIsUploading] = useState(false);
   const router = useRouter();
 
-  // ==== Upload thumbnail ====
+  // ---------------- Thumbnail Upload ----------------
   const handleThumbnailUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -39,7 +39,7 @@ export default function AddCoursePage() {
     }
   };
 
-  // ==== Create course ====
+  // ---------------- Create Course ----------------
   const onSubmit = async (data) => {
     try {
       const payload = { ...data, price: parseInt(data.price, 10) };
@@ -51,50 +51,68 @@ export default function AddCoursePage() {
     }
   };
 
+  // ---------------- Bangladesh LMS Categories ----------------
+  const categories = [
+    "Web Development",
+    "App Development",
+    "Programming for Beginners",
+    "Digital Marketing",
+    "Graphic Design",
+    "UI/UX Design",
+    "IELTS Preparation",
+    "Spoken English",
+    "Freelancing & Outsourcing",
+    "Cyber Security",
+    "Cloud Computing & DevOps",
+    "Data Science & ML",
+    "Accounting & Microsoft Office",
+  ];
+
   return (
-    <div className="flex items-center justify-center p-6 text-[var(--color-text)]">
+    <div className="flex items-center justify-center p-6 text-gray-900">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full container bg-white/90 backdrop-blur-lg shadow-[var(--shadow-medium)] rounded-[var(--radius-card)] p-8"
+        className="w-full max-w-5xl bg-white rounded-xl border border-gray-200 shadow-lg p-8"
       >
-        <h1 className="text-3xl font-bold text-[var(--color-secondary)] mb-6">
+        <h1 className="text-3xl font-bold text-gray-800 mb-6">
           Create a New Course
         </h1>
 
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="grid grid-cols-1 md:grid-cols-2  gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-10"
         >
-          {/* ==== Thumbnail Upload ==== */}
-          <div className="">
+          {/* ---------------- Thumbnail Upload ---------------- */}
+          <div>
+            <label className="text-sm font-medium mb-2 block">
+              Course Thumbnail
+            </label>
+
             {thumbnail ? (
-              <div className="relative w-full h-full rounded-[var(--radius-default)] overflow-hidden border border-gray-300">
+              <div className="relative w-full h-64 rounded-lg overflow-hidden border border-gray-300">
                 <Image
                   src={thumbnail}
                   alt="Thumbnail Preview"
                   fill
-                  className="object-cover rounded-[var(--radius-default)]"
+                  className="object-cover"
                 />
                 <button
                   type="button"
                   onClick={() => setThumbnail(null)}
-                  className="absolute top-2 right-2 bg-white/80 text-red-600 p-1 rounded-full hover:bg-white transition"
+                  className="absolute top-3 right-3 bg-white/90 shadow p-1.5 rounded-full text-red-600 hover:bg-white transition"
                 >
-                  <XCircle size={18} />
+                  <XCircle size={20} />
                 </button>
               </div>
             ) : (
               <label
                 htmlFor="thumbnailInput"
-                className="flex flex-col items-center justify-center w-full h-full mb-5 border-2 border-dashed border-[var(--color-primary)] rounded-[var(--radius-default)] cursor-pointer hover:bg-[var(--color-background)] transition"
+                className="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed border-indigo-400 rounded-lg cursor-pointer bg-indigo-50 hover:bg-indigo-100 transition"
               >
-                <Upload
-                  className="text-[var(--color-primary)] mb-2"
-                  size={28}
-                />
-                <span className="text-sm text-gray-500">
+                <Upload className="text-indigo-600 mb-2" size={30} />
+                <span className="text-sm text-gray-600">
                   {isUploading ? "Uploading..." : "Click to upload image"}
                 </span>
                 <input
@@ -108,33 +126,40 @@ export default function AddCoursePage() {
             )}
           </div>
 
-          <div>
-            {/* ==== Title ==== */}
-            <div className="">
+          {/* ---------------- Course Info Inputs ---------------- */}
+          <div className="space-y-5">
+            {/* Title */}
+            <div>
               <label className="text-sm font-medium">Course Title</label>
               <input
                 {...register("title", { required: true })}
-                placeholder="Enter your course title"
-                className="mt-1 w-full p-3 border border-gray-300 rounded-[var(--radius-default)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
+                placeholder="e.g. Complete Web Development Bootcamp"
+                className="mt-1 w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500"
               />
             </div>
 
-            {/* ==== Category ==== */}
+            {/* Category */}
             <div>
               <label className="text-sm font-medium">Category</label>
-              <input
+              <select
                 {...register("category")}
-                placeholder="e.g. SDG 11"
-                className="mt-1 w-full p-3 border border-gray-300 rounded-[var(--radius-default)]"
-              />
+                className="mt-1 w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500"
+              >
+                <option value="">Select a category</option>
+                {categories.map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
             </div>
 
-            {/* ==== Level ==== */}
+            {/* Level */}
             <div>
               <label className="text-sm font-medium">Level</label>
               <select
                 {...register("level")}
-                className="mt-1 w-full p-3 border border-gray-300 rounded-[var(--radius-default)]"
+                className="mt-1 w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500"
               >
                 <option value="beginner">Beginner</option>
                 <option value="intermediate">Intermediate</option>
@@ -142,48 +167,48 @@ export default function AddCoursePage() {
               </select>
             </div>
 
-            {/* ==== Price ==== */}
+            {/* Price */}
             <div>
-              <label className="text-sm font-medium">Price (USD)</label>
+              <label className="text-sm font-medium">Price (BDT)</label>
               <input
                 type="number"
                 {...register("price", { required: true })}
-                placeholder="e.g. 30"
-                className="mt-1 w-full p-3 border border-gray-300 rounded-[var(--radius-default)]"
+                placeholder="e.g. 1500"
+                className="mt-1 w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500"
               />
             </div>
 
-            {/* ==== Status ==== */}
+            {/* Status */}
             <div>
               <label className="text-sm font-medium">Status</label>
               <select
                 {...register("status")}
-                className="mt-1 w-full p-3 border border-gray-300 rounded-[var(--radius-default)]"
+                className="mt-1 w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500"
               >
                 <option value="draft">Draft</option>
                 <option value="published">Published</option>
               </select>
             </div>
+          </div>
 
-            {/* ==== Description ==== */}
-            <div className="col-span-2">
-              <label className="text-sm font-medium">Short Description</label>
-              <textarea
-                {...register("description")}
-                placeholder="Briefly describe your course"
-                className="mt-1 w-full p-3 border border-gray-300 rounded-[var(--radius-default)] min-h-[100px]"
-              ></textarea>
-            </div>
+          {/* ---------------- Description ---------------- */}
+          <div className="col-span-2">
+            <label className="text-sm font-medium">Short Description</label>
+            <textarea
+              {...register("description")}
+              placeholder="Briefly describe what students will learn in this course"
+              className="mt-1 w-full p-3 border border-gray-300 rounded-lg shadow-sm min-h-[120px] focus:ring-2 focus:ring-indigo-500"
+            ></textarea>
+          </div>
 
-            {/* ==== Submit ==== */}
-            <div className="col-span-2 flex justify-end mt-6">
-              <button
-                type="submit"
-                className="bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white font-semibold px-6 py-3 rounded-[var(--radius-default)] shadow-[var(--shadow-soft)] transition-all"
-              >
-                Create Course
-              </button>
-            </div>
+          {/* ---------------- Submit Button ---------------- */}
+          <div className="col-span-2 flex justify-end">
+            <button
+              type="submit"
+              className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition"
+            >
+              Create Course
+            </button>
           </div>
         </form>
       </motion.div>

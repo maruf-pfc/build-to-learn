@@ -10,7 +10,7 @@ import { useAuth } from "@/hooks/useAuth";
 export default function TaskManagerPage() {
   const { user } = useAuth();
   const [courses, setCourses] = useState([]);
-  const [units, setUnits] = useState([]);
+  const [modules, setModules] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState("");
   const [selectedUnit, setSelectedUnit] = useState("");
@@ -30,15 +30,15 @@ export default function TaskManagerPage() {
     })();
   }, []);
 
-  // === Fetch units for selected course ===
+  // === Fetch modules for selected course ===
   useEffect(() => {
     if (!selectedCourse) return;
     (async () => {
       try {
         const res = await api.get(`/units/${selectedCourse}`);
-        setUnits(res.data?.data || []);
+        setModules(res.data?.data || []);
       } catch {
-        toast.error("Failed to load units");
+        toast.error("Failed to load modules");
       }
     })();
   }, [selectedCourse]);
@@ -104,12 +104,12 @@ export default function TaskManagerPage() {
             onChange={(e) => {
               setSelectedCourse(e.target.value);
               setSelectedUnit("");
-              setUnits([]);
+              setModules([]);
               setTasks([]);
             }}
             className="w-full px-3 py-2 bg-[var(--color-text)]/10 border border-[var(--color-primary)] rounded-[var(--radius-default)] text-[var(--color-text)] focus:outline-none focus:border-[var(--color-primary)]"
           >
-            <option value="">-- Select Course --</option>
+            <option value="">Select Course</option>
             {courses.map((c) => (
               <option key={c._id} value={c._id}>
                 {c.title}
@@ -120,7 +120,7 @@ export default function TaskManagerPage() {
 
         <div>
           <label className="block text-sm font-medium text-[var(--color-text)] mb-1">
-            Select Unit
+            Select Module
           </label>
           <select
             value={selectedUnit}
@@ -130,8 +130,8 @@ export default function TaskManagerPage() {
             }}
             className="w-full px-3 py-2 bg-[var(--color-text)]/10 border border-[var(--color-primary)] rounded-[var(--radius-default)] text-[var(--color-text)] focus:outline-none focus:border-[var(--color-primary)]"
           >
-            <option value="">-- Select Unit --</option>
-            {units.map((u) => (
+            <option value="">Select Module</option>
+            {modules.map((u) => (
               <option key={u._id} value={u._id}>
                 {u.title}
               </option>

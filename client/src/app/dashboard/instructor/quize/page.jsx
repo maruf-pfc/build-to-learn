@@ -251,7 +251,7 @@ export default function InstructorQuizBuilder() {
         </div>
 
         <div>
-          <label className="text-sm font-medium text-gray-700">Unit</label>
+          <label className="text-sm font-medium text-gray-700">Module</label>
           <select
             className="w-full border rounded-md px-3 py-2 mt-1"
             value={selectedUnit}
@@ -260,7 +260,7 @@ export default function InstructorQuizBuilder() {
               fetchQuizzes(e.target.value);
             }}
           >
-            <option value="">Select Unit</option>
+            <option value="">Select Module</option>
             {units.map((u) => (
               <option key={u._id} value={u._id}>
                 {u.title}
@@ -482,14 +482,14 @@ export default function InstructorQuizBuilder() {
                     </div>
 
                     <div>
-                      <label className="text-sm font-medium">Unit</label>
+                      <label className="text-sm font-medium">Module</label>
                       <select
                         name="unitId"
                         value={quizForm.unitId}
                         onChange={handleQuizChange}
                         className="w-full border rounded-md px-3 py-2 mt-1 text-sm"
                       >
-                        <option value="">Select Unit</option>
+                        <option value="">Select Module</option>
                         {units.map((u) => (
                           <option key={u._id} value={u._id}>
                             {u.title}
