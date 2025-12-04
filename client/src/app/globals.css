@@ -1,64 +1,62 @@
 @import "tailwindcss";
 
+/* Smooth Scrolling */
 html {
   scroll-behavior: smooth !important;
 }
 
 :root {
-  /* ====== Brand Colors ====== */
-  --color-primary: #059669;
-  /* Emerald Green - CTA buttons, progress bars, active menu items */
-  --color-secondary: #2563eb;
-  /* Blue - Headers, navigation links, icons */
-  --color-accent: #fbbf24;
-  /* Yellow - Badges, XP points, achievements */
+  /* =============================
+       Brand Colors (Updated Theme)
+  ============================= */
+  --color-primary: #4f46e5; /* Indigo 600 - Primary */
+  --color-primary-hover: #4338ca; /* Indigo 700 */
+  --color-secondary: #059669; /* Emerald 600 */
+  --color-secondary-hover: #047857; /* Emerald 700 */
+  --color-accent: #fbbf24; /* Amber 400 */
+  --color-accent-hover: #f59e0b; /* Amber 500 */
 
-  /* ====== Base Colors ====== */
-  --color-background: #ecfdf5;
-  /* Light Mint - Page backgrounds, sections, soft containers */
-  --color-text: #064e3b;
-  /* Dark Green - Body text, descriptions, headings, forms */
+  /* =============================
+       Base Colors
+  ============================= */
+  --color-background: #ffffff; /* Full white background */
+  --color-text: #1f2937; /* Gray-800 - clean neutral text */
 
-  /* ====== Hover & Transparency ====== */
-  --color-primary-hover: #047857;
-  /* Darker Emerald for hover transitions */
-  --color-secondary-hover: #1e40af;
-  /* Deeper Blue for hover states */
-  --color-accent-hover: #f59e0b;
-  /* Richer Yellow for active highlights */
-  --color-accent-special: #0f9293;
-  /* Richer Yellow for active highlights */
-
-  /* ====== Shadows & Depth ====== */
+  /* =============================
+       Shadows & Depth
+  ============================= */
   --shadow-soft: 0 2px 6px rgba(0, 0, 0, 0.08);
-  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
-  --container-opacity: 0.95;
-  /* Slight transparency for depth */
+  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.12);
 
-  /* ====== Border Radius & Spacing ====== */
+  /* =============================
+       Radius & Spacing
+  ============================= */
   --radius-default: 0.75rem;
   --radius-card: 1rem;
   --spacing-section: 2rem;
+
+  /* Optional: Slight opacity for glass UI */
+  --container-opacity: 0.95;
 }
 
+/* Tailwind custom theme fonts */
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* =============================
+     Base Body Styling
+============================= */
 body {
-  /* background: var(--background); */
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background); /* Ensures full white background */
+  color: var(--color-text); /* Correct readable text color */
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
+/* =============================
+    Animations
+============================= */
 @keyframes slideDown {
   from {
     opacity: 0;
@@ -75,7 +73,14 @@ body {
   animation: slideDown 0.25s ease-in-out forwards;
 }
 
-/* Custom Scrollbar Styles */
+/* Smooth transitions for UI */
+* {
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+/* =============================
+    Custom Scrollbar
+============================= */
 .custom-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: var(--color-primary) transparent;
@@ -97,11 +102,4 @@ body {
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: var(--color-primary-hover);
-}
-
-/* For dark mode support */
-@media (prefers-color-scheme: dark) {
-  .custom-scrollbar {
-    scrollbar-color: var(--color-primary) transparent;
-  }
 }
