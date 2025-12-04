@@ -49,8 +49,10 @@ export default function InstructorQuizBuilder() {
 
   // ===== Fetch Data =====
   useEffect(() => {
-    fetchCourses();
-  }, []);
+    if(user){
+      fetchCourses();
+    }
+  }, [user]);
 
   const fetchCourses = async () => {
     try {
