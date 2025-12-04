@@ -205,7 +205,7 @@ export default function AddCoursePage() {
           <div className="col-span-2 flex justify-end">
             <button
               type="submit"
-              className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition"
+              className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition cursor-pointer"
             >
               Create Course
             </button>

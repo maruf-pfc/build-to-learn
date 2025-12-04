@@ -10,7 +10,7 @@ export default function LessonsPage() {
   return (
     <div className="container py-10 px-4">
       {isLoading ? (
-        <p className="text-center text-gray-500">Loading units...</p>
+        <p className="text-center text-gray-500">Loading Modules...</p>
       ) : (
         <LessonManager courseUnits={units} />
       )}
