@@ -14,9 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Asia LMS - Empowering E-Learning Excellence",
+  title: "Build to Learn",
   description:
-    "A comprehensive learning management system for Asian educational institutions and businesses.",
+    "A comprehensive learning management system for Bangladeshi students.",
 };
 
 export default function RootLayout({ children }) {
