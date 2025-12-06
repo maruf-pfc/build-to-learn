@@ -10,13 +10,13 @@ importers:
     dependencies:
       '@radix-ui/react-slot':
         specifier: ^1.2.4
-        version: 1.2.4(react@19.2.0)
+        version: 1.2.4(react@19.2.1)
       '@tanstack/react-query':
         specifier: ^5.90.5
-        version: 5.90.7(react@19.2.0)
+        version: 5.90.7(react@19.2.1)
       '@tanstack/react-query-devtools':
         specifier: ^5.90.2
-        version: 5.90.2(@tanstack/react-query@5.90.7(react@19.2.0))(react@19.2.0)
+        version: 5.90.2(@tanstack/react-query@5.90.7(react@19.2.1))(react@19.2.1)
       axios:
         specifier: ^1.12.2
         version: 1.13.2
@@ -31,7 +31,7 @@ importers:
         version: 4.1.0
       framer-motion:
         specifier: ^12.23.22
-        version: 12.23.24(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        version: 12.23.24(react-dom@19.2.0(react@19.2.1))(react@19.2.1)
       i18next:
         specifier: ^25.6.0
         version: 25.6.1
@@ -43,31 +43,31 @@ importers:
         version: 3.0.2
       lucide-react:
         specifier: ^0.544.0
-        version: 0.544.0(react@19.2.0)
+        version: 0.544.0(react@19.2.1)
       next:
-        specifier: 16.0.1
-        version: 16.0.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        specifier: 16.0.7
+        version: 16.0.7(react-dom@19.2.0(react@19.2.1))(react@19.2.1)
       react:
-        specifier: 19.2.0
-        version: 19.2.0
+        specifier: 19.2.1
+        version: 19.2.1
       react-dom:
         specifier: 19.2.0
-        version: 19.2.0(react@19.2.0)
+        version: 19.2.0(react@19.2.1)
       react-hook-form:
         specifier: ^7.65.0
-        version: 7.66.0(react@19.2.0)
+        version: 7.66.0(react@19.2.1)
       react-i18next:
         specifier: ^16.0.1
-        version: 16.2.4(i18next@25.6.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        version: 16.2.4(i18next@25.6.1)(react-dom@19.2.0(react@19.2.1))(react@19.2.1)
       react-icons:
         specifier: ^5.5.0
-        version: 5.5.0(react@19.2.0)
+        version: 5.5.0(react@19.2.1)
       react-toastify:
         specifier: ^11.0.5
-        version: 11.0.5(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        version: 11.0.5(react-dom@19.2.0(react@19.2.1))(react@19.2.1)
       recharts:
         specifier: ^3.2.1
-        version: 3.3.0(react-dom@19.2.0(react@19.2.0))(react-is@19.2.0)(react@19.2.0)(redux@5.0.1)
+        version: 3.3.0(react-dom@19.2.0(react@19.2.1))(react-is@19.2.0)(react@19.2.1)(redux@5.0.1)
       sweetalert2:
         specifier: ^11.26.3
         version: 11.26.3
@@ -76,7 +76,7 @@ importers:
         version: 3.3.1
       zustand:
         specifier: ^5.0.8
-        version: 5.0.8(immer@10.2.0)(react@19.2.0)(use-sync-external-store@1.6.0(react@19.2.0))
+        version: 5.0.8(immer@10.2.0)(react@19.2.1)(use-sync-external-store@1.6.0(react@19.2.1))
     devDependencies:
       '@biomejs/biome':
         specifier: 2.2.0
@@ -310,53 +310,53 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@next/env@16.0.1':
-    resolution: {integrity: sha512-LFvlK0TG2L3fEOX77OC35KowL8D7DlFF45C0OvKMC4hy8c/md1RC4UMNDlUGJqfCoCS2VWrZ4dSE6OjaX5+8mw==}
+  '@next/env@16.0.7':
+    resolution: {integrity: sha512-gpaNgUh5nftFKRkRQGnVi5dpcYSKGcZZkQffZ172OrG/XkrnS7UBTQ648YY+8ME92cC4IojpI2LqTC8sTDhAaw==}
 
-  '@next/swc-darwin-arm64@16.0.1':
-    resolution: {integrity: sha512-R0YxRp6/4W7yG1nKbfu41bp3d96a0EalonQXiMe+1H9GTHfKxGNCGFNWUho18avRBPsO8T3RmdWuzmfurlQPbg==}
+  '@next/swc-darwin-arm64@16.0.7':
+    resolution: {integrity: sha512-LlDtCYOEj/rfSnEn/Idi+j1QKHxY9BJFmxx7108A6D8K0SB+bNgfYQATPk/4LqOl4C0Wo3LACg2ie6s7xqMpJg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
 
-  '@next/swc-darwin-x64@16.0.1':
-    resolution: {integrity: sha512-kETZBocRux3xITiZtOtVoVvXyQLB7VBxN7L6EPqgI5paZiUlnsgYv4q8diTNYeHmF9EiehydOBo20lTttCbHAg==}
+  '@next/swc-darwin-x64@16.0.7':
+    resolution: {integrity: sha512-rtZ7BhnVvO1ICf3QzfW9H3aPz7GhBrnSIMZyr4Qy6boXF0b5E3QLs+cvJmg3PsTCG2M1PBoC+DANUi4wCOKXpA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
 
-  '@next/swc-linux-arm64-gnu@16.0.1':
-    resolution: {integrity: sha512-hWg3BtsxQuSKhfe0LunJoqxjO4NEpBmKkE+P2Sroos7yB//OOX3jD5ISP2wv8QdUwtRehMdwYz6VB50mY6hqAg==}
+  '@next/swc-linux-arm64-gnu@16.0.7':
+    resolution: {integrity: sha512-mloD5WcPIeIeeZqAIP5c2kdaTa6StwP4/2EGy1mUw8HiexSHGK/jcM7lFuS3u3i2zn+xH9+wXJs6njO7VrAqww==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
 
-  '@next/swc-linux-arm64-musl@16.0.1':
-    resolution: {integrity: sha512-UPnOvYg+fjAhP3b1iQStcYPWeBFRLrugEyK/lDKGk7kLNua8t5/DvDbAEFotfV1YfcOY6bru76qN9qnjLoyHCQ==}
+  '@next/swc-linux-arm64-musl@16.0.7':
+    resolution: {integrity: sha512-+ksWNrZrthisXuo9gd1XnjHRowCbMtl/YgMpbRvFeDEqEBd523YHPWpBuDjomod88U8Xliw5DHhekBC3EOOd9g==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
 
-  '@next/swc-linux-x64-gnu@16.0.1':
-    resolution: {integrity: sha512-Et81SdWkcRqAJziIgFtsFyJizHoWne4fzJkvjd6V4wEkWTB4MX6J0uByUb0peiJQ4WeAt6GGmMszE5KrXK6WKg==}
+  '@next/swc-linux-x64-gnu@16.0.7':
+    resolution: {integrity: sha512-4WtJU5cRDxpEE44Ana2Xro1284hnyVpBb62lIpU5k85D8xXxatT+rXxBgPkc7C1XwkZMWpK5rXLXTh9PFipWsA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
 
-  '@next/swc-linux-x64-musl@16.0.1':
-    resolution: {integrity: sha512-qBbgYEBRrC1egcG03FZaVfVxrJm8wBl7vr8UFKplnxNRprctdP26xEv9nJ07Ggq4y1adwa0nz2mz83CELY7N6Q==}
+  '@next/swc-linux-x64-musl@16.0.7':
+    resolution: {integrity: sha512-HYlhqIP6kBPXalW2dbMTSuB4+8fe+j9juyxwfMwCe9kQPPeiyFn7NMjNfoFOfJ2eXkeQsoUGXg+O2SE3m4Qg2w==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
 
-  '@next/swc-win32-arm64-msvc@16.0.1':
-    resolution: {integrity: sha512-cPuBjYP6I699/RdbHJonb3BiRNEDm5CKEBuJ6SD8k3oLam2fDRMKAvmrli4QMDgT2ixyRJ0+DTkiODbIQhRkeQ==}
+  '@next/swc-win32-arm64-msvc@16.0.7':
+    resolution: {integrity: sha512-EviG+43iOoBRZg9deGauXExjRphhuYmIOJ12b9sAPy0eQ6iwcPxfED2asb/s2/yiLYOdm37kPaiZu8uXSYPs0Q==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
 
-  '@next/swc-win32-x64-msvc@16.0.1':
-    resolution: {integrity: sha512-XeEUJsE4JYtfrXe/LaJn3z1pD19fK0Q6Er8Qoufi+HqvdO4LEPyCxLUt4rxA+4RfYo6S9gMlmzCMU2F+AatFqQ==}
+  '@next/swc-win32-x64-msvc@16.0.7':
+    resolution: {integrity: sha512-gniPjy55zp5Eg0896qSrf3yB1dw4F/3s8VK1ephdsZZ129j2n6e1WqCbE2YgcKhW9hPB9TVZENugquWJD5x0ug==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
@@ -838,8 +838,8 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  next@16.0.1:
-    resolution: {integrity: sha512-e9RLSssZwd35p7/vOa+hoDFggUZIUbZhIUSLZuETCwrCVvxOs87NamoUzT+vbcNAL8Ld9GobBnWOA6SbV/arOw==}
+  next@16.0.7:
+    resolution: {integrity: sha512-3mBRJyPxT4LOxAJI6IsXeFtKfiJUbjCLgvXO02fV8Wy/lIhPvP94Fe7dGhUgHXcQy4sSuYwQNcOLhIfOm0rL0A==}
     engines: {node: '>=20.9.0'}
     hasBin: true
     peerDependencies:
@@ -935,8 +935,8 @@ packages:
       react: ^18 || ^19
       react-dom: ^18 || ^19
 
-  react@19.2.0:
-    resolution: {integrity: sha512-tmbWg6W31tQLeB5cdIBOicJDJRR2KzXsV7uSK9iNfLWQ5bIZfxuPEHp7M8wiHyHnn0DD1i7w3Zmin0FtkrwoCQ==}
+  react@19.2.1:
+    resolution: {integrity: sha512-DGrYcCWK7tvYMnWh79yrPHt+vdx9tY+1gPZa7nJQtO/p8bLTDaHp4dzwEhQB7pZ4Xe3ok4XKuEPrVuc+wlpkmw==}
     engines: {node: '>=0.10.0'}
 
   recharts@3.3.0:
@@ -1210,42 +1210,42 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@next/env@16.0.1': {}
+  '@next/env@16.0.7': {}
 
-  '@next/swc-darwin-arm64@16.0.1':
+  '@next/swc-darwin-arm64@16.0.7':
     optional: true
 
-  '@next/swc-darwin-x64@16.0.1':
+  '@next/swc-darwin-x64@16.0.7':
     optional: true
 
-  '@next/swc-linux-arm64-gnu@16.0.1':
+  '@next/swc-linux-arm64-gnu@16.0.7':
     optional: true
 
-  '@next/swc-linux-arm64-musl@16.0.1':
+  '@next/swc-linux-arm64-musl@16.0.7':
     optional: true
 
-  '@next/swc-linux-x64-gnu@16.0.1':
+  '@next/swc-linux-x64-gnu@16.0.7':
     optional: true
 
-  '@next/swc-linux-x64-musl@16.0.1':
+  '@next/swc-linux-x64-musl@16.0.7':
     optional: true
 
-  '@next/swc-win32-arm64-msvc@16.0.1':
+  '@next/swc-win32-arm64-msvc@16.0.7':
     optional: true
 
-  '@next/swc-win32-x64-msvc@16.0.1':
+  '@next/swc-win32-x64-msvc@16.0.7':
     optional: true
 
-  '@radix-ui/react-compose-refs@1.1.2(react@19.2.0)':
+  '@radix-ui/react-compose-refs@1.1.2(react@19.2.1)':
     dependencies:
-      react: 19.2.0
+      react: 19.2.1
 
-  '@radix-ui/react-slot@1.2.4(react@19.2.0)':
+  '@radix-ui/react-slot@1.2.4(react@19.2.1)':
     dependencies:
-      '@radix-ui/react-compose-refs': 1.1.2(react@19.2.0)
-      react: 19.2.0
+      '@radix-ui/react-compose-refs': 1.1.2(react@19.2.1)
+      react: 19.2.1
 
-  '@reduxjs/toolkit@2.10.1(react-redux@9.2.0(react@19.2.0)(redux@5.0.1))(react@19.2.0)':
+  '@reduxjs/toolkit@2.10.1(react-redux@9.2.0(react@19.2.1)(redux@5.0.1))(react@19.2.1)':
     dependencies:
       '@standard-schema/spec': 1.0.0
       '@standard-schema/utils': 0.3.0
@@ -1254,8 +1254,8 @@ snapshots:
       redux-thunk: 3.1.0(redux@5.0.1)
       reselect: 5.1.1
     optionalDependencies:
-      react: 19.2.0
-      react-redux: 9.2.0(react@19.2.0)(redux@5.0.1)
+      react: 19.2.1
+      react-redux: 9.2.0(react@19.2.1)(redux@5.0.1)
 
   '@standard-schema/spec@1.0.0': {}
 
@@ -1338,16 +1338,16 @@ snapshots:
 
   '@tanstack/query-devtools@5.90.1': {}
 
-  '@tanstack/react-query-devtools@5.90.2(@tanstack/react-query@5.90.7(react@19.2.0))(react@19.2.0)':
+  '@tanstack/react-query-devtools@5.90.2(@tanstack/react-query@5.90.7(react@19.2.1))(react@19.2.1)':
     dependencies:
       '@tanstack/query-devtools': 5.90.1
-      '@tanstack/react-query': 5.90.7(react@19.2.0)
-      react: 19.2.0
+      '@tanstack/react-query': 5.90.7(react@19.2.1)
+      react: 19.2.1
 
-  '@tanstack/react-query@5.90.7(react@19.2.0)':
+  '@tanstack/react-query@5.90.7(react@19.2.1)':
     dependencies:
       '@tanstack/query-core': 5.90.7
-      react: 19.2.0
+      react: 19.2.1
 
   '@types/d3-array@3.2.2': {}
 
@@ -1496,14 +1496,14 @@ snapshots:
       hasown: 2.0.2
       mime-types: 2.1.35
 
-  framer-motion@12.23.24(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+  framer-motion@12.23.24(react-dom@19.2.0(react@19.2.1))(react@19.2.1):
     dependencies:
       motion-dom: 12.23.23
       motion-utils: 12.23.6
       tslib: 2.8.1
     optionalDependencies:
-      react: 19.2.0
-      react-dom: 19.2.0(react@19.2.0)
+      react: 19.2.1
+      react-dom: 19.2.0(react@19.2.1)
 
   function-bind@1.1.2: {}
 
@@ -1612,9 +1612,9 @@ snapshots:
       lightningcss-win32-arm64-msvc: 1.30.2
       lightningcss-win32-x64-msvc: 1.30.2
 
-  lucide-react@0.544.0(react@19.2.0):
+  lucide-react@0.544.0(react@19.2.1):
     dependencies:
-      react: 19.2.0
+      react: 19.2.1
 
   magic-string@0.30.21:
     dependencies:
@@ -1636,24 +1636,24 @@ snapshots:
 
   nanoid@3.3.11: {}
 
-  next@16.0.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+  next@16.0.7(react-dom@19.2.0(react@19.2.1))(react@19.2.1):
     dependencies:
-      '@next/env': 16.0.1
+      '@next/env': 16.0.7
       '@swc/helpers': 0.5.15
       caniuse-lite: 1.0.30001754
       postcss: 8.4.31
-      react: 19.2.0
-      react-dom: 19.2.0(react@19.2.0)
-      styled-jsx: 5.1.6(react@19.2.0)
+      react: 19.2.1
+      react-dom: 19.2.0(react@19.2.1)
+      styled-jsx: 5.1.6(react@19.2.1)
     optionalDependencies:
-      '@next/swc-darwin-arm64': 16.0.1
-      '@next/swc-darwin-x64': 16.0.1
-      '@next/swc-linux-arm64-gnu': 16.0.1
-      '@next/swc-linux-arm64-musl': 16.0.1
-      '@next/swc-linux-x64-gnu': 16.0.1
-      '@next/swc-linux-x64-musl': 16.0.1
-      '@next/swc-win32-arm64-msvc': 16.0.1
-      '@next/swc-win32-x64-msvc': 16.0.1
+      '@next/swc-darwin-arm64': 16.0.7
+      '@next/swc-darwin-x64': 16.0.7
+      '@next/swc-linux-arm64-gnu': 16.0.7
+      '@next/swc-linux-arm64-musl': 16.0.7
+      '@next/swc-linux-x64-gnu': 16.0.7
+      '@next/swc-linux-x64-musl': 16.0.7
+      '@next/swc-win32-arm64-msvc': 16.0.7
+      '@next/swc-win32-x64-msvc': 16.0.7
       sharp: 0.34.5
     transitivePeerDependencies:
       - '@babel/core'
@@ -1679,62 +1679,62 @@ snapshots:
 
   proxy-from-env@1.1.0: {}
 
-  react-dom@19.2.0(react@19.2.0):
+  react-dom@19.2.0(react@19.2.1):
     dependencies:
-      react: 19.2.0
+      react: 19.2.1
       scheduler: 0.27.0
 
-  react-hook-form@7.66.0(react@19.2.0):
+  react-hook-form@7.66.0(react@19.2.1):
     dependencies:
-      react: 19.2.0
+      react: 19.2.1
 
-  react-i18next@16.2.4(i18next@25.6.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+  react-i18next@16.2.4(i18next@25.6.1)(react-dom@19.2.0(react@19.2.1))(react@19.2.1):
     dependencies:
       '@babel/runtime': 7.28.4
       html-parse-stringify: 3.0.1
       i18next: 25.6.1
-      react: 19.2.0
-      use-sync-external-store: 1.6.0(react@19.2.0)
+      react: 19.2.1
+      use-sync-external-store: 1.6.0(react@19.2.1)
     optionalDependencies:
-      react-dom: 19.2.0(react@19.2.0)
+      react-dom: 19.2.0(react@19.2.1)
 
-  react-icons@5.5.0(react@19.2.0):
+  react-icons@5.5.0(react@19.2.1):
     dependencies:
-      react: 19.2.0
+      react: 19.2.1
 
   react-is@19.2.0: {}
 
-  react-redux@9.2.0(react@19.2.0)(redux@5.0.1):
+  react-redux@9.2.0(react@19.2.1)(redux@5.0.1):
     dependencies:
       '@types/use-sync-external-store': 0.0.6
-      react: 19.2.0
-      use-sync-external-store: 1.6.0(react@19.2.0)
+      react: 19.2.1
+      use-sync-external-store: 1.6.0(react@19.2.1)
     optionalDependencies:
       redux: 5.0.1
 
-  react-toastify@11.0.5(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+  react-toastify@11.0.5(react-dom@19.2.0(react@19.2.1))(react@19.2.1):
     dependencies:
       clsx: 2.1.1
-      react: 19.2.0
-      react-dom: 19.2.0(react@19.2.0)
+      react: 19.2.1
+      react-dom: 19.2.0(react@19.2.1)
 
-  react@19.2.0: {}
+  react@19.2.1: {}
 
-  recharts@3.3.0(react-dom@19.2.0(react@19.2.0))(react-is@19.2.0)(react@19.2.0)(redux@5.0.1):
+  recharts@3.3.0(react-dom@19.2.0(react@19.2.1))(react-is@19.2.0)(react@19.2.1)(redux@5.0.1):
     dependencies:
-      '@reduxjs/toolkit': 2.10.1(react-redux@9.2.0(react@19.2.0)(redux@5.0.1))(react@19.2.0)
+      '@reduxjs/toolkit': 2.10.1(react-redux@9.2.0(react@19.2.1)(redux@5.0.1))(react@19.2.1)
       clsx: 2.1.1
       decimal.js-light: 2.5.1
       es-toolkit: 1.41.0
       eventemitter3: 5.0.1
       immer: 10.2.0
-      react: 19.2.0
-      react-dom: 19.2.0(react@19.2.0)
+      react: 19.2.1
+      react-dom: 19.2.0(react@19.2.1)
       react-is: 19.2.0
-      react-redux: 9.2.0(react@19.2.0)(redux@5.0.1)
+      react-redux: 9.2.0(react@19.2.1)(redux@5.0.1)
       reselect: 5.1.1
       tiny-invariant: 1.3.3
-      use-sync-external-store: 1.6.0(react@19.2.0)
+      use-sync-external-store: 1.6.0(react@19.2.1)
       victory-vendor: 37.3.6
     transitivePeerDependencies:
       - '@types/react'
@@ -1787,10 +1787,10 @@ snapshots:
 
   source-map-js@1.2.1: {}
 
-  styled-jsx@5.1.6(react@19.2.0):
+  styled-jsx@5.1.6(react@19.2.1):
     dependencies:
       client-only: 0.0.1
-      react: 19.2.0
+      react: 19.2.1
 
   sweetalert2@11.26.3: {}
 
@@ -1808,9 +1808,9 @@ snapshots:
 
   tw-animate-css@1.4.0: {}
 
-  use-sync-external-store@1.6.0(react@19.2.0):
+  use-sync-external-store@1.6.0(react@19.2.1):
     dependencies:
-      react: 19.2.0
+      react: 19.2.1
 
   victory-vendor@37.3.6:
     dependencies:
@@ -1838,8 +1838,8 @@ snapshots:
       tr46: 0.0.3
       webidl-conversions: 3.0.1
 
-  zustand@5.0.8(immer@10.2.0)(react@19.2.0)(use-sync-external-store@1.6.0(react@19.2.0)):
+  zustand@5.0.8(immer@10.2.0)(react@19.2.1)(use-sync-external-store@1.6.0(react@19.2.1)):
     optionalDependencies:
       immer: 10.2.0
-      react: 19.2.0
-      use-sync-external-store: 1.6.0(react@19.2.0)
+      react: 19.2.1
+      use-sync-external-store: 1.6.0(react@19.2.1)
