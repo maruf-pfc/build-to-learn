@@ -1,28 +1,12 @@
-# ---------- Stage 1: Build ----------
-FROM node:20-alpine AS builder
+FROM node:20
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
-COPY package.json pnpm-lock.yaml* ./
-RUN npm install -g pnpm
-RUN pnpm install
+COPY package*.json ./
+RUN npm install
 
 COPY . .
-RUN pnpm run build
 
+EXPOSE 4000
 
-# ---------- Stage 2: Runtime ----------
-FROM node:20-alpine AS runner
-
-WORKDIR /app
-
-RUN npm install -g pnpm
-
-COPY --from=builder /app/package.json ./
-COPY --from=builder /app/pnpm-lock.yaml ./
-COPY --from=builder /app/dist ./dist
-
-RUN pnpm install --prod
-
-EXPOSE 9999
-CMD ["node", "dist/server.js"]
+CMD ["npm", "run", "dev"]

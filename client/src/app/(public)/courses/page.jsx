@@ -1,306 +1,224 @@
 "use client";
 
-import { useState, useMemo, useEffect, useCallback } from "react";
-import { FiFilter } from "react-icons/fi";
-import { useTranslation } from "react-i18next";
+import { Suspense, useEffect, useState } from "react";
+import { useCourseStore } from "@/store/useCourseStore";
 import Link from "next/link";
-import CourseCard from "@/components/modules/courses/CourseCard";
-import { usePublicCourses } from "@/hooks/useCourse";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { User, Search } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useRouter, useSearchParams } from "next/navigation";
 
-export default function PublicCourseListing() {
-  const { t } = useTranslation();
+function CoursesContent() {
+  const { courses, fetchCourses, isLoading } = useCourseStore();
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
-  // ---------- State ----------
-  const [selectedCategories, setSelectedCategories] = useState([]);
-  const [selectedPrice, setSelectedPrice] = useState("all");
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [searchDraft, setSearchDraft] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(9);
-
-  // ---------- Debounce search ----------
-  useEffect(() => {
-    const id = setTimeout(() => {
-      setSearchQuery(searchDraft.trim());
-      setPage(1);
-    }, 400);
-    return () => clearTimeout(id);
-  }, [searchDraft]);
-
-  // ---------- Categories ----------
-  const categories = useMemo(
-    () => ["Programming", "Database", "Design", "Technology", "Management"],
-    []
-  );
-
-  // ---------- Handlers ----------
-  const toggleCategory = useCallback((cat) => {
-    setPage(1);
-    setSelectedCategories((prev) =>
-      prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat]
-    );
-  }, []);
-
-  const clearFilters = useCallback(() => {
-    setSelectedCategories([]);
-    setSelectedPrice("all");
-    setSearchDraft("");
-    setSearchQuery("");
-    setPage(1);
-  }, []);
-
-  // ---------- API Integration ----------
-  const { data, isLoading, isFetching } = usePublicCourses({
-    page,
-    limit,
-    search: searchQuery,
-    price: selectedPrice,
-    categories: selectedCategories,
+  const [filters, setFilters] = useState({
+    search: searchParams.get("search") || "",
+    category: searchParams.get("category") || "All",
+    minPrice: searchParams.get("minPrice") || "",
+    maxPrice: searchParams.get("maxPrice") || "",
   });
 
-  const courses = data?.items || [];
-  const totalPages = data?.totalPages || 1;
+  const [debouncedSearch, setDebouncedSearch] = useState(filters.search);
 
-  // ---------- UI ----------
+  // Debounce search input
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearch(filters.search);
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [filters.search]);
+
+  useEffect(() => {
+    const params = {};
+    if (debouncedSearch) params.search = debouncedSearch;
+    if (filters.category && filters.category !== "All")
+      params.category = filters.category;
+    if (filters.minPrice) params.minPrice = filters.minPrice;
+    if (filters.maxPrice) params.maxPrice = filters.maxPrice;
+
+    fetchCourses(params);
+
+    const newSearchParams = new URLSearchParams();
+    Object.keys(params).forEach((key) => newSearchParams.set(key, params[key]));
+    router.replace(`/courses?${newSearchParams.toString()}`, { scroll: false });
+  }, [
+    debouncedSearch,
+    filters.category,
+    filters.minPrice,
+    filters.maxPrice,
+    fetchCourses,
+    router,
+  ]);
+
+  const handleFilterChange = (key, value) => {
+    setFilters((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const clearFilters = () => {
+    setFilters({
+      search: "",
+      category: "All",
+      minPrice: "",
+      maxPrice: "",
+    });
+    fetchCourses({});
+    router.replace("/courses");
+  };
+
   return (
-    <div className="w-full min-h-screen bg-white text-gray-800">
-      {/* ===== Top Controls ===== */}
-      <div className="sticky top-[65px] z-30 bg-white mb-5 border-b">
-        <div className="container mx-auto px-3 py-2 flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setIsFilterOpen(true)}
-              className="flex items-center gap-1 px-3 py-1.5 text-sm rounded-md bg-[var(--color-primary)] text-white font-medium"
-            >
-              <FiFilter size={16} />
-              <span>{t("courseListing.filters") || "Filters"}</span>
-            </button>
-            <button
-              onClick={clearFilters}
-              className="text-xs px-2 py-1.5 border rounded-md text-[var(--color-primary)] border-[var(--color-primary)]"
-            >
-              {t("courseListing.clear") || "Clear"}
-            </button>
-          </div>
+    <div className="min-h-screen bg-muted/20 p-8">
+      <div className="max-w-7xl mx-auto space-y-8">
+        <div className="flex flex-col md:flex-row justify-between items-end md:items-center gap-4">
+          <h1 className="text-3xl font-bold text-foreground tracking-tight">
+            Explore Courses
+          </h1>
         </div>
 
-        {/* Search */}
-        <div className="px-3 pb-2 container mx-auto">
-          <input
-            type="text"
-            placeholder="Search courses..."
-            value={searchDraft}
-            onChange={(e) => setSearchDraft(e.target.value)}
-            className="w-full px-3 py-1.5 rounded-md border border-gray-300 text-sm placeholder-gray-500 outline-0"
-          />
-        </div>
-      </div>
-
-      {/* ===== Layout ===== */}
-      <div className="container mx-auto">
-        <div className="flex">
-          {/* Sidebar */}
-          <aside className="w-64 shrink-0 h-[calc(100dvh-160px)] sticky top-[160px] overflow-y-auto border-r border-gray-200 bg-white p-4 hidden lg:block">
-            <SidebarFilters
-              categories={categories}
-              selectedCategories={selectedCategories}
-              selectedPrice={selectedPrice}
-              toggleCategory={toggleCategory}
-              setSelectedPrice={setSelectedPrice}
-            />
-          </aside>
-
-          {/* Main */}
-          <main className="flex-1 p-4 sm:p-6">
-            {isLoading || isFetching ? (
-              <div className="text-center text-gray-500 py-10">
-                Loading courses...
+        {/* Filters Section */}
+        <Card>
+          <CardContent className="p-6 grid gap-6 md:grid-cols-4">
+            <div className="col-span-4 md:col-span-1">
+              <div className="relative">
+                <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                <Input
+                  placeholder="Search courses..."
+                  className="pl-9"
+                  value={filters.search}
+                  onChange={(e) => handleFilterChange("search", e.target.value)}
+                />
               </div>
-            ) : courses.length === 0 ? (
-              <EmptyState onReset={clearFilters} />
-            ) : (
-              <>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {courses.map((course) => (
-                    <Link
-                      key={course._id}
-                      href={`/courses/${course.slug}`}
-                      className="block group"
+            </div>
+
+            <div className="col-span-2 md:col-span-1">
+              <select
+                className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                value={filters.category}
+                onChange={(e) => handleFilterChange("category", e.target.value)}
+              >
+                <option value="All">All Categories</option>
+                <option value="Web Development">Web Development</option>
+                <option value="Backend Engineering">Backend Engineering</option>
+                <option value="UI / UX Design">UI / UX Design</option>
+                <option value="Data Structures">Data Structures</option>
+                <option value="Databases">Databases</option>
+                <option value="DevOps">DevOps</option>
+                <option value="Career Skills">Career Skills</option>
+                <option value="Programming Basics">Programming Basics</option>
+              </select>
+            </div>
+
+            <div className="col-span-4 md:col-span-1 flex justify-end">
+              <Button
+                variant="outline"
+                onClick={clearFilters}
+                className="w-full md:w-auto"
+              >
+                Clear Filters
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Results */}
+        {isLoading ? (
+          <div className="p-20 text-center">
+            <div className="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
+            <p className="text-muted-foreground">Loading courses...</p>
+          </div>
+        ) : courses.length === 0 ? (
+          <div className="text-center py-20 bg-muted/30 rounded-lg">
+            <p className="text-xl text-muted-foreground">
+              No courses found matching your criteria.
+            </p>
+            <Button variant="link" onClick={clearFilters} className="mt-2">
+              Clear all filters
+            </Button>
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {courses.map((course) => (
+              <Card
+                key={course._id}
+                className="overflow-hidden flex flex-col hover:shadow-lg transition-all duration-200 group border-border"
+              >
+                <div className="h-48 bg-muted relative overflow-hidden">
+                  {course.thumbnail ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={course.thumbnail}
+                      alt={course.title}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-gray-200 dark:bg-gray-800 text-gray-400">
+                      No Thumbnail
+                    </div>
+                  )}
+                  <div className="absolute top-4 right-4">
+                    <Badge
+                      variant="secondary"
+                      className="backdrop-blur-md bg-white/90 dark:bg-black/50"
                     >
-                      <CourseCard
-                        course={{
-                          title: course.title,
-                          thumbnail:
-                            course.thumbnail ||
-                            "https://via.placeholder.com/400x250?text=No+Image",
-                          category: course.category,
-                          author: course.instructor?.name || "Unknown",
-                          price: course.price,
-                          level: course.level,
-                          slug: course.slug,
-                        }}
-                      />
-                    </Link>
-                  ))}
+                      {course.category}
+                    </Badge>
+                  </div>
                 </div>
 
-                {/* Pagination */}
-                {totalPages > 1 && (
-                  <div className="mt-8 flex items-center justify-center gap-2">
-                    <button
-                      onClick={() => setPage((p) => Math.max(1, p - 1))}
-                      disabled={page === 1}
-                      className="px-3 py-2 border rounded-md disabled:opacity-40"
-                    >
-                      ←
-                    </button>
-                    <span className="text-sm">
-                      Page {page} / {totalPages}
-                    </span>
-                    <button
-                      onClick={() =>
-                        setPage((p) => Math.min(totalPages, p + 1))
-                      }
-                      disabled={page === totalPages}
-                      className="px-3 py-2 border rounded-md disabled:opacity-40"
-                    >
-                      →
-                    </button>
+                <CardContent className="flex-1 p-6">
+                  <h3 className="text-xl font-bold text-foreground mb-2 line-clamp-1">
+                    {course.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm line-clamp-2 mb-4">
+                    {course.description}
+                  </p>
+
+                  <div className="flex items-center justify-between text-sm mt-auto">
+                    <div className="flex items-center text-muted-foreground">
+                      <User size={16} className="mr-2" />
+                      {course.instructor?.name || "Instructor"}
+                    </div>
+                    <div className="font-bold text-primary">
+                      {course.price > 0 ? `$${course.price}` : "Free"}
+                    </div>
                   </div>
-                )}
-              </>
-            )}
-          </main>
-        </div>
-      </div>
+                </CardContent>
 
-      {/* ===== Mobile Filter Sheet ===== */}
-      {isFilterOpen && (
-        <div
-          className="fixed inset-0 z-[100] bg-black/50 flex items-end lg:hidden"
-          onClick={() => setIsFilterOpen(false)}
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="w-full bg-white rounded-t-2xl shadow-xl p-5 animate-slideUp"
-          >
-            <div className="w-10 h-1 bg-gray-300 rounded-full mx-auto mb-3" />
-            <SidebarFilters
-              categories={categories}
-              selectedCategories={selectedCategories}
-              selectedPrice={selectedPrice}
-              toggleCategory={toggleCategory}
-              setSelectedPrice={setSelectedPrice}
-            />
-            <div className="flex gap-2 mt-5">
-              <button
-                onClick={() => setIsFilterOpen(false)}
-                className="flex-1 py-3 rounded-md bg-[var(--color-primary)] text-white font-medium"
-              >
-                Apply
-              </button>
-              <button
-                onClick={() => {
-                  clearFilters();
-                  setIsFilterOpen(false);
-                }}
-                className="flex-1 py-3 rounded-md border border-gray-300 text-gray-700 font-medium"
-              >
-                Clear
-              </button>
-            </div>
+                <CardFooter className="p-6 pt-0">
+                  <Link
+                    href={`/courses/${course._id}`}
+                    className={cn(
+                      buttonVariants({ variant: "default" }),
+                      "w-full"
+                    )}
+                  >
+                    View Course
+                  </Link>
+                </CardFooter>
+              </Card>
+            ))}
           </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default function CoursesPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="p-8 text-center text-muted-foreground">
+          Loading page...
         </div>
-      )}
-
-      {/* Animation */}
-      <style jsx global>{`
-        @keyframes slideUp {
-          from {
-            transform: translateY(100%);
-            opacity: 0;
-          }
-          to {
-            transform: translateY(0);
-            opacity: 1;
-          }
-        }
-        .animate-slideUp {
-          animation: slideUp 0.3s ease-out;
-        }
-      `}</style>
-    </div>
-  );
-}
-
-/* ---------- Subcomponents ---------- */
-function SidebarFilters({
-  categories,
-  selectedCategories,
-  selectedPrice,
-  toggleCategory,
-  setSelectedPrice,
-}) {
-  return (
-    <div className="space-y-6 text-sm text-gray-800">
-      <section>
-        <h4 className="font-semibold mb-2">Categories</h4>
-        <ul className="space-y-2">
-          {categories.map((cat) => (
-            <li key={cat}>
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={selectedCategories.includes(cat)}
-                  onChange={() => toggleCategory(cat)}
-                  className="accent-[var(--color-primary)]"
-                />
-                <span>{cat}</span>
-              </label>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section>
-        <h4 className="font-semibold mb-2">Price</h4>
-        <ul className="space-y-2">
-          {["all", "free", "paid"].map((p) => (
-            <li key={p}>
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="radio"
-                  name="price"
-                  checked={selectedPrice === p}
-                  onChange={() => setSelectedPrice(p)}
-                  className="accent-[var(--color-accent)]"
-                />
-                <span className="capitalize">{p}</span>
-              </label>
-            </li>
-          ))}
-        </ul>
-      </section>
-    </div>
-  );
-}
-
-function EmptyState({ onReset }) {
-  return (
-    <div className="border rounded-xl p-10 text-center bg-gray-50">
-      <h3 className="text-lg font-semibold mb-2 text-gray-800">
-        No courses found
-      </h3>
-      <p className="text-sm text-gray-600 mb-6">
-        Try clearing filters or adjusting your search.
-      </p>
-      <button
-        onClick={onReset}
-        className="px-4 py-2 rounded-md bg-[var(--color-primary)] text-white"
-      >
-        Reset filters
-      </button>
-    </div>
+      }
+    >
+      <CoursesContent />
+    </Suspense>
   );
 }
