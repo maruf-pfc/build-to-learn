@@ -1,171 +1,131 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import api from "@/lib/api";
 import Link from "next/link";
-import { useState } from "react";
-import { FaUser, FaCalendarAlt, FaSearch } from "react-icons/fa";
+import { Plus, ThumbsUp, MessageSquare, BookOpen } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Skeleton } from "@/components/ui/skeleton";
 
-const posts = [
-  {
-    id: 1,
-    category: "Education",
-    title: "Learn Web App Development from Experts in 2024",
-    excerpt:
-      "Master the art of web application development with expert guidance...",
-    author: "John Miller",
-    date: "23 Apr 2024",
-    image: "/images/blog-1.jpg",
-  },
-  {
-    id: 2,
-    category: "Guides",
-    title: "Expand Your Career Opportunities With Python",
-    excerpt: "Unlock limitless career opportunities by mastering Python...",
-    author: "Cedric Glenn",
-    date: "20 Apr 2024",
-    image: "/images/blog-2.jpg",
-  },
-  {
-    id: 3,
-    category: "Technical",
-    title: "Learn Mobile Applications Development from Experts",
-    excerpt: "Elevate your skills with expert-led training in mobile apps...",
-    author: "John Reyes",
-    date: "04 Apr 2024",
-    image: "/images/blog-3.jpg",
-  },
-  {
-    id: 4,
-    category: "Guides",
-    title: "Complete PHP Programming Career Roadmap",
-    excerpt:
-      "Step-by-step guide to learning PHP and building real-world apps...",
-    author: "Alex Kim",
-    date: "15 Apr 2024",
-    image: "/images/blog-4.jpg",
-  },
-  {
-    id: 5,
-    category: "Education",
-    title: "The Complete JavaScript Course for Beginners",
-    excerpt:
-      "Learn JavaScript fundamentals and build your first web applications...",
-    author: "Sarah Lee",
-    date: "10 Apr 2024",
-    image: "/images/blog-5.jpg",
-  },
-  {
-    id: 6,
-    category: "Guides",
-    title: "Programming Content Guidelines for 2024",
-    excerpt:
-      "Stay ahead with modern programming guidelines and coding standards...",
-    author: "Mark Diaz",
-    date: "05 Apr 2024",
-    image: "/images/blog-6.jpg",
-  },
-];
+import { useAuthStore } from "@/store/useAuthStore";
 
 export default function BlogPage() {
-  const [search, setSearch] = useState("");
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { user } = useAuthStore();
 
-  const filteredPosts = posts.filter(
-    (post) =>
-      post.title.toLowerCase().includes(search.toLowerCase()) ||
-      post.excerpt.toLowerCase().includes(search.toLowerCase()) ||
-      post.author.toLowerCase().includes(search.toLowerCase()) ||
-      post.category.toLowerCase().includes(search.toLowerCase())
-  );
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const res = await api.get("/community?type=blog&sort=top");
+        setPosts(res.data);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPosts();
+  }, []);
 
   return (
-    <section className="py-16 bg-white text-[var(--color-text)]">
-      <div className="container mx-auto px-4">
-        {/* 🔎 Search Bar */}
-        <div className="flex justify-center mb-10">
-          <div className="relative w-full max-w-lg">
-            <input
-              type="text"
-              placeholder="Search articles..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 rounded-full border border-[var(--color-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] text-[var(--color-text)] bg-white shadow-sm"
-            />
-            <FaSearch className="absolute left-4 top-3.5 text-[var(--color-primary)]" />
-          </div>
+    <div className="p-8 max-w-6xl mx-auto space-y-8">
+      <header className="flex justify-between items-center">
+        <div>
+          <h1 className="text-3xl font-bold text-foreground flex items-center gap-2">
+            <BookOpen className="text-purple-600" /> Community Blog
+          </h1>
+          <p className="text-muted-foreground mt-1">
+            Stories, tutorials, and updates from the community.
+          </p>
         </div>
+        {user && (
+          <Link href="/community/create?type=blog">
+            <Button className="font-bold flex items-center gap-2 bg-purple-600 hover:bg-purple-700">
+              <Plus size={20} /> Write Article
+            </Button>
+          </Link>
+        )}
+      </header>
 
-        {/* 📚 Blog Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {filteredPosts.length > 0 ? (
-            filteredPosts.map((post) => (
-              <div
-                key={post.id}
-                className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition"
-              >
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-5">
-                  {/* Category Badge */}
-                  <span className="inline-block mb-2 px-3 py-1 text-xs font-semibold rounded-full bg-[var(--color-primary)] text-white">
-                    {post.category}
-                  </span>
-
-                  <h3 className="text-lg font-bold text-[var(--color-text)] mb-2">
-                    <Link href="/blog/slug">{post.title}</Link>
+      {loading ? (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[1, 2, 3].map((i) => (
+            <Card key={i}>
+              <CardContent className="h-48 flex items-center justify-center">
+                Loading...
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      ) : (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {posts.map((post) => (
+            <Link
+              href={`/community/${post._id}`}
+              key={post._id}
+              className="block group h-full"
+            >
+              <Card className="h-full overflow-hidden hover:shadow-md transition-shadow flex flex-col">
+                <div className="h-48 bg-muted relative overflow-hidden">
+                  {post.image ? (
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center h-full text-muted-foreground">
+                      <BookOpen size={48} />
+                    </div>
+                  )}
+                </div>
+                <CardContent className="p-6 flex-1 flex flex-col">
+                  <div className="text-xs text-purple-600 font-bold uppercase tracking-wider mb-2">
+                    {post.tags?.[0] || "Article"}
+                  </div>
+                  <h3 className="font-bold text-xl text-foreground mb-2 group-hover:text-purple-600 transition-colors line-clamp-2">
+                    {post.title}
                   </h3>
-                  <p className="text-sm text-[var(--color-text)]/70 mb-4">
-                    {post.excerpt}
+                  <p className="text-muted-foreground text-sm line-clamp-3 mb-4 flex-1">
+                    {post.content.substring(0, 150)}...
                   </p>
 
-                  {/* Author + Date */}
-                  <div className="flex items-center justify-between text-sm text-[var(--color-text)]/80">
-                    <span className="flex items-center gap-2">
-                      <FaUser className="text-[var(--color-accent)]" />
-                      {post.author}
-                    </span>
-                    <span className="flex items-center gap-2">
-                      <FaCalendarAlt className="text-[var(--color-secondary)]" />
-                      {post.date}
-                    </span>
+                  <div className="flex items-center justify-between text-sm text-muted-foreground pt-4 border-t mt-auto">
+                    <div className="flex items-center gap-2">
+                      <Avatar className="w-6 h-6">
+                        <AvatarImage src={post.author?.avatar} />
+                        <AvatarFallback>
+                          {post.author?.name?.[0]}
+                        </AvatarFallback>
+                      </Avatar>
+                      <span className="truncate max-w-[100px] font-medium">
+                        {post.author?.name}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="flex items-center gap-1">
+                        <ThumbsUp size={14} /> {post.upvotes?.length || 0}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <MessageSquare size={14} /> {post.comments?.length || 0}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </div>
-            ))
-          ) : (
-            <p className="col-span-full text-center text-lg text-[var(--color-text)]/70">
-              No articles found matching your search.
-            </p>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+          {posts.length === 0 && (
+            <div className="col-span-full py-12 text-center text-muted-foreground">
+              No blog posts yet. Be the first to write one!
+            </div>
           )}
         </div>
-      </div>
-      {/* Pagination */}
-      <div className="flex justify-center items-center gap-2 mt-10">
-        <button className="px-2 text-sm lg:px-4 lg:text-lg py-2 rounded-lg border border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white transition">
-          Prev
-        </button>
-
-        <button className="px-2 text-sm lg:px-4 lg:text-lg py-2 rounded-lg bg-[var(--color-primary)] text-white shadow-md">
-          1
-        </button>
-        <button className="px-2 text-sm lg:px-4 lg:text-lg py-2 rounded-lg border border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white transition">
-          2
-        </button>
-        <button className="px-2 text-sm lg:px-4 lg:text-lg py-2 rounded-lg border border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white transition">
-          3
-        </button>
-
-        <span className="px-3 text-[var(--color-text)]/60">...</span>
-
-        <button className="px-2 text-sm lg:px-4 lg:text-lg py-2 rounded-lg border border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white transition">
-          10
-        </button>
-
-        <button className="px-2 text-sm lg:px-4 lg:text-lg py-2 rounded-lg border border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white transition">
-          Next
-        </button>
-      </div>
-    </section>
+      )}
+    </div>
   );
 }
