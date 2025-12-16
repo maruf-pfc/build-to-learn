@@ -36,7 +36,7 @@ export default function BlogPage() {
       <header className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold text-foreground flex items-center gap-2">
-            <BookOpen className="text-purple-600" /> Community Blog
+            <BookOpen className="text-primary" /> Community Blog
           </h1>
           <p className="text-muted-foreground mt-1">
             Stories, tutorials, and updates from the community.
@@ -44,7 +44,7 @@ export default function BlogPage() {
         </div>
         {user && (
           <Link href="/community/create?type=blog">
-            <Button className="font-bold flex items-center gap-2 bg-purple-600 hover:bg-purple-700">
+            <Button className="font-bold flex items-center gap-2">
               <Plus size={20} /> Write Article
             </Button>
           </Link>
@@ -84,10 +84,10 @@ export default function BlogPage() {
                   )}
                 </div>
                 <CardContent className="p-6 flex-1 flex flex-col">
-                  <div className="text-xs text-purple-600 font-bold uppercase tracking-wider mb-2">
+                  <div className="text-xs text-primary font-bold uppercase tracking-wider mb-2">
                     {post.tags?.[0] || "Article"}
                   </div>
-                  <h3 className="font-bold text-xl text-foreground mb-2 group-hover:text-purple-600 transition-colors line-clamp-2">
+                  <h3 className="font-bold text-xl text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
                     {post.title}
                   </h3>
                   <p className="text-muted-foreground text-sm line-clamp-3 mb-4 flex-1">

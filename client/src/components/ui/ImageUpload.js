@@ -3,7 +3,7 @@
 import { useState } from "react";
 import api from "@/lib/api";
 import { Upload, X, Loader2 } from "lucide-react";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";

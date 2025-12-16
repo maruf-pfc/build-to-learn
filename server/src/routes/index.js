@@ -10,5 +10,6 @@ router.use(
   "/certificates",
   require("../modules/certificate/certificate.routes"),
 );
+router.use("/stats", require("../modules/stats/stats.routes"));
 
 module.exports = router;

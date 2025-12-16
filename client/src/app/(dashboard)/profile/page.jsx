@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useAuthStore } from '@/store/useAuthStore';
 import api from '@/lib/api';
-import toast from 'react-hot-toast';
+import { toast } from "sonner";
 import { User, Briefcase, GraduationCap, Code, Shield, Trash2, Camera, Upload, Plus, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';

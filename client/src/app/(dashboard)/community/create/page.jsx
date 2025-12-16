@@ -3,7 +3,7 @@
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import api from "@/lib/api";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import MarkdownEditor from "@/components/ui/MarkdownEditor";
 import { Image as ImageIcon, Code, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
