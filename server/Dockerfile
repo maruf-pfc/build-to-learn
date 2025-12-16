@@ -1,12 +1,22 @@
-FROM node:20
+FROM node:20-alpine AS base
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
 
+FROM base AS dependencies
 WORKDIR /usr/src/app
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 
-COPY package*.json ./
-RUN npm install
-
+FROM base AS build
+WORKDIR /usr/src/app
 COPY . .
+COPY --from=dependencies /usr/src/app/node_modules ./node_modules
 
-EXPOSE 4000
+FROM base AS deploy
+WORKDIR /usr/src/app
+ENV NODE_ENV=production
+COPY --from=build /usr/src/app ./
 
-CMD ["npm", "run", "dev"]
+EXPOSE 3340
+CMD ["pnpm", "start"]

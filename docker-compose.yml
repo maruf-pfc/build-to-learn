@@ -1,0 +1,59 @@
+services:
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "3339:3339"
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - ./client/.env
+    platform: linux/amd64
+    restart: unless-stopped
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "3340:3340"
+    environment:
+      - NODE_ENV=production
+      - MONGO_URI=mongodb://mongodb:27017
+      - DB_NAME=build-to-learn
+      - PORT=3340
+    env_file:
+      - ./server/.env
+    depends_on:
+      - mongodb
+    platform: linux/amd64
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    restart: unless-stopped
+
+  # Backup service that runs daily
+  backup:
+    image: alpine:latest
+    depends_on:
+      - mongodb
+    volumes:
+      - ./backups:/backups
+    command: >
+      sh -c "apk add --no-cache mongodb-tools &&
+             while true; do
+               echo 'Starting backup...' &&
+               mongodump --uri='mongodb://mongodb:27017/build-to-learn' --out /backups/$(date +%Y-%m-%d_%H-%M-%S) &&
+               echo 'Backup completed.' &&
+               sleep 86400;
+             done"
+    restart: unless-stopped
+
+volumes:
+  mongo_data:
