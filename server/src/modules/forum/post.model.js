@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, models } = require("mongoose");
 
 const PostSchema = new Schema(
   {
@@ -21,4 +21,4 @@ const PostSchema = new Schema(
   { timestamps: true },
 );
 
-module.exports = model("Post", PostSchema);
+module.exports = models.ForumPost || model("ForumPost", PostSchema);
