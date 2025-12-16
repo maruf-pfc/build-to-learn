@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Newspaper, ExternalLink } from "lucide-react";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 

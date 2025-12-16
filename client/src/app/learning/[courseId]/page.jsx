@@ -17,7 +17,7 @@ import {
   Layers,
   CheckSquare,
 } from "lucide-react";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import MCQPlayer from "@/components/course/MCQPlayer";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";

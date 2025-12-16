@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import api from "@/lib/api";
 import { useAuthStore } from "@/store/useAuthStore";
 import { Trash2, UserCog, Shield } from "lucide-react";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 export default function UsersPage() {
   const [users, setUsers] = useState([]);

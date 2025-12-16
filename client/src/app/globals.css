@@ -50,30 +50,80 @@
 /* Dark mode removed to ensure consistency with hardcoded light backgrounds in layouts */
 
 :root {
+  /* Border Radius */
   --radius: 0.625rem;
+   /* Sidebar - Defaulting to light/dark specific colors */
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.70 0.18 85);
+  
+  /* Base Colors */
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
+  
+  /* Card */
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
+  
+  /* Popover */
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  
+  /* Primary - Enhanced with better contrast */
+  --primary: oklch(0.25 0 0);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
+  --primary-hover: oklch(0.20 0 0);
+  
+  /* Secondary */
+  --secondary: oklch(0.96 0 0);
   --secondary-foreground: oklch(0.205 0 0);
+  --secondary-hover: oklch(0.94 0 0);
+  
+  /* Muted */
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --muted-foreground: oklch(0.50 0 0);
+  
+  /* Accent - Blue accent for interactive elements */
+  --accent: oklch(0.55 0.22 250);
+  --accent-foreground: oklch(0.985 0 0);
+  --accent-hover: oklch(0.50 0.22 250);
+  
+  /* Destructive */
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --destructive-foreground: oklch(0.985 0 0);
+  --destructive-hover: oklch(0.52 0.245 27.325);
+  
+  /* Semantic Colors */
+  --success: oklch(0.55 0.18 145);
+  --success-foreground: oklch(0.985 0 0);
+  --success-light: oklch(0.95 0.08 145);
+  
+  --warning: oklch(0.70 0.18 85);
+  --warning-foreground: oklch(0.145 0 0);
+  --warning-light: oklch(0.96 0.08 85);
+  
+  --info: oklch(0.60 0.18 230);
+  --info-foreground: oklch(0.985 0 0);
+  --info-light: oklch(0.96 0.08 230);
+  
+  /* Border & Input */
+  --border: oklch(0.90 0 0);
+  --input: oklch(0.90 0 0);
+  --ring: oklch(0.25 0 0);
+  
+  /* Chart Colors */
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
+
+  /* Sidebar */
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -82,6 +132,19 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  
+  /* Animation Durations */
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 350ms;
+  
+  /* Spacing Scale (for reference) */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
 }
 
 .dark {
@@ -123,6 +186,74 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+  }
+  
+  /* Improved focus styles for accessibility */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Better text rendering */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+@layer utilities {
+  /* Semantic Color Utilities */
+  .bg-success {
+    background-color: var(--success);
+  }
+  .bg-success-light {
+    background-color: var(--success-light);
+  }
+  .text-success {
+    color: var(--success);
+  }
+  
+  .bg-warning {
+    background-color: var(--warning);
+  }
+  .bg-warning-light {
+    background-color: var(--warning-light);
+  }
+  .text-warning {
+    color: var(--warning);
+  }
+  
+  .bg-info {
+    background-color: var(--info);
+  }
+  .bg-info-light {
+    background-color: var(--info-light);
+  }
+  .text-info {
+    color: var(--info);
+  }
+  
+  /* Screen Reader Only */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  
+  /* Skip to Content Link */
+  .skip-to-content {
+    @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md;
   }
 }
