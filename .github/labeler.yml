@@ -1,0 +1,140 @@
+# GitHub Auto-Labeler Configuration
+# Automatically labels PRs based on changed files
+
+# Documentation
+documentation:
+  - changed-files:
+    - any-glob-to-any-file: ['**/*.md', 'docs/**/*']
+
+# Server Backend
+server:
+  - changed-files:
+    - any-glob-to-any-file: ['server/**/*']
+
+# Client Frontend
+client:
+  - changed-files:
+    - any-glob-to-any-file: ['client/**/*']
+
+# Testing
+testing:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'server/**/*.test.js'
+      - 'server/**/__tests__/**/*'
+      - 'server/e2e/**/*'
+      - 'server/src/tests/**/*'
+      - 'server/jest.config.js'
+      - 'client/**/*.test.{js,jsx,ts,tsx}'
+      - 'client/**/__tests__/**/*'
+
+# Unit Tests
+unit-tests:
+  - changed-files:
+    - any-glob-to-any-file: ['**/*.unit.test.{js,jsx,ts,tsx}']
+
+# Integration Tests
+integration-tests:
+  - changed-files:
+    - any-glob-to-any-file: ['**/*.integration.test.{js,jsx,ts,tsx}']
+
+# E2E Tests
+e2e-tests:
+  - changed-files:
+    - any-glob-to-any-file:
+      - '**/e2e/**/*'
+      - '**/*.e2e.test.{js,jsx,ts,tsx}'
+
+# API/Backend
+api:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'server/src/modules/**/*.controller.js'
+      - 'server/src/modules/**/*.routes.js'
+      - 'server/src/modules/**/*.service.js'
+
+# Database/Models
+database:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'server/src/modules/**/*.model.js'
+      - 'server/src/config/db.js'
+
+# Authentication
+auth:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'server/src/modules/auth/**/*'
+      - 'server/src/middlewares/auth.middleware.js'
+
+# UI/Components
+ui:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'client/src/components/**/*'
+      - 'client/src/app/**/*.{js,jsx,ts,tsx}'
+
+# Styling
+styling:
+  - changed-files:
+    - any-glob-to-any-file:
+      - '**/*.css'
+      - '**/tailwind.config.{js,ts}'
+      - 'client/src/styles/**/*'
+
+# Configuration
+configuration:
+  - changed-files:
+    - any-glob-to-any-file:
+      - '**/*.config.{js,ts,json}'
+      - '**/package.json'
+      - '**/pnpm-lock.yaml'
+      - '**/.env.example'
+      - 'docker-compose.yml'
+      - 'Dockerfile'
+
+# CI/CD
+ci-cd:
+  - changed-files:
+    - any-glob-to-any-file:
+      - '.github/**/*'
+      - '.gitlab-ci.yml'
+      - 'Jenkinsfile'
+
+# Dependencies
+dependencies:
+  - changed-files:
+    - any-glob-to-any-file:
+      - '**/package.json'
+      - '**/pnpm-lock.yaml'
+      - '**/yarn.lock'
+      - '**/package-lock.json'
+
+# Security
+security:
+  - changed-files:
+    - any-glob-to-any-file:
+      - '**/SECURITY.md'
+      - 'server/src/middlewares/**/*'
+      - '**/auth/**/*'
+
+# Bug Fix
+bug:
+  - head-branch: ['^fix/', '^bugfix/', '^hotfix/']
+
+# Feature
+feature:
+  - head-branch: ['^feat/', '^feature/']
+
+# Enhancement
+enhancement:
+  - head-branch: ['^enhance/', '^improvement/']
+
+# Refactor
+refactor:
+  - head-branch: ['^refactor/']
+
+# Breaking Change
+breaking-change:
+  - head-branch: ['^breaking/']
+  - body-contains: ['BREAKING CHANGE']
