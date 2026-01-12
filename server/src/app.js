@@ -3,6 +3,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
+const path = require("path");
 
 const routes = require("./routes");
 
@@ -21,6 +22,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
 app.use("/uploads", express.static("uploads"));
+app.options("*", cors());
 
 /* ================= SECURITY ================= */
 // ❗ DO NOT run Arcjet during tests
@@ -33,6 +35,11 @@ if (process.env.NODE_ENV !== "test") {
 app.get("/health", (req, res) =>
   res.json({ status: "ok", env: process.env.NODE_ENV }),
 );
+
+/* ================= STATIC LANDING PAGE ================= */
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 
 /* ================= ROUTES ================= */
 app.use("/api", routes);
