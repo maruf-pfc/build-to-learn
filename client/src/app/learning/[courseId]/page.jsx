@@ -198,31 +198,51 @@ export default function LearningPage() {
       </div>
     );
 
-  const isLastModule = activeModuleIndex === course.modules.length - 1;
-  const isLastLesson =
-    activeModule && activeLessonIndex === activeModule.subModules.length - 1;
-  const allModulesCompleted = course.modules.every((m) =>
-    completedModules.includes(m._id)
-  );
+  // Responsive: Close sidebar on mobile by default or on navigation
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 1024) {
+        setShowSidebar(false);
+      } else {
+        setShowSidebar(true);
+      }
+    };
+
+    // Initial check
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
-    <div className="flex h-full bg-background/0 overflow-hidden font-sans">
+    <div className="flex h-full bg-background/0 overflow-hidden font-sans relative">
+      {/* Mobile Backdrop */}
+      {showSidebar && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-20 lg:hidden glass-blur"
+          onClick={() => setShowSidebar(false)}
+        />
+      )}
+
       <div
-        className={`flex-1 flex flex-col transition-all duration-300 relative ${
+        className={cn(
+          "flex-1 flex flex-col transition-all duration-300 relative h-full",
           showSidebar ? "lg:mr-80" : "mr-0"
-        }`}
+        )}
       >
         {/* Header */}
-        <header className="h-16 border-b border-border bg-white flex items-center justify-between px-6 shadow-sm z-10">
-          <div className="flex items-center gap-4">
+        <header className="h-16 border-b border-border bg-white flex items-center justify-between px-4 md:px-6 shadow-sm z-10 shrink-0">
+          <div className="flex items-center gap-2 md:gap-4 overflow-hidden">
             <Button
               variant="ghost"
               size="sm"
+              className="px-2 md:px-4"
               onClick={() => router.push("/dashboard")}
             >
-              <ChevronLeft size={18} /> Dashboard
+              <ChevronLeft size={18} /> <span className="hidden sm:inline">Dashboard</span>
             </Button>
-            <h1 className="font-bold text-lg hidden md:block truncate max-w-md">
+            <h1 className="font-bold text-sm md:text-lg truncate max-w-[150px] md:max-w-md">
               {course.title}
             </h1>
           </div>
@@ -231,6 +251,7 @@ export default function LearningPage() {
             variant="outline"
             size="sm"
             onClick={() => setShowSidebar(!showSidebar)}
+            className="shrink-0"
           >
             {showSidebar ? <ChevronRight size={18} /> : <Menu size={18} />}
             <span className="ml-2 hidden sm:inline">
@@ -240,20 +261,20 @@ export default function LearningPage() {
         </header>
 
         {/* Scrollable Content */}
-        <ScrollArea className="flex-1 bg-gray-50/50">
-          <div className="max-w-5xl mx-auto p-6 md:p-10 pb-32">
+        <ScrollArea className="flex-1 bg-gray-50/50 w-full">
+          <div className="max-w-5xl mx-auto p-4 md:p-10 pb-32">
             {activeLesson ? (
               <div className="space-y-6">
                 {/* Title */}
                 <div>
-                  <h2 className="text-2xl font-bold text-foreground mb-2">
+                  <h2 className="text-xl md:text-2xl font-bold text-foreground mb-2">
                     {activeLesson.title}
                   </h2>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground uppercase tracking-wider">
+                  <div className="flex flex-wrap items-center gap-2 text-xs md:text-sm text-muted-foreground uppercase tracking-wider">
                     <Badge variant="outline" className="bg-white">
                       {activeModule.title}
                     </Badge>
-                    <span>•</span>
+                    <span className="hidden sm:inline">•</span>
                     <span>
                       Lesson {activeLessonIndex + 1} of{" "}
                       {activeModule.subModules.length}
@@ -262,7 +283,7 @@ export default function LearningPage() {
                 </div>
 
                 {/* Content Player */}
-                <div className="bg-white border border-border rounded-xl shadow-sm overflow-hidden min-h-[400px]">
+                <div className="bg-white border border-border rounded-xl shadow-sm overflow-hidden min-h-[300px] md:min-h-[400px]">
                   {activeLesson.type === "video" && (
                     <div className="aspect-video bg-black">
                       <ReactPlayer
@@ -276,7 +297,7 @@ export default function LearningPage() {
                   )}
 
                   {activeLesson.type === "text" && (
-                    <div className="p-8 prose max-w-none">
+                    <div className="p-4 md:p-8 prose max-w-none prose-sm md:prose-base dark:prose-invert">
                       <ReactMarkdown remarkPlugins={[remarkGfm]}>
                         {activeLesson.content}
                       </ReactMarkdown>
@@ -284,17 +305,17 @@ export default function LearningPage() {
                   )}
 
                   {activeLesson.type === "project" && (
-                    <div className="p-8">
-                      <div className="prose mb-8">
+                    <div className="p-4 md:p-8">
+                      <div className="prose mb-8 max-w-none">
                         <h3>Project Instructions</h3>
                         <ReactMarkdown>{activeLesson.content}</ReactMarkdown>
                       </div>
                       <Card className="bg-gray-50 border-dashed">
                         <CardContent className="pt-6">
                           <h4 className="font-bold flex items-center gap-2 mb-4">
-                            <Code /> Submit Project
+                            <Code className="w-5 h-5" /> Submit Project
                           </h4>
-                          <div className="flex gap-2">
+                          <div className="flex flex-col sm:flex-row gap-2">
                             <Input
                               placeholder="GitHub Repository URL"
                               value={repoUrl}
@@ -329,38 +350,38 @@ export default function LearningPage() {
         </ScrollArea>
 
         {/* Bottom Navigation Bar */}
-        <div className="h-20 border-t border-border bg-white absolute bottom-0 left-0 right-0 px-6 flex items-center justify-between shadow-[0_-5px_10px_rgba(0,0,0,0.05)]">
+        <div className="h-16 md:h-20 border-t border-border bg-white absolute bottom-0 left-0 right-0 px-4 md:px-6 flex items-center justify-between shadow-[0_-5px_10px_rgba(0,0,0,0.05)] z-10">
           <Button
             variant="ghost"
             onClick={goToPrev}
             disabled={activeModuleIndex === 0 && activeLessonIndex === 0}
-            className="gap-2"
+            className="gap-2 pl-0 md:pl-4"
           >
-            <ChevronLeft size={20} /> Previous
+            <ChevronLeft size={20} /> <span className="hidden sm:inline">Previous</span>
           </Button>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
             {allModulesCompleted && (
               <Button
                 onClick={claimCertificate}
-                className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold animate-pulse"
+                className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold animate-pulse text-xs md:text-sm px-2 md:px-4"
               >
-                <Award size={18} className="mr-2" /> Claim Certificate
+                <Award size={18} className="md:mr-2" /> <span className="hidden md:inline">Claim Certificate</span> <span className="md:hidden">Certificate</span>
               </Button>
             )}
 
             <Button
               onClick={goToNext}
-              size="lg"
-              className="gap-2 bg-primary hover:bg-primary/90 text-white"
+              size="default"
+              className="gap-2 bg-primary hover:bg-primary/90 text-white md:px-8"
             >
               {isLastLesson && !completedModules.includes(activeModule?._id) ? (
                 <>
-                  Complete Module <CheckCircle size={18} />
+                  <span className="hidden sm:inline">Complete Module</span> <span className="sm:hidden">Complete</span> <CheckCircle size={18} />
                 </>
               ) : (
                 <>
-                  Next Lesson <ChevronRight size={18} />
+                   <span className="hidden sm:inline">Next Lesson</span> <span className="sm:hidden">Next</span> <ChevronRight size={18} />
                 </>
               )}
             </Button>
@@ -370,11 +391,12 @@ export default function LearningPage() {
 
       {/* RIGHT: Sidebar (Modules) */}
       <aside
-        className={`fixed right-0 top-0 bottom-0 w-80 bg-white border-l border-border flex flex-col transition-transform duration-300 z-20 ${
+        className={cn(
+          "fixed right-0 top-0 bottom-0 w-[85vw] sm:w-80 bg-white border-l border-border flex flex-col transition-transform duration-300 z-30 shadow-2xl lg:shadow-none",
           showSidebar ? "translate-x-0" : "translate-x-full"
-        } shadow-2xl lg:shadow-none`}
+        )}
       >
-        <div className="h-16 border-b border-border flex items-center justify-between px-4 bg-gray-50">
+        <div className="h-16 border-b border-border flex items-center justify-between px-4 bg-gray-50 shrink-0">
           <h3 className="font-bold flex items-center gap-2 uppercase text-sm tracking-wider">
             <Layers size={16} /> Course Content
           </h3>
@@ -388,7 +410,7 @@ export default function LearningPage() {
           </Button>
         </div>
 
-        <ScrollArea className="flex-1">
+        <ScrollArea className="flex-1 w-full">
           <div className="p-4 space-y-4">
             {course.modules?.map((module, mIndex) => {
               const isLocked = isModuleLocked(mIndex);
@@ -412,15 +434,15 @@ export default function LearningPage() {
                       isActive ? "text-primary" : "text-foreground"
                     )}
                   >
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 overflow-hidden">
                       {isCompleted ? (
-                        <CheckCircle size={16} className="text-green-500" />
+                        <CheckCircle size={16} className="text-green-500 shrink-0" />
                       ) : (
-                        <div className="w-4 h-4 rounded-full border border-current opacity-40" />
+                        <div className="w-4 h-4 rounded-full border border-current opacity-40 shrink-0" />
                       )}
-                      <span>Module {mIndex + 1}</span>
+                      <span className="truncate">Module {mIndex + 1}</span>
                     </div>
-                    {isLocked && <Lock size={14} />}
+                    {isLocked && <Lock size={14} className="shrink-0" />}
                   </div>
 
                   {!isLocked && (
@@ -428,7 +450,10 @@ export default function LearningPage() {
                       {module.subModules?.map((lesson, lIndex) => (
                         <button
                           key={lIndex}
-                          onClick={() => handleLessonSelect(mIndex, lIndex)}
+                          onClick={() => {
+                            handleLessonSelect(mIndex, lIndex);
+                            if (window.innerWidth < 1024) setShowSidebar(false);
+                          }}
                           className={cn(
                             "w-full text-left px-4 py-3 text-sm flex items-center gap-3 hover:bg-muted/50 transition-colors",
                             activeModuleIndex === mIndex &&
@@ -438,11 +463,11 @@ export default function LearningPage() {
                           )}
                         >
                           {lesson.type === "video" ? (
-                            <PlayCircle size={14} />
+                            <PlayCircle size={14} className="shrink-0" />
                           ) : lesson.type === "mcq" ? (
-                            <CheckSquare size={14} />
+                            <CheckSquare size={14} className="shrink-0" />
                           ) : (
-                            <FileText size={14} />
+                            <FileText size={14} className="shrink-0" />
                           )}
                           <span className="truncate">{lesson.title}</span>
                         </button>
@@ -456,7 +481,7 @@ export default function LearningPage() {
         </ScrollArea>
 
         {/* Progress Footer */}
-        <div className="p-4 border-t border-border bg-muted/10">
+        <div className="p-4 border-t border-border bg-muted/10 shrink-0">
           <div className="flex justify-between text-xs mb-2 font-medium text-muted-foreground">
             <span>Progress</span>
             <span>

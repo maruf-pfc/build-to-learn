@@ -6,15 +6,28 @@ documentation:
   - changed-files:
     - any-glob-to-any-file: ['**/*.md', 'docs/**/*']
 
-# Server Backend
+# Server Backend (General)
 server:
   - changed-files:
-    - any-glob-to-any-file: ['server/**/*']
+    - any-glob-to-any-file:
+      - 'server/**/*'
+      - '!server/src/modules/**/*'
+      - '!server/src/middlewares/**/*'
+      - '!server/src/config/db.js'
+      - '!server/**/*.test.js'
+      - '!server/**/__tests__/**/*'
+      - '!server/src/tests/**/*'
 
-# Client Frontend
+# Client Frontend (General)
 client:
   - changed-files:
-    - any-glob-to-any-file: ['client/**/*']
+    - any-glob-to-any-file:
+      - 'client/**/*'
+      - '!client/src/components/**/*'
+      - '!client/src/app/**/*'
+      - '!client/src/styles/**/*'
+      - '!client/**/*.test.{js,jsx,ts,tsx}'
+      - '!client/**/__tests__/**/*'
 
 # Testing
 testing:
