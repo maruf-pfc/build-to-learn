@@ -11,7 +11,7 @@ const app = express();
 /* ================= CORS ================= */
 app.use(
   cors({
-    origin: ["http://localhost:3339", "http://127.0.0.1:3339"],
+    origin: ["https://build-to-learn.vercel.app", "http://localhost:3339", "http://127.0.0.1:3339"],
     credentials: true,
   }),
 );
