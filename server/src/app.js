@@ -12,9 +12,13 @@ const app = express();
 /* ================= CORS ================= */
 app.use(
   cors({
-    origin: ["https://build-to-learn.vercel.app", "http://localhost:3339", "http://127.0.0.1:3339"],
+    origin: [
+      "https://build-to-learn.vercel.app",
+      "http://localhost:3339",
+      "http://127.0.0.1:3339",
+    ],
     credentials: true,
-  }),
+  })
 );
 
 /* ================= MIDDLEWARE ================= */
@@ -22,9 +26,9 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
 app.use("/uploads", express.static("uploads"));
-app.options("*", cors());
 
 /* ================= SECURITY ================= */
+// ❗ DO NOT run Arcjet during tests
 // ❗ DO NOT run Arcjet during tests
 if (process.env.NODE_ENV !== "test") {
   const arcjetMiddleware = require("./middlewares/arcjet.middleware");
