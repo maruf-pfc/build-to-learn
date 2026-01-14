@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 
 class AuthService {
   async register({ name, email, password, role }) {
+    email = email.toLowerCase();
     const exists = await User.findOne({ email });
     if (exists) throw new Error("Email already registered");
 
@@ -24,6 +25,7 @@ class AuthService {
   }
 
   async login(email, password) {
+    email = email.toLowerCase();
     const user = await User.findOne({ email });
     if (!user) throw new Error("Invalid credentials");
 

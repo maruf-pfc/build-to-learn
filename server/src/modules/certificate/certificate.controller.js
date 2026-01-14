@@ -1,7 +1,6 @@
 const Certificate = require("./certificate.model");
 const User = require("../users/user.model");
 const Course = require("../course/course.model");
-const { v4: uuidv4 } = require("uuid");
 
 exports.generateCertificate = async (req, res, next) => {
   try {
@@ -28,6 +27,9 @@ exports.generateCertificate = async (req, res, next) => {
     // 3. Create new
     const course = await Course.findById(courseId).populate("instructor");
 
+    // Generate simple unique ID
+    const certificateId = `CERT-${userId}-${courseId}-${Date.now()}`;
+
     cert = await Certificate.create({
       user: userId,
       course: courseId,
@@ -36,7 +38,7 @@ exports.generateCertificate = async (req, res, next) => {
       instructorName: course.instructor
         ? course.instructor.name
         : "LMS Instructor",
-      certificateId: uuidv4(),
+      certificateId,
       issueDate: new Date(),
     });
 

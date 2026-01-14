@@ -4,7 +4,7 @@ const User = require("../users/user.model");
 
 exports.createCourse = async (req, res, next) => {
   try {
-    const { title, description, category, thumbnail } = req.body;
+    const { title, description, category, thumbnail, slug, level, duration, price } = req.body;
 
     // Create course
     const course = await Course.create({
@@ -12,8 +12,12 @@ exports.createCourse = async (req, res, next) => {
       description,
       category,
       thumbnail,
+      slug,
+      level,
+      duration,
+      price,
       instructor: req.user.id,
-    }); // Price is default 0
+    });
 
     res.status(201).json(course);
   } catch (err) {
@@ -23,7 +27,7 @@ exports.createCourse = async (req, res, next) => {
 
 exports.updateCourse = async (req, res, next) => {
   try {
-    const { title, description, category, thumbnail } = req.body;
+    const { title, description, category, thumbnail, published, slug, level, duration, price } = req.body;
     const course = await Course.findById(req.params.id);
 
     if (!course) return res.status(404).json({ message: "Course not found" });
@@ -35,6 +39,11 @@ exports.updateCourse = async (req, res, next) => {
     course.description = description || course.description;
     course.category = category || course.category;
     course.thumbnail = thumbnail || course.thumbnail;
+    course.slug = slug || course.slug;
+    course.level = level || course.level;
+    course.duration = duration || course.duration;
+    course.price = price || course.price;
+    if (published !== undefined) course.published = published;
 
     await course.save();
     res.json(course);
@@ -460,6 +469,7 @@ exports.getInstructorStats = async (req, res, next) => {
 
     res.json({
       courses,
+      totalCourses: courses.length,
       totalStudents,
       totalEarnings,
     });
