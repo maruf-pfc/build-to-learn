@@ -85,7 +85,7 @@ describe("E2E: Instructor Course Creation Flow", () => {
       .set("Authorization", `Bearer ${token}`)
       .send(lesson1Data);
 
-    expect(lesson1Res.statusCode).toBe(200);
+    expect(lesson1Res.statusCode).toBe(201);
 
     const lesson2Data = {
       title: "Reading Material",
@@ -100,7 +100,7 @@ describe("E2E: Instructor Course Creation Flow", () => {
       .set("Authorization", `Bearer ${token}`)
       .send(lesson2Data);
 
-    expect(lesson2Res.statusCode).toBe(200);
+    expect(lesson2Res.statusCode).toBe(201);
 
     // Step 6: Publish the course
     const publishRes = await request(app)
@@ -115,7 +115,7 @@ describe("E2E: Instructor Course Creation Flow", () => {
     const publicCoursesRes = await request(app).get("/api/courses");
 
     expect(publicCoursesRes.statusCode).toBe(200);
-    const createdCourse = publicCoursesRes.body.courses.find(
+    const createdCourse = publicCoursesRes.body.find(
       (c) => c._id === courseId,
     );
     expect(createdCourse).toBeDefined();

@@ -118,7 +118,7 @@ describe("E2E: Student Enrollment Flow", () => {
       .set("Authorization", `Bearer ${token}`)
       .send({ courseId: course._id });
 
-    expect(certRes.statusCode).toBe(200);
+    expect(certRes.statusCode).toBe(201);
     expect(certRes.body.course).toBe(course._id.toString());
 
     // Step 7: Verify certificate

@@ -14,4 +14,7 @@ module.exports = {
     "!src/server.js",
   ],
   testTimeout: 60000,
+  transformIgnorePatterns: [
+    "node_modules/(?!(uuid)/)"
+  ],
 };
