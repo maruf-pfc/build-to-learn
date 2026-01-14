@@ -237,7 +237,7 @@ exports.markModuleCompleted = async (req, res, next) => {
 exports.submitMCQ = async (req, res, next) => {
   try {
     const { id: courseId, moduleId } = req.params;
-    const { answers, cheated, subModuleId } = req.body;
+    const { answers, cheated, subModuleId, cheatingDetails } = req.body;
     const userId = req.user.id;
 
     // 1. Fetch Module to get correct answers
@@ -266,6 +266,9 @@ exports.submitMCQ = async (req, res, next) => {
 
     if (cheated) {
       console.log(`User ${userId} cheated in module ${moduleId}`);
+      if (cheatingDetails && Array.isArray(cheatingDetails)) {
+        console.log("Cheating Details:", JSON.stringify(cheatingDetails, null, 2));
+      }
     }
 
     res.json({
