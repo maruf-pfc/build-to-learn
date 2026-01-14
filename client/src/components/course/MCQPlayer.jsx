@@ -96,7 +96,8 @@ export default function MCQPlayer({ courseId, moduleId, lesson, onComplete }) {
         {
           subModuleId: lesson._id,
           answers,
-          cheatingFlags,
+          cheated: cheatingFlags.length > 0,
+          cheatingDetails: cheatingFlags,
         }
       );
 

@@ -17,6 +17,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import HomeStats from "@/components/home/HomeStats";
+import FeaturedCourses from "@/components/home/FeaturedCourses";
 
 export const metadata = {
   title: "Build To Learn - Modern Learning Management System",
@@ -30,8 +31,9 @@ export default function Home() {
       <Navbar />
 
       {/* ================= HERO ================= */}
-      <Section className="pt-20 pb-20 md:pt-28 md:pb-28 lg:pt-32 lg:pb-32 text-center px-6 bg-gradient-to-b from-primary/5 to-background relative overflow-hidden">
+      <Section className="min-h-screen flex flex-col justify-center items-center pt-20 pb-20 md:pt-28 md:pb-28 lg:pt-32 lg:pb-32 text-center px-6 bg-gradient-to-b from-primary/5 to-background relative overflow-hidden">
         {/* Decorative elements */}
+        <div className="absolute inset-0 h-full w-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
         <div className="absolute top-16 right-10 w-72 h-72 bg-primary/10 rounded-full blur-[100px]" />
         <div className="absolute bottom-16 left-10 w-96 h-96 bg-accent/10 rounded-full blur-[100px]" />
 
@@ -71,47 +73,6 @@ export default function Home() {
             >
               Browse Courses
             </Link>
-          </div>
-        </Container>
-      </Section>
-
-      {/* ================= STATS ================= */}
-      <HomeStats />
-
-      {/* ================= HOW IT WORKS ================= */}
-      <Section>
-        <Container>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
-              How This Platform Works
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Simple, structured, and effective learning path designed for your success
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <HowCard
-              step="01"
-              icon={Target}
-              title="Enroll in a Course"
-              description="Choose a course and start learning instantly. One active course at a time for focused learning."
-              color="from-blue-500 to-cyan-500"
-            />
-            <HowCard
-              step="02"
-              icon={Zap}
-              title="Complete Modules"
-              description="Read documentation, watch videos, pass quizzes, and submit projects at your own pace."
-              color="from-purple-500 to-pink-500"
-            />
-            <HowCard
-              step="03"
-              icon={Award}
-              title="Earn Certificate"
-              description="Finish all modules and unlock your verified certificate to showcase your achievement."
-              color="from-orange-500 to-yellow-500"
-            />
           </div>
         </Container>
       </Section>
@@ -161,8 +122,52 @@ export default function Home() {
         </Container>
       </Section>
 
-      {/* ================= FEATURES ================= */}
+      {/* ================= FEATURED COURSES ================= */}
+      <FeaturedCourses />
+
+      {/* ================= STATS ================= */}
+      <HomeStats />
+
+      {/* ================= HOW IT WORKS ================= */}
       <Section>
+        <Container>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
+              How This Platform Works
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Simple, structured, and effective learning path designed for your success
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <HowCard
+              step="01"
+              icon={Target}
+              title="Enroll in a Course"
+              description="Choose a course and start learning instantly. One active course at a time for focused learning."
+              color="from-blue-500 to-cyan-500"
+            />
+            <HowCard
+              step="02"
+              icon={Zap}
+              title="Complete Modules"
+              description="Read documentation, watch videos, pass quizzes, and submit projects at your own pace."
+              color="from-purple-500 to-pink-500"
+            />
+            <HowCard
+              step="03"
+              icon={Award}
+              title="Earn Certificate"
+              description="Finish all modules and unlock your verified certificate to showcase your achievement."
+              color="from-orange-500 to-yellow-500"
+            />
+          </div>
+        </Container>
+      </Section>
+
+      {/* ================= FEATURES ================= */}
+      <Section variant="muted">
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">

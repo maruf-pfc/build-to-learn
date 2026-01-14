@@ -104,7 +104,7 @@ export default function Sidebar() {
               />
               <NavItem href="/leaderboard" icon={Medal} label="Leaderboard" />
               <NavItem
-                href="/cv-generator"
+                href="/cv-builder"
                 icon={FileText}
                 label="CV Builder"
               />

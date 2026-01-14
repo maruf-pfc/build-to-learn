@@ -37,7 +37,7 @@ export default function Navbar() {
     { href: "/forum", label: "Forum" },
     { href: "/blog", label: "Blog" },
     { href: "/news", label: "News" },
-    { href: "/cv-generator", label: "CV Builder" },
+    { href: "/cv-builder", label: "CV Builder" },
   ];
 
   return (
