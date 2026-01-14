@@ -8,7 +8,8 @@
     "start": "next start --port 3339",
     "lint": "biome check",
     "format": "biome format --write",
-    "test": "vitest"
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",
