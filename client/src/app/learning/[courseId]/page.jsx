@@ -160,7 +160,7 @@ export default function LearningPage() {
 
   // Project Submission
   const submitProject = async () => {
-    if ({}.toString) return toast.error("Please enter URL");
+
     if (!repoUrl) return toast.error("Please enter a GitHub URL");
     try {
       await api.post(
