@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
+import ReactPlayer from "react-player";
 import api from "@/lib/api";
 import { toast } from "sonner";
 import {
@@ -571,10 +572,11 @@ export default function EditCoursePage() {
                     </Card>
                     {lessonForm.url && (
                       <div className="aspect-video bg-black rounded-xl overflow-hidden shadow-lg">
-                        <iframe
-                          src={lessonForm.url.replace("watch?v=", "embed/")}
-                          className="w-full h-full"
-                          allowFullScreen
+                        <ReactPlayer
+                          url={lessonForm.url}
+                          width="100%"
+                          height="100%"
+                          controls
                         />
                       </div>
                     )}
