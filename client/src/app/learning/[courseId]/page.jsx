@@ -93,6 +93,23 @@ export default function LearningPage() {
     fetchData();
   }, [courseId]);
 
+  // Responsive: Close sidebar on mobile by default or on navigation
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 1024) {
+        setShowSidebar(false);
+      } else {
+        setShowSidebar(true);
+      }
+    };
+
+    // Initial check
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   // Helpers
   const isModuleLocked = (index) => {
     if (index === 0) return false;
@@ -198,22 +215,11 @@ export default function LearningPage() {
       </div>
     );
 
-  // Responsive: Close sidebar on mobile by default or on navigation
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 1024) {
-        setShowSidebar(false);
-      } else {
-        setShowSidebar(true);
-      }
-    };
-
-    // Initial check
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  // Derived values
+  const allModulesCompleted =
+    completedModules.length === course.modules.length && course.modules.length > 0;
+  const isLastLesson =
+    activeModule && activeLessonIndex === activeModule.subModules.length - 1;
 
   return (
     <div className="flex h-full bg-background/0 overflow-hidden font-sans relative">

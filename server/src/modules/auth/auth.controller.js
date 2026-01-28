@@ -17,7 +17,7 @@ exports.register = async (req, res, next) => {
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 
-    res.json({ user });
+    res.json({ user, token });
   } catch (err) {
     next(err);
   }
@@ -35,7 +35,7 @@ exports.login = async (req, res, next) => {
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 
-    res.json({ user });
+    res.json({ user, token });
   } catch (err) {
     next(err);
   }

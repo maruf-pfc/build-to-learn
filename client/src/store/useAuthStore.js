@@ -14,6 +14,7 @@ export const useAuthStore = create(
           const { data } = await api.post("/auth/login", { email, password });
           set({
             user: data.user,
+            token: data.token,
             isAuthenticated: true,
           });
           return data;
@@ -27,6 +28,7 @@ export const useAuthStore = create(
           const { data } = await api.post("/auth/register", userData);
           set({
             user: data.user,
+            token: data.token,
             isAuthenticated: true,
           });
           return data;
