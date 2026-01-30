@@ -23,7 +23,7 @@ import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 
 export default function DashboardPage() {
-  const { user, isAuthenticated } = useAuthStore();
+  const { user, isAuthenticated, checkAuth } = useAuthStore();
   const router = useRouter();
   const [stats, setStats] = useState(null);
   const [instructorStats, setInstructorStats] = useState(null);
@@ -33,6 +33,9 @@ export default function DashboardPage() {
     if (!isAuthenticated) {
       router.push("/login");
     } else {
+      // Refresh user data to get latest enrollments
+      checkAuth();
+      
       if (user?.role === "admin") {
         api
           .get("/admin/stats")
@@ -51,7 +54,7 @@ export default function DashboardPage() {
           .catch((err) => console.error(err));
       }
     }
-  }, [isAuthenticated, router, user]);
+  }, [isAuthenticated, router]);
 
   if (!isAuthenticated && !user) return null;
   if (!user)

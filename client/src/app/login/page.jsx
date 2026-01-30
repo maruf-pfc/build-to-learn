@@ -133,7 +133,6 @@ export default function LoginPage() {
                 type="submit" 
                 disabled={isLoading} 
                 className="w-full h-11 text-base"
-                loading={isLoading}
               >
                 {isLoading ? (
                   <>

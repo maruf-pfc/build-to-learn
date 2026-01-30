@@ -2,9 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
-import ReactPlayer from "react-player";
+import dynamic from "next/dynamic";
 import api from "@/lib/api";
+import { normalizeVideoUrl, isValidVideoUrl, getVideoPlatform } from "@/lib/videoUtils";
 import { toast } from "sonner";
+
+// Dynamically import ReactPlayer with SSR disabled
+const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 import {
   Plus,
   Trash,
@@ -556,7 +560,7 @@ export default function EditCoursePage() {
                         <Label>Video URL</Label>
                         <Input
                           className="mt-2"
-                          placeholder="YouTube embed URL..."
+                          placeholder="Paste YouTube, Vimeo, or direct video URL..."
                           value={lessonForm.url || ""}
                           onChange={(e) =>
                             setLessonForm({
@@ -565,19 +569,44 @@ export default function EditCoursePage() {
                             })
                           }
                         />
-                        <p className="text-xs text-muted-foreground mt-2">
-                          Supports YouTube, Vimeo, or direct MP4 links.
-                        </p>
+                        <div className="mt-2 space-y-1">
+                          <p className="text-xs text-muted-foreground">
+                            ✓ Supports all YouTube URL formats (watch, embed, short links)
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            ✓ Supports Vimeo, Dailymotion, and direct MP4/WebM links
+                          </p>
+                          {lessonForm.url && isValidVideoUrl(lessonForm.url) && (
+                            <p className="text-xs text-green-600 font-medium mt-2">
+                              ✓ Valid {getVideoPlatform(lessonForm.url)} URL detected
+                            </p>
+                          )}
+                          {lessonForm.url && !isValidVideoUrl(lessonForm.url) && (
+                            <p className="text-xs text-amber-600 font-medium mt-2">
+                              ⚠ URL format may not be supported
+                            </p>
+                          )}
+                        </div>
                       </CardContent>
                     </Card>
                     {lessonForm.url && (
-                      <div className="aspect-video bg-black rounded-xl overflow-hidden shadow-lg">
-                        <ReactPlayer
-                          url={lessonForm.url}
-                          width="100%"
-                          height="100%"
-                          controls
-                        />
+                      <div className="space-y-2">
+                        <div className="aspect-video bg-black rounded-xl overflow-hidden shadow-lg">
+                          <ReactPlayer
+                            url={normalizeVideoUrl(lessonForm.url) || lessonForm.url}
+                            width="100%"
+                            height="100%"
+                            controls
+                            config={{
+                              youtube: {
+                                playerVars: { showinfo: 1 }
+                              }
+                            }}
+                          />
+                        </div>
+                        <p className="text-xs text-muted-foreground">
+                          Preview: {normalizeVideoUrl(lessonForm.url) || lessonForm.url}
+                        </p>
                       </div>
                     )}
                   </div>

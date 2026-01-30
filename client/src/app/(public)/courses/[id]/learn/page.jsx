@@ -2,12 +2,16 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
 import api from "@/lib/api";
 import { useAuthStore } from "@/store/useAuthStore";
-import ReactPlayer from "react-player";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import MCQComponent from "@/components/MCQComponent";
+import { normalizeVideoUrl } from "@/lib/videoUtils";
+
+// Dynamically import ReactPlayer with SSR disabled
+const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 import {
   CheckCircle,
   Circle,
@@ -189,7 +193,7 @@ export default function CourseLearnPage() {
             {activeModule?.type === "video" && (
               <div className="aspect-video bg-black rounded-lg overflow-hidden">
                 <ReactPlayer
-                  url={activeModule.videoUrl}
+                  url={normalizeVideoUrl(activeModule.videoUrl)}
                   width="100%"
                   height="100%"
                   controls

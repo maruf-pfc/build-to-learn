@@ -1,9 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import ReactPlayer from "react-player";
+import dynamic from "next/dynamic";
 import { useRouter, useParams } from "next/navigation";
 import api from "@/lib/api";
+import { normalizeVideoUrl } from "@/lib/videoUtils";
+
+// Dynamically import ReactPlayer with SSR disabled
+const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 import {
   CheckCircle,
   PlayCircle,
@@ -46,6 +50,8 @@ export default function LearningPage() {
   // Derived State
   const activeModule = course?.modules?.[activeModuleIndex];
   const activeLesson = activeModule?.subModules?.[activeLessonIndex];
+  const allModulesCompleted = course?.modules?.length > 0 && completedModules.length === course.modules.length;
+  const isLastLesson = activeModule && activeLessonIndex === activeModule.subModules.length - 1;
 
   // Fetch Data
   useEffect(() => {
@@ -185,20 +191,8 @@ export default function LearningPage() {
     }
   };
 
-  if (loading)
-    return (
-      <div className="h-screen flex items-center justify-center text-muted-foreground">
-        Loading Classroom...
-      </div>
-    );
-  if (!course)
-    return (
-      <div className="h-screen flex items-center justify-center text-red-500">
-        Course not found
-      </div>
-    );
-
   // Responsive: Close sidebar on mobile by default or on navigation
+  // MUST be before early returns to maintain hooks order
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 1024) {
@@ -214,6 +208,19 @@ export default function LearningPage() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  if (loading)
+    return (
+      <div className="h-screen flex items-center justify-center text-muted-foreground">
+        Loading Classroom...
+      </div>
+    );
+  if (!course)
+    return (
+      <div className="h-screen flex items-center justify-center text-red-500">
+        Course not found
+      </div>
+    );
 
   return (
     <div className="flex h-full bg-background/0 overflow-hidden font-sans relative">
@@ -287,7 +294,7 @@ export default function LearningPage() {
                   {activeLesson.type === "video" && (
                     <div className="aspect-video bg-black">
                       <ReactPlayer
-                        url={activeLesson.url}
+                        url={normalizeVideoUrl(activeLesson.url)}
                         width="100%"
                         height="100%"
                         controls
