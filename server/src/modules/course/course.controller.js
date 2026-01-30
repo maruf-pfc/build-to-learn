@@ -6,13 +6,19 @@ exports.createCourse = async (req, res, next) => {
   try {
     const { title, description, category, thumbnail, slug, level, duration, price } = req.body;
 
+    // Auto-generate slug from title if not provided
+    const courseSlug = slug || title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+
     // Create course
     const course = await Course.create({
       title,
       description,
       category,
       thumbnail,
-      slug,
+      slug: courseSlug,
       level,
       duration,
       price,
