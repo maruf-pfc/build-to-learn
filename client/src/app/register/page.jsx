@@ -248,7 +248,6 @@ export default function RegisterPage() {
               type="submit" 
               disabled={isLoading} 
               className="w-full h-11 text-base mt-6"
-              loading={isLoading}
             >
               {isLoading ? (
                 <>
