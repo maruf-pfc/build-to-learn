@@ -14,28 +14,28 @@
   "license": "ISC",
   "packageManager": "pnpm@10.23.0",
   "dependencies": {
-    "@arcjet/inspect": "1.0.0-beta.15",
-    "@arcjet/node": "1.0.0-beta.15",
+    "@arcjet/inspect": "1.4.0",
+    "@arcjet/node": "1.4.0",
     "bcryptjs": "^3.0.3",
-    "cloudinary": "^2.8.0",
+    "cloudinary": "^2.10.0",
     "cookie-parser": "^1.4.7",
-    "cors": "^2.8.5",
+    "cors": "^2.8.6",
     "express": "^5.2.1",
-    "express-validator": "^7.3.1",
+    "express-validator": "^7.3.2",
     "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.3",
-    "mongoose": "^9.0.1",
+    "mongoose": "^9.6.2",
     "morgan": "^1.10.1",
-    "multer": "^2.0.2",
-    "uuid": "^9.0.1"
+    "multer": "^2.1.1",
+    "uuid": "^14.0.0"
   },
   "devDependencies": {
-    "dotenv": "^17.2.3",
-    "eslint": "^9.39.1",
-    "jest": "^30.2.0",
-    "mongodb-memory-server": "^11.0.0",
-    "nodemon": "^3.1.11",
-    "prettier": "^3.7.4",
-    "supertest": "^7.1.4"
+    "dotenv": "^17.4.2",
+    "eslint": "^10.3.0",
+    "jest": "^30.4.2",
+    "mongodb-memory-server": "^11.1.0",
+    "nodemon": "^3.1.14",
+    "prettier": "^3.8.3",
+    "supertest": "^7.2.2"
   }
 }
