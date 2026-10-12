@@ -3,9 +3,9 @@
   "version": "2.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 3339",
-    "build": "next build",
-    "start": "next start --port 3339",
+    "dev": "node init && next dev --port 3339",
+    "build": "node init && next build",
+    "start": "node init && next start --port 3339",
     "lint": "biome check",
     "format": "biome format --write",
     "test": "vitest run",
